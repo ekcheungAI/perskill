@@ -8,9 +8,16 @@
  * 1. Run: npx tsx scripts/research/pipeline.ts {handle}
  * 2. Copy the output from scripts/research/output/{handle}_draft.json
  * 3. Paste it here as a new entry in researchDrafts
+ *
+ * Supports two research types:
+ * - Twitter pipeline: structured tweet analysis (see ResearchDraft interface)
+ * - Firecrawl pipeline: deep web research (see WebResearchData interface)
  */
 
 import killaXbtData from "./research/killa-xbt.json";
+import liJiaqiData from "./research/li-jiaqi.json";
+import liKaShingData from "./research/li-ka-shing.json";
+import shiYongqingData from "./research/shi-yongqing.json";
 
 export interface RawAnalysis {
   tweetCount: number;
@@ -34,6 +41,23 @@ export interface ResearchDraft {
   rawAnalysis: RawAnalysis;
 }
 
-export const researchDrafts: Record<string, ResearchDraft | null> = {
+export interface WebResearchData {
+  id: string;
+  name: string;
+  title: string;
+  accentColor: string;
+  lastUpdated: string;
+  dataSourceCount: number;
+  researchType: "web-deep-research";
+  sources: Array<{ url: string; title: string; chars: number }>;
+  analysisSummary: string;
+  skillFolder: string;
+  rawExtractFile: string;
+}
+
+export const researchDrafts: Record<string, ResearchDraft | WebResearchData | null> = {
   "killa-xbt": killaXbtData as ResearchDraft,
+  "li-jiaqi": liJiaqiData as WebResearchData,
+  "li-ka-shing": liKaShingData as WebResearchData,
+  "shi-yongqing": shiYongqingData as WebResearchData,
 };

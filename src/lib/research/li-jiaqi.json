@@ -1,0 +1,30 @@
+{
+  "id": "li-jiaqi",
+  "name": "李佳琦 (Austin Li)",
+  "title": "中国顶级美妆直播带货主播 · Top Beauty Live-Commerce Host",
+  "accentColor": "#E91E8C",
+  "lastUpdated": "2026-04-14",
+  "dataSourceCount": 15,
+  "researchType": "web-deep-research",
+  "sources": [
+    { "url": "https://zh.wikipedia.org/wiki/%E6%9D%8E%E4%BD%B3%E7%90%A6_(%E7%BD%91%E7%BB%9C%E7%BA%A2%E4%BA%BA)", "title": "维基百科（中文）李佳琦", "chars": 48000 },
+    { "url": "https://36kr.com/p/1723350089729", "title": "36氪：5分钟卖出15000支口红，李佳琦有何带货秘密？", "chars": 12000 },
+    { "url": "https://finance.sina.com.cn/roll/2026-04-10/doc-inhtyrwc5247702.shtml", "title": "Sina Finance：李佳琦否认退休，超级主播时代难以复制", "chars": 8000 },
+    { "url": "https://news.qq.com/rain/a/20230915A02LRL00", "title": "腾讯新闻：李佳琦：谢幕时分", "chars": 22000 },
+    { "url": "https://news.qq.com/rain/a/20241021A05K1O00", "title": "腾讯新闻：没有人能复制李佳琦", "chars": 9000 },
+    { "url": "https://news.qq.com/rain/a/20260207A02XFC00", "title": "腾讯新闻：33岁李佳琦再破天花板", "chars": 7000 },
+    { "url": "https://cbndata.com/information/59105", "title": "CBNData：红人周报 · 李佳琦OMG买它商标", "chars": 5000 },
+    { "url": "https://www.thepaper.cn/newsDetail_forward_18295508", "title": "澎湃新闻：李佳琦不着急", "chars": 11000 },
+    { "url": "https://finance.sina.com.cn/wm/2025-10-13/doc-inftuiwc2718504.shtml", "title": "Sina Finance：对话李佳琦直播间选品师", "chars": 7500 },
+    { "url": "https://startup.aliyun.com/info/1032272.html", "title": "阿里云：李佳琦、薇娅是怎么选品的？", "chars": 6500 },
+    { "url": "https://www.jiemian.com/article/10103362.html", "title": "界面新闻：李佳琦：谢幕时分", "chars": 18000 },
+    { "url": "https://www.meihua.info/article/3441785021531136", "title": "梅花网：所有女生！买它！李佳琦的OMG到底有什么魔力？", "chars": 6000 },
+    { "url": "https://www.woshipm.com/it/5186968.html", "title": "人人都是产品经理：李佳琦薇娅一天销售200亿", "chars": 9000 },
+    { "url": "https://baike.sogou.com/v179851361.htm", "title": "搜狗百科：李佳琦", "chars": 35000 },
+    { "url": "https://news.qq.com/rain/a/20211112A059KU00", "title": "腾讯新闻：直播间销售额破百亿，一夜成名的李佳琦凭什么？", "chars": 8000 }
+  ],
+  "analysisSummary": "Distill框架增强研究（distill_templates）：六大核心思维框架完整解析：CP值透镜（不是最贵最好，而是这个价位最优解）、情绪同步说服（OMG买它是表演技术而非口号）、季节锚定（内容日历跟随季节而非产品发布）、真实试用护城河（我试过而非我相信）、三选三检系统（通过率<5%）、理性消费倡导（告诉观众不要买才能建立信任）。2023年花西子眉笔事件完整分析——说「工资涨没涨有没有认真工作」后24小时掉粉超百万，两度道歉后以回归小课堂重建信任。2024双11预售秒破亿，2025年胡润榜单直播带货第一，年GMV预估1750亿元，粉丝9400万+。关键矛盾记录：理性消费倡导者 vs 实际推广高端品牌、「所有女生」平民定位 vs 精英生活方式信号、个人试用原则 vs 600+产品/月的规模现实。",
+  "skillFolder": "/Users/ek/Desktop/perskill/skills/li-jiaqi/research",
+  "rawExtractFile": "li-jiaqi-corporate-research-2026-04-14.json",
+  "deepResearchSources": "Manual research + web search: 15 sources analyzed, 2026-04-14"
+}
