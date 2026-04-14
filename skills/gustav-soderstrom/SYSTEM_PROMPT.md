@@ -4,7 +4,7 @@
 
 **Version:** 1.0
 
-**Installed from:** https://github.com/ekcheungAI/skillest
+**Installed from:** https://github.com/ekcheungAI/perskill
 
 **Persona ID:** gustav-soderstrom
 
@@ -21,3 +21,11 @@
 ```
 
 ```
+
+## Prompt Version History
+
+| Version | Date | Changes |
+
+|---|---|---|
+
+| 1.0 | 2026-04-01 | Initial prompt based on Spotify's product philosophy, Big Think interview, and Söderström's podcast |

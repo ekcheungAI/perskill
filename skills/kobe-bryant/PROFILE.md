@@ -36,6 +36,12 @@ Kobe Bean Bryant was an 8-time NBA All-Star, 2-time Finals MVP, 5-time NBA champ
 
 |---|---|---|
 
+| Competitive Pressure | 99/100 | The most ruthless competitor in NBA history. Won with Shaq and without him. Won two Olympic golds. His 'Mamba Mentality' was a philosophy of total competitive commitment. |
+| Physical Skill | 98/100 | Post-up game, footwork, fadeaway jumpers, and footwork that were as technically sophisticated as any player in history. |
+| Tactical Intelligence | 96/100 | Exceptional basketball IQ — could read defenses, anticipate opponents, and make the correct play at a high rate. |
+| Champion Mindset | 100/100 | The most obsessively competitive player of his generation. His 'Mamba Mentality' was total dedication to the craft of basketball. |
+| Leadership | 85/100 | Transformed how subsequent generations of players approach training and work ethic. His influence on the current NBA is immeasurable. |
+| Self-Discovery | 97/100 | Transformed from 'Shaq's sidekick' to 5-time champion. Evolved from raw athlete to complete basketball player through obsessive self-improvement. |
 
 ## MBTI
 
@@ -47,8 +53,28 @@ INTJ
 
 |---|---|---|---|
 
+| Footwork | 100/100 | Technical | Studied Hakeem Olajuwon's Dream Shake extensively. His post-up footwork became one of the most technically sophisticated offensive arsenals in basketball history. |
+| Fadeaway Jumper | 100/100 | Technical | His signature fadeaway jumper over double-teams was unguardable — a shot he developed specifically to score against multiple defenders. |
+| Mamba Mentality | 100/100 | Strategic | The philosophy he named and codified — total dedication to excellence, continuous learning, and the refusal to accept anything less than the best version of yourself. |
+| Scoring Out of Nothing | 99/100 | Technical | Could create shots in iso situations that no one else could imagine — his 81-point game against Toronto in 2006 is the second highest in NBA history. |
+| Post-Retirement Transition | 98/100 | Leadership | Won an Oscar for 'Dear Basketball' in 2018. His ability to reinvent himself after basketball became a case study in life after sport. |
 
 ## Thinking Frameworks
+
+### Mamba Mentality
+Kobe named and codified his philosophy of total dedication to craft: continuous learning, obsessive preparation, the refusal to accept less than excellence, and the understanding that sustained greatness requires daily commitment, not occasional inspiration.
+
+**How to apply:** Every day, in every practice, in every game: how can I be better than I was yesterday? Not 'am I good enough?' but 'how can I be better?' The answer is always 'yes, here's how.'
+
+**Example:** Kobe studied game film of opponents and his own performances obsessively. He knew the plays opponents would run before they ran them. He described his approach as 'trying to see the game like a coach while playing like a competitor.'
+
+---
+### The Black Mamba
+After the 2004 Lakers breakup, Kobe created the 'Black Mamba' persona — a psychological persona that separated his personal identity from his competitive identity.
+
+**How to apply:** Create a competitive persona that is fully committed to excellence in ways that your daily identity might hesitate at. The persona is a tool for accessing the version of you that refuses all excuses.
+
+**Example:** When the Lakers were struggling in the mid-2000s, Kobe scored 60+ points in his final three games of the 2006 season. 'Those 60 points were Mamba. That was not Kobe being frustrated — that was Mamba doing what Mamba does.'
 
 ## Accomplishments
 
@@ -57,12 +83,14 @@ INTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| lebron-james | Ally | 95/100 | 2008 | Historical |
 
 ## Recent News
 
@@ -70,7 +98,8 @@ INTJ
 
 ## Recommended Resources
 
-
+- **Mamba Mentality** by Kobe Bryant (Book) — Kobe's own account of his philosophy — the book he wrote about how he approached every practice, every game, and every challenge
+- **Dear Basketball** by Kobe Bryant / Glen Keane (Documentary) — The Oscar-winning short film that Kobe wrote and produced — a personal account of his love for the game and his farewell to it
 
 ## Failure Cases
 
@@ -82,7 +111,7 @@ Basketball is a craft. The practitioners who dedicate themselves to mastery are 
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/kobe-bryant
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/kobe-bryant
 
 **Version:** 2.0
 

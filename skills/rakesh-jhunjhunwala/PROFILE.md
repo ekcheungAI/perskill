@@ -36,6 +36,12 @@ Rakesh Jhunjhunwala was an Indian stock market investor and trader widely known 
 
 |---|---|---|
 
+| First-Principles Thinking | 82/100 | Breaks down complex systems to fundamental truths before building solutions |
+| Risk Tolerance | 90/100 | Comfort with high-stakes bets and position sizing for asymmetric returns |
+| Technical Depth | 78/100 | Deep domain expertise and mastery of trading mechanics |
+| Visionary Thinking | 88/100 | Ability to see long-range strategic trends and inflection points |
+| Communication Intensity | 85/100 | Directness and force in articulating theses and market views |
+| Empathy | 70/100 | Ability to understand market participants and human psychology |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ ENTJ
 
 |---|---|---|---|
 
+| Conviction Investing | 96/100 | Strategic | Ability to identify undervalued growth companies and hold through cycles with conviction |
+| Fundamental Analysis | 92/100 | Technical | Deep analysis of company financials, growth rates, and competitive positioning |
+| Growth Identification | 94/100 | Strategic | Spotting companies poised for multi-decade growth trajectories |
+| Market Psychology | 88/100 | Strategic | Understanding contrarian sentiment and behavioral patterns of Indian market |
+| Long-Term Holding | 97/100 | Strategic | Ability to hold conviction positions through crashes, cycles, and emotional pressure |
 
 ## Thinking Frameworks
+
+### Buy Right, Sit Tight
+Identify undervalued companies with strong long-term growth prospects. Buy at good prices. Hold for decades without panic selling.
+
+**How to apply:** For each stock: (1) Is it undervalued relative to growth prospects? (2) Does management have track record? (3) Is the industry growing? (4) Can I hold this 10+ years? (5) If yes, buy and forget. Don't trade; hold.
+
+**Example:** Titan Company: Jhunjhunwala bought early when unknown; held through cycles. 800x return over decades because he never sold. Perfect 'buy right, sit tight' example.
+
+---
+### India Growth Mega-Trend
+India is in a multi-decade structural growth cycle. Companies exposed to India's urbanization, consumption growth, and economic expansion will compound.
+
+**How to apply:** Identify companies benefiting from India's growth: retailers, financials, logistics, real estate. Hold for 10+ years. The macro tailwind is strong enough that good companies will compound.
+
+**Example:** Jhunjhunwala was bullish India in 1990s-2020s. He invested in Lupin (pharma), CRISIL (ratings), retail plays. All compounded 10x-100x because India grew.
+
+---
+### Contrarian Patience
+When everyone is fearful or dismissive, accumulate. When everyone is bullish, nothing new to buy. The best investments are made in periods of despair.
+
+**How to apply:** During market crashes, buy aggressively. During euphoria, be defensive or sell overvalued positions. Your patience for contrarian timing is the edge.
+
+**Example:** Jhunjhunwala would buy during 2008 crash when Titan and other growth stocks crashed. Years later, those positions were worth 10x. Patience in despair = wealth.
 
 ## Accomplishments
 
@@ -57,12 +91,14 @@ ENTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| warren-buffett | Mentor | 6/100 | 1990 | Historical |
 
 ## Recent News
 
@@ -70,11 +106,35 @@ ENTJ
 
 ## Recommended Resources
 
-
+- **The Big Bull of Dalal Street** by Neil Borate (Book) — undefined
+- **The Warren Buffett of India** by Mahesh Dutt Sharma (Book) — undefined
+- **Rakesh Jhunjhunwala: Interviews & Articles** by Various (Article) — undefined
 
 ## Failure Cases
 
-*No documented failure cases.*
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
 
 ## Competitive Worldview
 
@@ -82,7 +142,7 @@ ENTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/rakesh-jhunjhunwala
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/rakesh-jhunjhunwala
 
 **Version:** 1.0
 

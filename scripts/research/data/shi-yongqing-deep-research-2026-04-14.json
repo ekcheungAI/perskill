@@ -1,0 +1,500 @@
+{
+  "success": true,
+  "data": {
+    "finalAnalysis": "Could you please specify the research topic or subject area you would like the report to focus on? This will help tailor the comprehensive report to your needs.",
+    "sources": [
+      {
+        "url": "http://www.aastocks.com/tc/stocks/news/aafn-con/ZT1408126/popular-news/ZHITONG",
+        "title": "中原施永青：料2026年上半年香港樓價可升近15% 全年升幅有望靠近 ...",
+        "description": "智通財經APP獲悉，中原集團創辦人施永青指出，估算上半年香港樓價升幅接近15%，全年升幅有望靠近20%，由於單計首兩月主要屋苑樓價已回升15%，因而肯定今年 ...",
+        "icon": "http://www.aastocks.com/tc/favicon.ico?v=1.2.16"
+      },
+      {
+        "url": "https://www.huxiu.com/article/4838100.html",
+        "title": "中原施永青：楼价涨势凶猛，远超市场预期 - 虎嗅",
+        "description": "中原集团创办人施永青日前表示，基于年初至今楼价涨势迅猛，决定上调全年楼价预测，由先前估计的15%调升至接近20%。即将推出的卖地表住宅地块有望全部 ...",
+        "icon": "https://s1-static.huxiucdn.com/www/image/manifestLogo/logo-120.png"
+      },
+      {
+        "url": "https://www.hkcd.com.hk/content_app/2026-02/27/content_8741946.html",
+        "title": "中原施永青：全年樓價升兩成 - 香港商報",
+        "description": "中原集團創辦人施永青今日(27日)出席集團新春團拜時稱，踏入新一年，樓市復蘇速度比預期中快，預期上半年大部分屋苑升幅可達15%，全年樓價升幅接近兩成。",
+        "icon": ""
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=8MmW-lgalsU",
+        "title": "【2026年經濟及市場展望】樓市走勢：減息以外的關鍵因素   嘉賓",
+        "description": "了解香港樓市未來走勢？ 中原集團創辦人兼主席施永青先生在 ... 分析，掌握樓市脈搏！ #東亞銀行#施永青#香港樓市#經濟分析#投資#置業 ...",
+        "icon": "https://www.youtube.com/s/desktop/70bc5332/img/favicon_32x32.png"
+      },
+      {
+        "url": "https://wap.eastmoney.com/a/202601223627788093.html",
+        "title": "中原集团创始人施永青：今年香港楼市将“峰回路转” - 东方财富",
+        "description": "“从2025年第四季度开始，香港楼市迎来了重要拐点，此前的底部增持阶段已结束，2026年或将进入明确的上涨期，预计2026年香港住宅房价的涨幅将超过10%。”1月20日 ...",
+        "icon": "https://finance.eastmoney.com/favicon.ico"
+      },
+      {
+        "url": "https://www.fdsm.fudan.edu.cn/aboutus/fdsm1393501647540.m?lookuphost=http%253A%252F%252Fwww.fdsm.fudan.edu.cn&lookuppage=%252Fcs%252FAboutUs%252Ffdsm1393501647540",
+        "title": "大师论坛聚焦“无为而治”：中原集团董事分享管理哲学",
+        "description": "总结中原成功经验，施永青先生认为中原集团将中国古代道家的核心思想“无为而治”运用于企业的管理之中，信奉“无为管理，有为行事”，才能在业界开创傲人的战绩。",
+        "icon": "https://www.fdsm.fudan.edu.cn/fdrs/fdsm/2018/images/favicon.ico"
+      },
+      {
+        "url": "https://www.property.hk/writing_manage/phk_wmy/4273e2d8.html?r=4",
+        "title": "施永青的無為而治（4） - Property.hk",
+        "description": "這種說法可說是施先生「無為而治」的主流理念，例子俯拾即是：於2002年5月14日的家周刋，施先生道：「所謂無為而治，意思是要留一片空間給下屬有所作為。人不要以為自己甚麼都懂 ...",
+        "icon": ""
+      },
+      {
+        "url": "https://www.iso.cuhk.edu.hk/chinese/publications/newsletter/article.aspx?articleid=44736",
+        "title": "施永青談無為而治| 中大通訊 - iso.cuhk.edu.hk",
+        "description": "中原地產集團董事施永青先生於3月27日的逸夫書院高桌晚宴擔任主講嘉賓，分享他對管理的看法，題目為「無為而治，適者生存」。他指出無為是容許多元發展， ...",
+        "icon": ""
+      },
+      {
+        "url": "http://www.xwzgcb.com/v.php?info_id=2301",
+        "title": "无为而治成霸业谋定论道·中国企业家论坛-施永青：“商”年代",
+        "description": "施永青认为，“无为而治”下的“诸侯割据”，最有利于员工充分发挥机会，避免失误，“试问我一个人的脑袋所想的东西，怎能胜过许多个每日在前线作战统筹的人的脑袋呢 ...",
+        "icon": ""
+      },
+      {
+        "url": "https://www.fdsm.fudan.edu.cn/aboutus/fdsm1393501648320.m?lookuphost=http%253A%252F%252Fwww.fdsm.fudan.edu.cn&lookuppage=%252Fcs%252FAboutUs%252Ffdsm1393501648320",
+        "title": "第一财经日报—施永青：无为而治让企业生命体“自组织”演进",
+        "description": "在施永青看来，企业求生的最好方法是不要给员工太多束缚，要给员工自由，发挥员工的主观能动性，自己找出路。“无为而治，是最大限度地放权给下属员工，使之有充分的发挥空间。” ...",
+        "icon": "https://www.fdsm.fudan.edu.cn/fdrs/fdsm/2018/images/favicon.ico"
+      },
+      {
+        "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=002448&id=11620319",
+        "title": "中原内配：利润分配管理制度(2025年11月修订)新浪财经",
+        "description": "第一条公司分配当年税后利润时，应当提取利润的10%列入公司法定公积金。公司法定公积金累计额为公司注册资本的50%以上的，可以不再提取。",
+        "icon": ""
+      },
+      {
+        "url": "https://pdf.dfcfw.com/pdf/H2_AN202404231631058377_1.pdf",
+        "title": "[PDF] 中原内配集团股份有限公司",
+        "description": "公司最终实际现金分红总金额将根据实施利润分配方案时股权登记日总股本确定。如董事会. 及股东大会审议通过公司2023 年年度利润分配预案后到方案实施前 ...",
+        "icon": ""
+      },
+      {
+        "url": "https://file.finance.qq.com/finance/hs/pdf/2025/04/25/1223266006.PDF",
+        "title": "[PDF] 中原内配集团股份有限公司2024 年度内部控制自我评价报告",
+        "description": "... 制度，对企业运行的各个领域实施全面的管理和控制。尤其对重大投资、关联. 交易、对外担保、控股子公司管理、信息披露等方面实施重点控制，各项管理制.",
+        "icon": ""
+      },
+      {
+        "url": "https://www.yicai.com/news/4744370.html",
+        "title": "教父施永青出山重掌中原：无为而治下的地产王国 - 第一财经",
+        "description": "... 三份免费市民报《am730》，在这里，施永青真正实行了“三三制”分配制度。在《am730》刚有了账面利润时，施永青就拿出了原定的三分之一的一半分给员工，另一半则拿来填补 ...",
+        "icon": "https://www.yicai.com/favicon.ico"
+      },
+      {
+        "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=601375&id=12033496",
+        "title": "中原证券：2025年年度报告新浪财经",
+        "description": "公司经本次董事会审议通过的利润分配预案为：每10股派发现金红利人民币0.22元（含税），按照截至2025年12月31日公司总股本4,642,884,700股，计算合计拟派发现金 ...",
+        "icon": ""
+      },
+      {
+        "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0212/2025021200035.pdf",
+        "title": "[PDF] ANNUAL REPORT - HKEXnews",
+        "description": "125至234頁中原建業有限公司（「貴公司」）及其. 附屬公司（「貴集團」）的綜合財務報表，此綜合. 財務報表包括於2023年12月31日的綜合財務狀. 況表與 ...",
+        "icon": ""
+      },
+      {
+        "url": "https://hk.centanet.com/info/property-news/%E5%9C%B0%E7%94%A2%E6%96%B0%E8%81%9E/%E4%B8%AD%E5%8E%9F%E5%9C%B0%E7%94%A2%E5%8E%BB%E5%B9%B4%E7%87%9F%E6%A5%AD%E9%A1%8D%E8%88%87%E8%8A%B1%E7%B4%85-%E5%90%8C%E5%89%B54%E5%B9%B4%E6%96%B0%E9%AB%98-%E5%85%A8%E7%B7%9A%E5%BE%8C%E5%8B%A42026%E5%B9%B4%E5%B9%B3%E5%9D%87%E5%8A%A0%E8%96%AA4/189377",
+        "title": "中原地產去年營業額與花紅同創4年新高全線後勤2026年平均加薪4%",
+        "description": "2025年是樓市轉勢年，一、二手成交宗數均創近年新高，樓價亦觸底回升。中原地產精英充份把握機遇，中原亞太區去年全年錄逾43.5億港元營業額，創4年新高，年 ...",
+        "icon": "https://hk.centanet.com/info/favicon.ico"
+      },
+      {
+        "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=601375&id=8926776",
+        "title": "中原证券(601375)_公司公告_中原证券：2022年年度报告新浪财经",
+        "description": "二、 公司全体董事出席董事会会议。 三、 本公司按照中国企业会计准则编制的2022年度财务报告,经大华会计师事务所（特殊普通. 合伙）审计， ...",
+        "icon": ""
+      },
+      {
+        "url": "https://www.cfi.net.cn/p20260410008501.html",
+        "title": "[HK]中原建业(09982):2025 环境、社会及管治报告",
+        "description": "本和社會績效提供量化分析，以便進行有效評報告旨在回應持份者期望，展示中原建業2025年度估。本報告中披露的量化資料均附帶說明，闡在ESG方面的理念、管理、 ...",
+        "icon": ""
+      }
+    ],
+    "activities": [
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Generating deeper search queries for \"施永青 2022-2026：中原集团最新业绩、施永青管理哲学\"无为而治\"、三三制利润分配制度、香港房地产市场分析、中原内地扩张策略、施永青慈善基金动态、接班计划（施俊朗）、香港地产代理行业竞争格局（大湾区、一手楼、二手楼）、施永青人生哲学与处世之道、创办am730报业主角色、重要决策案例分析\"",
+        "timestamp": "2026-04-14T03:35:09.299Z",
+        "depth": 1
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Starting 3 parallel searches for \"施永青 2022-2026：中原集团最新业绩、施永青管理哲学\"无为而治\"、三三制利润分配制度、香港房地产市场分析、中原内地扩张策略、施永青慈善基金动态、接班计划（施俊朗）、香港地产代理行业竞争格局（大湾区、一手楼、二手楼）、施永青人生哲学与处世之道、创办am730报业主角色、重要决策案例分析\"",
+        "timestamp": "2026-04-14T03:35:14.372Z",
+        "depth": 1
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Searching for \"施永青 2022-2026 中原集团最新业绩分析\" - Goal: To obtain updated performance metrics and insights on 中原集团 from 2022 to 2026, focusing on key financial results and growth strategies.",
+        "timestamp": "2026-04-14T03:35:14.376Z",
+        "depth": 1
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Searching for \"施永青 管理哲学 无为而治 解析\" - Goal: To explore施永青's unique management philosophy of '无为而治', including its principles and real-world applications within 中原集团.",
+        "timestamp": "2026-04-14T03:35:14.376Z",
+        "depth": 1
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Searching for \"三三制利润分配制度 中原集团 实施效果\" - Goal: To investigate the effectiveness and outcomes of the 三三制利润分配制度 implemented by 中原集团, particularly in terms of employee motivation and financial performance.",
+        "timestamp": "2026-04-14T03:35:14.376Z",
+        "depth": 1
+      },
+      {
+        "type": "search",
+        "status": "complete",
+        "message": "Found 15 new relevant results across 3 parallel queries",
+        "timestamp": "2026-04-14T03:35:34.836Z",
+        "depth": 1
+      },
+      {
+        "type": "analyze",
+        "status": "processing",
+        "message": "Analyzing findings and planning next steps",
+        "timestamp": "2026-04-14T03:35:34.890Z",
+        "depth": 1
+      },
+      {
+        "type": "analyze",
+        "status": "complete",
+        "message": "Analyzed findings",
+        "timestamp": "2026-04-14T03:35:44.911Z",
+        "depth": 1
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Generating deeper search queries for \"Lack of detailed performance metrics for 中原集团 from 2022 to 2026\"",
+        "timestamp": "2026-04-14T03:35:45.075Z",
+        "depth": 2
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Starting 3 parallel searches for \"Lack of detailed performance metrics for 中原集团 from 2022 to 2026\"",
+        "timestamp": "2026-04-14T03:35:53.177Z",
+        "depth": 2
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Searching for \"中原集团 2022-2026 财务报告\" - Goal: To obtain detailed financial reports from 中原集团 covering the fiscal years 2022 to 2026, focusing on revenue, profit margins, and expense trends.",
+        "timestamp": "2026-04-14T03:35:53.282Z",
+        "depth": 2
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Searching for \"中原集团 市场分析 2022-2026\" - Goal: To analyze the market performance and competitive positioning of 中原集团 from 2022 to 2026, including competitors, market share, and growth opportunities.",
+        "timestamp": "2026-04-14T03:35:53.282Z",
+        "depth": 2
+      },
+      {
+        "type": "search",
+        "status": "processing",
+        "message": "Searching for \"中原集团 财务数据 2022 2023 2024\" - Goal: To gather specific financial data for 中原集团 for the years 2022, 2023, and 2024, including annual revenue, net income, and financial ratios.",
+        "timestamp": "2026-04-14T03:35:53.282Z",
+        "depth": 2
+      },
+      {
+        "type": "search",
+        "status": "complete",
+        "message": "Found 4 new relevant results across 3 parallel queries",
+        "timestamp": "2026-04-14T03:36:53.908Z",
+        "depth": 2
+      },
+      {
+        "type": "analyze",
+        "status": "processing",
+        "message": "Analyzing findings and planning next steps",
+        "timestamp": "2026-04-14T03:36:54.219Z",
+        "depth": 2
+      },
+      {
+        "type": "analyze",
+        "status": "complete",
+        "message": "Analyzed findings",
+        "timestamp": "2026-04-14T03:37:12.433Z",
+        "depth": 2
+      },
+      {
+        "type": "synthesis",
+        "status": "processing",
+        "message": "Preparing final analysis",
+        "timestamp": "2026-04-14T03:37:12.757Z",
+        "depth": 2
+      },
+      {
+        "type": "synthesis",
+        "status": "complete",
+        "message": "Research completed",
+        "timestamp": "2026-04-14T03:37:30.118Z",
+        "depth": 2
+      }
+    ],
+    "json": null
+  },
+  "expiresAt": "2026-04-14T09:37:31.000Z",
+  "currentDepth": 2,
+  "maxDepth": 7,
+  "status": "completed",
+  "totalUrls": 19,
+  "activities": [
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Generating deeper search queries for \"施永青 2022-2026：中原集团最新业绩、施永青管理哲学\"无为而治\"、三三制利润分配制度、香港房地产市场分析、中原内地扩张策略、施永青慈善基金动态、接班计划（施俊朗）、香港地产代理行业竞争格局（大湾区、一手楼、二手楼）、施永青人生哲学与处世之道、创办am730报业主角色、重要决策案例分析\"",
+      "timestamp": "2026-04-14T03:35:09.299Z",
+      "depth": 1
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Starting 3 parallel searches for \"施永青 2022-2026：中原集团最新业绩、施永青管理哲学\"无为而治\"、三三制利润分配制度、香港房地产市场分析、中原内地扩张策略、施永青慈善基金动态、接班计划（施俊朗）、香港地产代理行业竞争格局（大湾区、一手楼、二手楼）、施永青人生哲学与处世之道、创办am730报业主角色、重要决策案例分析\"",
+      "timestamp": "2026-04-14T03:35:14.372Z",
+      "depth": 1
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Searching for \"施永青 2022-2026 中原集团最新业绩分析\" - Goal: To obtain updated performance metrics and insights on 中原集团 from 2022 to 2026, focusing on key financial results and growth strategies.",
+      "timestamp": "2026-04-14T03:35:14.376Z",
+      "depth": 1
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Searching for \"施永青 管理哲学 无为而治 解析\" - Goal: To explore施永青's unique management philosophy of '无为而治', including its principles and real-world applications within 中原集团.",
+      "timestamp": "2026-04-14T03:35:14.376Z",
+      "depth": 1
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Searching for \"三三制利润分配制度 中原集团 实施效果\" - Goal: To investigate the effectiveness and outcomes of the 三三制利润分配制度 implemented by 中原集团, particularly in terms of employee motivation and financial performance.",
+      "timestamp": "2026-04-14T03:35:14.376Z",
+      "depth": 1
+    },
+    {
+      "type": "search",
+      "status": "complete",
+      "message": "Found 15 new relevant results across 3 parallel queries",
+      "timestamp": "2026-04-14T03:35:34.836Z",
+      "depth": 1
+    },
+    {
+      "type": "analyze",
+      "status": "processing",
+      "message": "Analyzing findings and planning next steps",
+      "timestamp": "2026-04-14T03:35:34.890Z",
+      "depth": 1
+    },
+    {
+      "type": "analyze",
+      "status": "complete",
+      "message": "Analyzed findings",
+      "timestamp": "2026-04-14T03:35:44.911Z",
+      "depth": 1
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Generating deeper search queries for \"Lack of detailed performance metrics for 中原集团 from 2022 to 2026\"",
+      "timestamp": "2026-04-14T03:35:45.075Z",
+      "depth": 2
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Starting 3 parallel searches for \"Lack of detailed performance metrics for 中原集团 from 2022 to 2026\"",
+      "timestamp": "2026-04-14T03:35:53.177Z",
+      "depth": 2
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Searching for \"中原集团 2022-2026 财务报告\" - Goal: To obtain detailed financial reports from 中原集团 covering the fiscal years 2022 to 2026, focusing on revenue, profit margins, and expense trends.",
+      "timestamp": "2026-04-14T03:35:53.282Z",
+      "depth": 2
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Searching for \"中原集团 市场分析 2022-2026\" - Goal: To analyze the market performance and competitive positioning of 中原集团 from 2022 to 2026, including competitors, market share, and growth opportunities.",
+      "timestamp": "2026-04-14T03:35:53.282Z",
+      "depth": 2
+    },
+    {
+      "type": "search",
+      "status": "processing",
+      "message": "Searching for \"中原集团 财务数据 2022 2023 2024\" - Goal: To gather specific financial data for 中原集团 for the years 2022, 2023, and 2024, including annual revenue, net income, and financial ratios.",
+      "timestamp": "2026-04-14T03:35:53.282Z",
+      "depth": 2
+    },
+    {
+      "type": "search",
+      "status": "complete",
+      "message": "Found 4 new relevant results across 3 parallel queries",
+      "timestamp": "2026-04-14T03:36:53.908Z",
+      "depth": 2
+    },
+    {
+      "type": "analyze",
+      "status": "processing",
+      "message": "Analyzing findings and planning next steps",
+      "timestamp": "2026-04-14T03:36:54.219Z",
+      "depth": 2
+    },
+    {
+      "type": "analyze",
+      "status": "complete",
+      "message": "Analyzed findings",
+      "timestamp": "2026-04-14T03:37:12.433Z",
+      "depth": 2
+    },
+    {
+      "type": "synthesis",
+      "status": "processing",
+      "message": "Preparing final analysis",
+      "timestamp": "2026-04-14T03:37:12.757Z",
+      "depth": 2
+    },
+    {
+      "type": "synthesis",
+      "status": "complete",
+      "message": "Research completed",
+      "timestamp": "2026-04-14T03:37:30.118Z",
+      "depth": 2
+    }
+  ],
+  "sources": [
+    {
+      "url": "http://www.aastocks.com/tc/stocks/news/aafn-con/ZT1408126/popular-news/ZHITONG",
+      "title": "中原施永青：料2026年上半年香港樓價可升近15% 全年升幅有望靠近 ...",
+      "description": "智通財經APP獲悉，中原集團創辦人施永青指出，估算上半年香港樓價升幅接近15%，全年升幅有望靠近20%，由於單計首兩月主要屋苑樓價已回升15%，因而肯定今年 ...",
+      "icon": "http://www.aastocks.com/tc/favicon.ico?v=1.2.16"
+    },
+    {
+      "url": "https://www.huxiu.com/article/4838100.html",
+      "title": "中原施永青：楼价涨势凶猛，远超市场预期 - 虎嗅",
+      "description": "中原集团创办人施永青日前表示，基于年初至今楼价涨势迅猛，决定上调全年楼价预测，由先前估计的15%调升至接近20%。即将推出的卖地表住宅地块有望全部 ...",
+      "icon": "https://s1-static.huxiucdn.com/www/image/manifestLogo/logo-120.png"
+    },
+    {
+      "url": "https://www.hkcd.com.hk/content_app/2026-02/27/content_8741946.html",
+      "title": "中原施永青：全年樓價升兩成 - 香港商報",
+      "description": "中原集團創辦人施永青今日(27日)出席集團新春團拜時稱，踏入新一年，樓市復蘇速度比預期中快，預期上半年大部分屋苑升幅可達15%，全年樓價升幅接近兩成。",
+      "icon": ""
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=8MmW-lgalsU",
+      "title": "【2026年經濟及市場展望】樓市走勢：減息以外的關鍵因素   嘉賓",
+      "description": "了解香港樓市未來走勢？ 中原集團創辦人兼主席施永青先生在 ... 分析，掌握樓市脈搏！ #東亞銀行#施永青#香港樓市#經濟分析#投資#置業 ...",
+      "icon": "https://www.youtube.com/s/desktop/70bc5332/img/favicon_32x32.png"
+    },
+    {
+      "url": "https://wap.eastmoney.com/a/202601223627788093.html",
+      "title": "中原集团创始人施永青：今年香港楼市将“峰回路转” - 东方财富",
+      "description": "“从2025年第四季度开始，香港楼市迎来了重要拐点，此前的底部增持阶段已结束，2026年或将进入明确的上涨期，预计2026年香港住宅房价的涨幅将超过10%。”1月20日 ...",
+      "icon": "https://finance.eastmoney.com/favicon.ico"
+    },
+    {
+      "url": "https://www.fdsm.fudan.edu.cn/aboutus/fdsm1393501647540.m?lookuphost=http%253A%252F%252Fwww.fdsm.fudan.edu.cn&lookuppage=%252Fcs%252FAboutUs%252Ffdsm1393501647540",
+      "title": "大师论坛聚焦“无为而治”：中原集团董事分享管理哲学",
+      "description": "总结中原成功经验，施永青先生认为中原集团将中国古代道家的核心思想“无为而治”运用于企业的管理之中，信奉“无为管理，有为行事”，才能在业界开创傲人的战绩。",
+      "icon": "https://www.fdsm.fudan.edu.cn/fdrs/fdsm/2018/images/favicon.ico"
+    },
+    {
+      "url": "https://www.property.hk/writing_manage/phk_wmy/4273e2d8.html?r=4",
+      "title": "施永青的無為而治（4） - Property.hk",
+      "description": "這種說法可說是施先生「無為而治」的主流理念，例子俯拾即是：於2002年5月14日的家周刋，施先生道：「所謂無為而治，意思是要留一片空間給下屬有所作為。人不要以為自己甚麼都懂 ...",
+      "icon": ""
+    },
+    {
+      "url": "https://www.iso.cuhk.edu.hk/chinese/publications/newsletter/article.aspx?articleid=44736",
+      "title": "施永青談無為而治| 中大通訊 - iso.cuhk.edu.hk",
+      "description": "中原地產集團董事施永青先生於3月27日的逸夫書院高桌晚宴擔任主講嘉賓，分享他對管理的看法，題目為「無為而治，適者生存」。他指出無為是容許多元發展， ...",
+      "icon": ""
+    },
+    {
+      "url": "http://www.xwzgcb.com/v.php?info_id=2301",
+      "title": "无为而治成霸业谋定论道·中国企业家论坛-施永青：“商”年代",
+      "description": "施永青认为，“无为而治”下的“诸侯割据”，最有利于员工充分发挥机会，避免失误，“试问我一个人的脑袋所想的东西，怎能胜过许多个每日在前线作战统筹的人的脑袋呢 ...",
+      "icon": ""
+    },
+    {
+      "url": "https://www.fdsm.fudan.edu.cn/aboutus/fdsm1393501648320.m?lookuphost=http%253A%252F%252Fwww.fdsm.fudan.edu.cn&lookuppage=%252Fcs%252FAboutUs%252Ffdsm1393501648320",
+      "title": "第一财经日报—施永青：无为而治让企业生命体“自组织”演进",
+      "description": "在施永青看来，企业求生的最好方法是不要给员工太多束缚，要给员工自由，发挥员工的主观能动性，自己找出路。“无为而治，是最大限度地放权给下属员工，使之有充分的发挥空间。” ...",
+      "icon": "https://www.fdsm.fudan.edu.cn/fdrs/fdsm/2018/images/favicon.ico"
+    },
+    {
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=002448&id=11620319",
+      "title": "中原内配：利润分配管理制度(2025年11月修订)新浪财经",
+      "description": "第一条公司分配当年税后利润时，应当提取利润的10%列入公司法定公积金。公司法定公积金累计额为公司注册资本的50%以上的，可以不再提取。",
+      "icon": ""
+    },
+    {
+      "url": "https://pdf.dfcfw.com/pdf/H2_AN202404231631058377_1.pdf",
+      "title": "[PDF] 中原内配集团股份有限公司",
+      "description": "公司最终实际现金分红总金额将根据实施利润分配方案时股权登记日总股本确定。如董事会. 及股东大会审议通过公司2023 年年度利润分配预案后到方案实施前 ...",
+      "icon": ""
+    },
+    {
+      "url": "https://file.finance.qq.com/finance/hs/pdf/2025/04/25/1223266006.PDF",
+      "title": "[PDF] 中原内配集团股份有限公司2024 年度内部控制自我评价报告",
+      "description": "... 制度，对企业运行的各个领域实施全面的管理和控制。尤其对重大投资、关联. 交易、对外担保、控股子公司管理、信息披露等方面实施重点控制，各项管理制.",
+      "icon": ""
+    },
+    {
+      "url": "https://www.yicai.com/news/4744370.html",
+      "title": "教父施永青出山重掌中原：无为而治下的地产王国 - 第一财经",
+      "description": "... 三份免费市民报《am730》，在这里，施永青真正实行了“三三制”分配制度。在《am730》刚有了账面利润时，施永青就拿出了原定的三分之一的一半分给员工，另一半则拿来填补 ...",
+      "icon": "https://www.yicai.com/favicon.ico"
+    },
+    {
+      "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=601375&id=12033496",
+      "title": "中原证券：2025年年度报告新浪财经",
+      "description": "公司经本次董事会审议通过的利润分配预案为：每10股派发现金红利人民币0.22元（含税），按照截至2025年12月31日公司总股本4,642,884,700股，计算合计拟派发现金 ...",
+      "icon": ""
+    },
+    {
+      "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2025/0212/2025021200035.pdf",
+      "title": "[PDF] ANNUAL REPORT - HKEXnews",
+      "description": "125至234頁中原建業有限公司（「貴公司」）及其. 附屬公司（「貴集團」）的綜合財務報表，此綜合. 財務報表包括於2023年12月31日的綜合財務狀. 況表與 ...",
+      "icon": ""
+    },
+    {
+      "url": "https://hk.centanet.com/info/property-news/%E5%9C%B0%E7%94%A2%E6%96%B0%E8%81%9E/%E4%B8%AD%E5%8E%9F%E5%9C%B0%E7%94%A2%E5%8E%BB%E5%B9%B4%E7%87%9F%E6%A5%AD%E9%A1%8D%E8%88%87%E8%8A%B1%E7%B4%85-%E5%90%8C%E5%89%B54%E5%B9%B4%E6%96%B0%E9%AB%98-%E5%85%A8%E7%B7%9A%E5%BE%8C%E5%8B%A42026%E5%B9%B4%E5%B9%B3%E5%9D%87%E5%8A%A0%E8%96%AA4/189377",
+      "title": "中原地產去年營業額與花紅同創4年新高全線後勤2026年平均加薪4%",
+      "description": "2025年是樓市轉勢年，一、二手成交宗數均創近年新高，樓價亦觸底回升。中原地產精英充份把握機遇，中原亞太區去年全年錄逾43.5億港元營業額，創4年新高，年 ...",
+      "icon": "https://hk.centanet.com/info/favicon.ico"
+    },
+    {
+      "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=601375&id=8926776",
+      "title": "中原证券(601375)_公司公告_中原证券：2022年年度报告新浪财经",
+      "description": "二、 公司全体董事出席董事会会议。 三、 本公司按照中国企业会计准则编制的2022年度财务报告,经大华会计师事务所（特殊普通. 合伙）审计， ...",
+      "icon": ""
+    },
+    {
+      "url": "https://www.cfi.net.cn/p20260410008501.html",
+      "title": "[HK]中原建业(09982):2025 环境、社会及管治报告",
+      "description": "本和社會績效提供量化分析，以便進行有效評報告旨在回應持份者期望，展示中原建業2025年度估。本報告中披露的量化資料均附帶說明，闡在ESG方面的理念、管理、 ...",
+      "icon": ""
+    }
+  ]
+}

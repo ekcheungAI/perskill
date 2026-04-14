@@ -11,12 +11,13 @@ import { useState } from "react";
 import { useParams, Link } from "wouter";
 import {
   ArrowLeft, Copy, CheckCircle2, Brain, Zap, BookOpen,
-  Users, TrendingUp, Globe, Calendar, Newspaper, Network,
+  Users, TrendingUp,   Globe, Calendar, Newspaper, Network,
   ChevronDown, ChevronRight, Star, AlertTriangle, Quote,
   MessageSquare, Layers, ExternalLink, Clock, Tag, Swords,
-  Target, Lightbulb
+  Target, Lightbulb, GitFork, Shield, Compass, ArrowRightLeft
 } from "lucide-react";
-import { personas, getRelatedPersonas, FRESHNESS_CONFIG, type Persona } from "@/lib/personas";
+import { personas, getRelatedPersonas, PROMPT_TIER_CONFIG, type Persona } from "@/lib/personas";
+import { researchDrafts } from "@/lib/research-data";
 import { toast } from "sonner";
 import { MentalModelCard } from "@/components/MentalModelCard";
 import { CompetitorGraph } from "@/components/CompetitorGraph";
@@ -215,19 +216,20 @@ export default function PersonaDetail() {
     );
   }
 
-  const freshness = FRESHNESS_CONFIG[persona.freshnessStatus];
+  const promptTier = PROMPT_TIER_CONFIG[persona.promptTier];
   const relatedPersonas = getRelatedPersonas(persona.id);
 
   const TABS = [
-    { id: "thinking",     label: "Thinking Style", icon: <Brain size={13} /> },
-    { id: "working",      label: "Working Style",  icon: <Zap size={13} /> },
-    { id: "prompts",      label: "AI Prompts",      icon: <Copy size={13} /> },
-    { id: "overview",     label: "Overview",        icon: <BookOpen size={13} /> },
-    { id: "news",         label: "News",            icon: <Newspaper size={13} /> },
-    { id: "network",      label: "Network",         icon: <Network size={13} /> },
-    { id: "mental",       label: "Inner Voice",      icon: <Lightbulb size={13} /> },
-    { id: "competition",  label: "Competitive",     icon: <Swords size={13} /> },
-  ] as const;
+    { id: "thinking",    label: "Thinking Style", icon: <Brain size={13} /> },
+    { id: "working",     label: "Working Style",  icon: <Zap size={13} /> },
+    { id: "prompts",     label: "AI Prompts",      icon: <Copy size={13} /> },
+    { id: "overview",    label: "Overview",        icon: <BookOpen size={13} /> },
+    { id: "news",        label: "News",            icon: <Newspaper size={13} /> },
+    { id: "network",     label: "Network",         icon: <Network size={13} /> },
+    ...(persona.mentalModels?.length ? [{ id: "mental" as const, label: "Inner Voice", icon: <Lightbulb size={13} /> }] : []),
+    ...(persona.competitors?.length ? [{ id: "competition" as const, label: "Competitive", icon: <Swords size={13} /> }] : []),
+    ...(researchDrafts[persona.id] ? [{ id: "research" as const, label: "Research", icon: <Compass size={13} /> }] : []),
+  ];
 
   return (
     <div className="min-h-screen" style={{ background: "#F7F6F2" }}>
@@ -238,7 +240,7 @@ export default function PersonaDetail() {
           <Link href="/">
             <button className="flex items-center gap-2 text-[13px] text-gray-600 hover:text-gray-900 transition-colors" style={{ fontFamily: "Inter, sans-serif" }}>
               <ArrowLeft size={14} />
-              Persona Library
+              Perskill
             </button>
           </Link>
           <div className="flex items-center gap-2">
@@ -288,8 +290,8 @@ export default function PersonaDetail() {
               )}
               <span
                 className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full border-2 border-white"
-                style={{ background: freshness.dot }}
-                title={freshness.label}
+                style={{ background: promptTier.dot }}
+                title={promptTier.label}
               />
             </div>
 
@@ -318,6 +320,18 @@ export default function PersonaDetail() {
               </h1>
               <p className="text-[14px] text-gray-600 mb-2" style={{ fontFamily: "Inter, sans-serif" }}>{persona.title}</p>
               <p className="text-[13px] text-gray-500 leading-relaxed max-w-2xl" style={{ fontFamily: "Inter, sans-serif" }}>{persona.shortBio}</p>
+              {persona.githubUrl && (
+                <a
+                  href={persona.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[11px] font-medium px-2.5 py-1 rounded-md border border-gray-200 bg-white hover:bg-gray-50 hover:border-gray-300 transition-colors mt-2"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  <ExternalLink size={12} />
+                  View on GitHub
+                </a>
+              )}
             </div>
 
             {/* Quick stats */}
@@ -416,12 +430,12 @@ export default function PersonaDetail() {
                 ))}
               </div>
 
-              {/* Freshness */}
+              {/* Prompt Version */}
               <div className="bg-white rounded-xl border border-gray-200 p-4">
-                <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif" }}>Data Freshness</p>
+                <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif" }}>Prompt Version</p>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: freshness.dot }} />
-                  <span className="text-[12px] font-semibold" style={{ color: freshness.color, fontFamily: "Inter, sans-serif" }}>{freshness.label}</span>
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: promptTier.dot }} />
+                  <span className="text-[12px] font-semibold" style={{ color: promptTier.color, fontFamily: "Inter, sans-serif" }}>{promptTier.label}</span>
                 </div>
                 <p className="text-[10.5px] text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
                   {persona.dataSourceCount} sources · Updated {persona.lastUpdated.slice(0, 7)}
@@ -471,6 +485,123 @@ export default function PersonaDetail() {
                   </div>
                 </div>
 
+                {/* ── Decision Heuristics (Nuwa-grade) ── */}
+                {(persona.decisionHeuristics?.length ?? 0) > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-[15px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                      Decision Heuristics ({(persona.decisionHeuristics || []).length})
+                    </h3>
+                    <p className="text-[12px] text-gray-500 mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
+                      If-then rules that drive {persona.name.split(" ")[0]}'s gut decisions — each backed by real cases.
+                    </p>
+                    <div className="space-y-2">
+                      {(persona.decisionHeuristics || []).map((h, i) => (
+                        <div key={h.name} className="rounded-xl border border-gray-200 overflow-hidden">
+                          <div className="flex items-center gap-3 p-4 bg-gray-50 border-b border-gray-100">
+                            <span className="text-[11px] font-mono font-bold px-2 py-0.5 rounded flex-shrink-0" style={{
+                              background: `${persona.accentColor}15`,
+                              color: persona.accentColor,
+                              fontFamily: "JetBrains Mono, monospace",
+                            }}>
+                              {i + 1}
+                            </span>
+                            <span className="text-[13px] font-semibold text-gray-900" style={{ fontFamily: "Fraunces, Georgia, serif" }}>{h.name}</span>
+                          </div>
+                          <div className="p-4 space-y-3">
+                            <div className="rounded-lg p-3 bg-gray-50 border border-gray-200">
+                              <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-wide mb-1" style={{ fontFamily: "Inter, sans-serif" }}>When to use</p>
+                              <p className="text-[12.5px] text-gray-700 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{h.scenario}</p>
+                            </div>
+                            {h.example && (
+                              <div className="rounded-lg p-3" style={{ background: `${persona.accentColor}08`, border: `1px solid ${persona.accentColor}20` }}>
+                                <p className="text-[10.5px] font-bold mb-1" style={{ color: persona.accentColor, fontFamily: "Inter, sans-serif" }}>Real case</p>
+                                <p className="text-[12.5px] text-gray-700 leading-relaxed italic" style={{ fontFamily: "Inter, sans-serif" }}>{h.example}</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Honest Boundaries (Nuwa-grade) ── */}
+                {(persona.honestBoundaries?.length ?? 0) > 0 && (
+                  <div className="mb-6">
+                    <h3 className="text-[15px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                      Honest Boundaries
+                    </h3>
+                    <p className="text-[12px] text-gray-500 mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
+                      What this perspective cannot do — specific, not generic.
+                    </p>
+                    <div className="space-y-2">
+                      {(persona.honestBoundaries || []).map((b, i) => (
+                        <div key={i} className="rounded-xl border border-amber-200 bg-amber-50 p-4">
+                          <div className="flex items-start gap-3">
+                            <AlertTriangle size={13} className="text-amber-600 flex-shrink-0 mt-0.5" />
+                            <div>
+                              <p className="text-[12.5px] font-semibold text-amber-800 mb-1" style={{ fontFamily: "Inter, sans-serif" }}>{b.limitation}</p>
+                              <p className="text-[12px] text-amber-700 leading-relaxed mb-1.5" style={{ fontFamily: "Inter, sans-serif" }}>{b.explanation}</p>
+                              <p className="text-[11px] text-amber-600 italic" style={{ fontFamily: "Inter, sans-serif" }}>Usage note: {b.implication}</p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* ── Intellectual Lineage (Nuwa-grade) ── */}
+                {persona.intellectualLineage && (
+                  (persona.intellectualLineage.influences.length > 0 || persona.intellectualLineage.influenced.length > 0) && (
+                    <div className="mb-6">
+                      <h3 className="text-[15px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                        Intellectual Lineage
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        {persona.intellectualLineage.influences.length > 0 && (
+                          <div className="rounded-xl border border-gray-200 bg-white p-4">
+                            <div className="flex items-center gap-2 mb-3">
+                              <ArrowRightLeft size={13} style={{ color: persona.accentColor }} />
+                              <span className="text-[11.5px] font-bold text-gray-500 uppercase tracking-wide" style={{ fontFamily: "Inter, sans-serif" }}>Influenced by</span>
+                            </div>
+                            <div className="space-y-2.5">
+                              {persona.intellectualLineage.influences.map((inf) => (
+                                <div key={inf.person} className="flex items-start gap-2">
+                                  <Compass size={12} className="text-gray-400 flex-shrink-0 mt-0.5" />
+                                  <div>
+                                    <p className="text-[12.5px] font-semibold text-gray-800" style={{ fontFamily: "Fraunces, Georgia, serif" }}>{inf.person}</p>
+                                    <p className="text-[11px] text-gray-500 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{inf.influence}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                        {persona.intellectualLineage.influenced.length > 0 && (
+                          <div className="rounded-xl border border-gray-200 bg-white p-4">
+                            <div className="flex items-center gap-2 mb-3">
+                              <GitFork size={13} style={{ color: persona.accentColor }} />
+                              <span className="text-[11.5px] font-bold text-gray-500 uppercase tracking-wide" style={{ fontFamily: "Inter, sans-serif" }}>Shaped by {persona.name.split(" ")[0]}</span>
+                            </div>
+                            <div className="space-y-2.5">
+                              {persona.intellectualLineage.influenced.map((inf) => (
+                                <div key={inf.person} className="flex items-start gap-2">
+                                  <Target size={12} className="text-gray-400 flex-shrink-0 mt-0.5" />
+                                  <div>
+                                    <p className="text-[12.5px] font-semibold text-gray-800" style={{ fontFamily: "Fraunces, Georgia, serif" }}>{inf.person}</p>
+                                    <p className="text-[11px] text-gray-500 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{inf.way}</p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )
+                )}
+
                 {/* Key Skills */}
                 <div>
                   <h3 className="text-[15px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>Key Skills</h3>
@@ -479,7 +610,20 @@ export default function PersonaDetail() {
                       <div key={skill.name} className="bg-white rounded-xl border border-gray-200 p-3.5">
                         <div className="flex justify-between items-start mb-1.5">
                           <span className="text-[13px] font-semibold text-gray-900" style={{ fontFamily: "Fraunces, Georgia, serif" }}>{skill.name}</span>
-                          <span className="text-[11px] font-mono font-bold flex-shrink-0 ml-2" style={{ color: persona.accentColor }}>{skill.level}</span>
+                          <div className="flex items-center gap-1.5">
+                            {persona.githubUrl && (
+                              <a
+                                href={persona.githubUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gray-400 hover:text-gray-700 transition-colors"
+                                title="View persona skill on GitHub"
+                              >
+                                <GitFork size={13} />
+                              </a>
+                            )}
+                            <span className="text-[11px] font-mono font-bold flex-shrink-0" style={{ color: persona.accentColor }}>{skill.level}</span>
+                          </div>
                         </div>
                         <div className="stat-bar-track mb-2">
                           <div className="stat-bar-fill" style={{ width: `${skill.level}%`, background: persona.accentColor } as React.CSSProperties} />
@@ -554,6 +698,79 @@ export default function PersonaDetail() {
                     ))}
                   </div>
                 </div>
+
+                {/* ── Values & Anti-Patterns (Nuwa-grade) ── */}
+                {(persona.values?.length ?? 0) > 0 || (persona.antiPatterns?.length ?? 0) > 0 || (persona.internalTensions?.length ?? 0) > 0 ? (
+                  <div className="mb-6">
+                    <h3 className="text-[15px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>Values & Anti-Patterns</h3>
+
+                    {/* Values */}
+                    {(persona.values?.length ?? 0) > 0 && (
+                      <div className="mb-4">
+                        <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif" }}>Core Values (Priority Order)</p>
+                        <div className="space-y-2">
+                          {(persona.values || []).sort((a, b) => a.priority - b.priority).map((v) => (
+                            <div key={v.value} className="flex items-start gap-3">
+                              <span className="w-5 h-5 rounded-full flex items-center justify-center text-[9px] font-bold flex-shrink-0 mt-0.5" style={{
+                                background: `${persona.accentColor}15`,
+                                color: persona.accentColor,
+                                fontFamily: "Inter, sans-serif",
+                              }}>
+                                {v.priority}
+                              </span>
+                              <div>
+                                <p className="text-[13px] font-semibold text-gray-900" style={{ fontFamily: "Fraunces, Georgia, serif" }}>{v.value}</p>
+                                <p className="text-[11.5px] text-gray-500 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{v.description}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Anti-patterns */}
+                    {(persona.antiPatterns?.length ?? 0) > 0 && (
+                      <div className="mb-4">
+                        <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif" }}>Explicitly Refuses</p>
+                        <div className="space-y-2">
+                          {(persona.antiPatterns || []).map((ap) => (
+                            <div key={ap.behavior} className="flex items-start gap-3 bg-red-50 rounded-xl border border-red-100 p-3">
+                              <div className="w-5 h-5 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+                                <span className="text-[9px] font-bold text-red-600">✕</span>
+                              </div>
+                              <div>
+                                <p className="text-[12.5px] font-semibold text-red-800" style={{ fontFamily: "Inter, sans-serif" }}>{ap.behavior}</p>
+                                <p className="text-[11.5px] text-red-600 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>{ap.reason}</p>
+                                {ap.quote && (
+                                  <p className="text-[11px] text-red-400 italic mt-1" style={{ fontFamily: "Inter, sans-serif" }}>"{ap.quote}"</p>
+                                )}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Internal Tensions */}
+                    {(persona.internalTensions?.length ?? 0) > 0 && (
+                      <div>
+                        <p className="text-[10.5px] font-bold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif" }}>Inner Tensions</p>
+                        <div className="space-y-2">
+                          {(persona.internalTensions || []).map((t, i) => (
+                            <div key={i} className="rounded-xl border border-gray-200 p-4">
+                              <div className="flex items-start gap-2 mb-2">
+                                <ArrowRightLeft size={13} className="text-gray-400 flex-shrink-0 mt-0.5" />
+                                <p className="text-[13px] font-semibold text-gray-800" style={{ fontFamily: "Fraunces, Georgia, serif" }}>{t.tension}</p>
+                              </div>
+                              <p className="text-[12px] text-gray-600 leading-relaxed mb-1.5" style={{ fontFamily: "Inter, sans-serif" }}>{t.explanation}</p>
+                              <p className="text-[11.5px] text-gray-400 italic" style={{ fontFamily: "Inter, sans-serif" }}>{t.manifestation}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                ) : null}
 
                 {/* Blind Spots */}
                 <div className="bg-amber-50 rounded-xl border border-amber-200 p-4 mb-6">
@@ -695,6 +912,38 @@ export default function PersonaDetail() {
             {activeTab === "overview" && (
               <div>
                 <SectionHeader title="Biography" subtitle={`${persona.name}'s full story and background`} />
+
+                {/* Identity Card (Nuwa-grade) */}
+                {persona.identityCard && (
+                  <div className="rounded-xl border border-gray-200 overflow-hidden mb-6" style={{ borderLeft: `4px solid ${persona.accentColor}` }}>
+                    <div className="bg-white p-5">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Shield size={14} style={{ color: persona.accentColor }} />
+                        <span className="text-[10.5px] font-bold uppercase tracking-widest text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>Identity Card</span>
+                      </div>
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Self Description</p>
+                          <p className="text-[14px] text-gray-900 leading-relaxed italic" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                            "{persona.identityCard.selfDescription}"
+                          </p>
+                        </div>
+                        {persona.identityCard.startingPoint && (
+                          <div>
+                            <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Starting Point</p>
+                            <p className="text-[12.5px] text-gray-700" style={{ fontFamily: "Inter, sans-serif" }}>{persona.identityCard.startingPoint}</p>
+                          </div>
+                        )}
+                        {persona.identityCard.coreBelief && (
+                          <div>
+                            <p className="text-[10px] text-gray-400 uppercase tracking-wide mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Core Belief</p>
+                            <p className="text-[12.5px] text-gray-700" style={{ fontFamily: "Inter, sans-serif" }}>{persona.identityCard.coreBelief}</p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
 
                 <div className="bg-white rounded-xl border border-gray-200 p-5 mb-6">
                   <p className="text-[14px] text-gray-700 leading-[1.8]" style={{ fontFamily: "Inter, sans-serif" }}>{persona.fullBio}</p>
@@ -1048,6 +1297,173 @@ export default function PersonaDetail() {
                 )}
               </div>
             )}
+
+            {/* ════ RESEARCH DATA ════ */}
+            {activeTab === "research" && (() => {
+              const draft = researchDrafts[persona.id];
+              if (!draft) return (
+                <div className="text-center py-16">
+                  <Compass size={32} className="text-gray-300 mx-auto mb-3" />
+                  <p className="text-[14px] text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
+                    No research data yet. Run <code className="bg-gray-100 px-1 rounded text-[12px]" style={{ fontFamily: "JetBrains Mono, monospace" }}>npx tsx scripts/research/pipeline.ts {persona.id}</code> to collect data.
+                  </p>
+                  <a
+                    href="https://x.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 mt-4 text-[13px] text-gray-600 hover:text-gray-900"
+                    style={{ fontFamily: "Inter, sans-serif" }}
+                  >
+                    Open Research Pipeline → <ExternalLink size={12} />
+                  </a>
+                </div>
+              );
+              const a = persona.accentColor;
+              const ra = draft.rawAnalysis;
+              const weekdays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+              const maxDayCount = Math.max(...weekdays.map(d => ra.dayOfWeekStats[d]?.count || 0));
+              const maxVocabCount = Math.max(...ra.topVocabulary.slice(0,15).map(v => v.count));
+              return (
+                <div>
+                  <SectionHeader
+                    title="Raw Research Data"
+                    subtitle={`Collected via TwitterAPI.io + Firecrawl · ${ra.tweetCount} tweets analyzed · Last updated ${draft.lastUpdated}`}
+                  />
+
+                  {/* Pipeline CTA */}
+                  <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-6">
+                    <div className="flex items-start gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-amber-200 flex items-center justify-center flex-shrink-0">
+                        <Compass size={14} className="text-amber-700" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-[13px] font-semibold text-amber-900 mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Research Pipeline Ready</p>
+                        <p className="text-[12px] text-amber-800 mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
+                          This data was collected automatically. Run the full pipeline with web research and deep analysis:
+                        </p>
+                        <code className="text-[11px] text-amber-900 bg-amber-100 px-2 py-1 rounded block" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+                          npx tsx scripts/research/pipeline.ts {draft.twitterHandle} --deep-research
+                        </code>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Stats grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    {[
+                      { label: "Tweets Analyzed", value: ra.tweetCount.toLocaleString(), sub: `${ra.tweetFrequency.avgPerDay}/day avg` },
+                      { label: "Followers", value: (ra.followerCount/1000).toFixed(1)+"K", sub: "on X" },
+                      { label: "Total Views", value: (ra.engagementStats.totalViews/1000000).toFixed(1)+"M", sub: "across tweets" },
+                      { label: "Avg Likes", value: ra.engagementStats.avgLikes.toLocaleString(), sub: "per tweet" },
+                    ].map(s => (
+                      <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center">
+                        <p className="text-[22px] font-bold" style={{ color: a, fontFamily: "Fraunces, Georgia, serif" }}>{s.value}</p>
+                        <p className="text-[11px] font-semibold text-gray-700 mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>{s.label}</p>
+                        <p className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>{s.sub}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Day-of-week analysis */}
+                  <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+                    <h3 className="text-[14px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                      Day-of-Week Pattern Analysis
+                    </h3>
+                    <p className="text-[11.5px] text-gray-500 mb-4" style={{ fontFamily: "Inter, sans-serif" }}>
+                      Tweet volume and engagement by day — structural temporal patterns that inform market timing
+                    </p>
+                    <div className="space-y-2">
+                      {weekdays.map(d => {
+                        const stats = ra.dayOfWeekStats[d] || { count: 0, avgLikes: 0 };
+                        const barWidth = maxDayCount > 0 ? Math.round((stats.count / maxDayCount) * 100) : 0;
+                        return (
+                          <div key={d} className="flex items-center gap-3">
+                            <span className="text-[11px] font-mono font-bold text-gray-500 w-8" style={{ fontFamily: "Inter, sans-serif" }}>{d}</span>
+                            <div className="flex-1 h-5 bg-gray-100 rounded overflow-hidden">
+                              <div className="h-full rounded transition-all" style={{ width: `${barWidth}%`, background: a }} />
+                            </div>
+                            <span className="text-[11px] text-gray-500 w-6 text-right" style={{ fontFamily: "Inter, sans-serif" }}>{stats.count}</span>
+                            <span className="text-[11px] text-gray-400 w-20 text-right" style={{ fontFamily: "Inter, sans-serif" }}>
+                              {stats.avgLikes.toLocaleString()} avg ♥
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                    <p className="text-[10.5px] text-gray-400 mt-3 italic" style={{ fontFamily: "Inter, sans-serif" }}>
+                      Note: This is raw tweet volume data. KillaXBT's Thursday bearish signal comes from analyzing market returns on each day-of-week, not tweet performance.
+                    </p>
+                  </div>
+
+                  {/* Top vocabulary */}
+                  <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+                    <h3 className="text-[14px] font-semibold text-gray-800 mb-1" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                      Signature Vocabulary
+                    </h3>
+                    <p className="text-[11.5px] text-gray-500 mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
+                      Most-frequently used words in tweets — reveals core analytical focus
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {ra.topVocabulary.slice(0, 15).map(({ phrase, count }) => {
+                        const intensity = Math.round((count / maxVocabCount) * 100);
+                        return (
+                          <div
+                            key={phrase}
+                            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11.5px] font-medium"
+                            style={{
+                              background: `${a}${Math.round(intensity * 0.15).toString(16).padStart(2,"0")}`,
+                              color: intensity > 70 ? "white" : a,
+                              fontFamily: "Inter, sans-serif",
+                            }}
+                          >
+                            {phrase}
+                            <span className="text-[10px] opacity-70">{count}×</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* Top tweets */}
+                  <div className="mb-6">
+                    <h3 className="text-[14px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                      Highest-Engagement Tweets
+                    </h3>
+                    <div className="space-y-3">
+                      {ra.topTweets.map((tweet, i) => (
+                        <div key={i} className="bg-white rounded-xl border border-gray-200 p-4">
+                          <div className="flex items-center gap-3 mb-2">
+                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ background: `${a}15`, color: a, fontFamily: "Inter, sans-serif" }}>
+                              #{i + 1}
+                            </span>
+                            <span className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>{tweet.date}</span>
+                            <span className="ml-auto text-[11px] text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
+                              ♥ {tweet.likes.toLocaleString()}
+                            </span>
+                          </div>
+                          <p className="text-[13px] text-gray-700 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                            {tweet.text}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Pipeline CTA footer */}
+                  <div className="text-center py-4 border-t border-gray-100">
+                    <a
+                      href="https://x.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-gray-800 transition-colors"
+                      style={{ fontFamily: "Inter, sans-serif" }}
+                    >
+                      View all tweets on X → <ExternalLink size={11} />
+                    </a>
+                  </div>
+                </div>
+              );
+            })()}
 
           </div>
         </div>

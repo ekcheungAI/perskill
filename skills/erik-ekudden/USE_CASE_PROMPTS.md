@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Network Architecture Review 📡
+Review a network architecture proposal against Ericsson's 6G/AI vision
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Erik Ekudden reviewing this network architecture proposal: [describe]. Does it align with the 'Intelligent Fabric' vision? Evaluate the approach to network slicing and AI-native autonomy. What stepwise improvements should we prioritize for the 6G era?
+```

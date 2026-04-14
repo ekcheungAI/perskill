@@ -12,7 +12,7 @@ import {
   Globe, TrendingUp, Users, Zap, BookOpen,
   CheckCircle2, ArrowRight
 } from "lucide-react";
-import { personas, getRarity, getRarityKey, RARITY_CONFIG, type RarityKey, type PersonaCategory, type Persona } from "@/lib/personas";
+import { personas, type PersonaCategory, type Persona } from "@/lib/personas";
 import { toast } from "sonner";
 
 // ─── Category config ──────────────────────────────────────────────────────────
@@ -59,7 +59,7 @@ const REGION_OPTIONS = [
 const SORT_OPTIONS = [
   { value: "default",     label: "Featured" },
   { value: "name",        label: "Name A–Z" },
-  { value: "freshness",   label: "Recently Updated" },
+  { value: "promptTier",  label: "Upgrade Status" },
   { value: "connections", label: "Most Connected" },
 ];
 
@@ -68,43 +68,6 @@ function getInitials(name: string): string {
   const parts = name.trim().split(/\s+/);
   if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-}
-
-// ─── Cover background — driven by rarity tier color ─────────────────────────
-function CoverBackground({ coverColor, shine, name }: { coverColor: string; shine: boolean; name: string }) {
-  const hash = name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const angle = 135 + (hash % 30); // subtle angle variation per persona
-
-  const svgPattern = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>
-    <circle cx='30' cy='30' r='20' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='1'/>
-    <circle cx='0' cy='0' r='15' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/>
-    <circle cx='60' cy='60' r='15' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/>
-    <circle cx='60' cy='0' r='10' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/>
-  </svg>`;
-  const encodedSvg = `url("data:image/svg+xml,${encodeURIComponent(svgPattern)}")`;  
-
-  return (
-    <>
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundImage: `${encodedSvg}, linear-gradient(${angle}deg, ${coverColor}F0 0%, ${coverColor}BB 100%)`,
-        }}
-      />
-      {/* Shine overlay for RR / RRR */}
-      {shine && (
-        <>
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: `linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 70%)`,
-            }}
-          />
-          <div className="card-shine" />
-        </>
-      )}
-    </>
-  );
 }
 
 // ─── Avatar with DP + initials fallback ──────────────────────────────────────
@@ -165,7 +128,6 @@ function PersonaCard({
   onToggle: (id: string) => void;
   index: number;
 }) {
-  const rarity = getRarity(persona);
   const archetype = persona.thinkingFrameworks[0]?.name ?? "Strategic Thinker";
   const topDims = persona.personalityDimensions.slice(0, 3);
 
@@ -179,26 +141,18 @@ function PersonaCard({
         outlineOffset: "2px",
       } as React.CSSProperties}
     >
-      {/* ── Cover area: rarity-driven color + centered DP ── */}
+      {/* ── Cover area: accentColor-driven + centered DP ── */}
       <div className="relative overflow-hidden flex-shrink-0" style={{ height: 110 }}>
-        <CoverBackground coverColor={rarity.coverColor} shine={rarity.shine} name={persona.name} />
-
-        {/* Top badges */}
-        <div className="absolute top-3 left-3 z-10">
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide"
-            style={{ background: rarity.badgeBg, color: rarity.badgeColor, fontFamily: "Inter, sans-serif" }}
-          >
-            {rarity.fullLabel}
-          </span>
-        </div>
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(135deg, ${persona.accentColor}F0 0%, ${persona.accentColor}BB 100%)`,
+          }}
+        />
         <div className="absolute top-3 right-3 z-10 flex items-center gap-1 px-2 py-1 rounded-full" style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(4px)" }}>
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: persona.freshnessStatus === "LIVE" ? "#4ADE80" : persona.freshnessStatus === "RECENT" ? "#FCD34D" : "#9CA3AF" }}
-          />
+          <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#A78BFA" }} />
           <span className="text-[9px] font-semibold text-white/90" style={{ fontFamily: "Inter, sans-serif" }}>
-            {persona.freshnessStatus}
+            {persona.promptTier}
           </span>
         </div>
 
@@ -547,7 +501,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<PersonaCategory | "All">("All");
   const [activeRegion, setActiveRegion] = useState("All Regions");
-  const [activeRarity, setActiveRarity] = useState<RarityKey | null>(null);
+  const [isEnhancedOnly, setIsEnhancedOnly] = useState(false);
   const [sortBy, setSortBy] = useState("default");
   const [selectedStack, setSelectedStack] = useState<string[]>([]);
 
@@ -591,14 +545,14 @@ export default function Home() {
       const nationalities = regionMap[activeRegion] ?? [];
       result = result.filter((p) => nationalities.some((n) => p.nationality.includes(n)));
     }
-    if (activeRarity !== null) {
-      result = result.filter((p) => getRarityKey(p) === activeRarity);
+    if (isEnhancedOnly) {
+      result = result.filter((p) => p.promptTier === "UPGRADED");
     }
     if (sortBy === "name") result.sort((a, b) => a.name.localeCompare(b.name));
-    else if (sortBy === "freshness") result.sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated));
+    else if (sortBy === "promptTier") result.sort((a, b) => (a.promptTier === "UPGRADED" ? -1 : 1));
     else if (sortBy === "connections") result.sort((a, b) => b.relationships.length - a.relationships.length);
     return result;
-  }, [searchQuery, activeCategory, activeRegion, activeRarity, sortBy]);
+  }, [searchQuery, activeCategory, activeRegion, isEnhancedOnly, sortBy]);
 
   const toggleStack = useCallback((id: string) => {
     setSelectedStack((prev) =>
@@ -606,7 +560,7 @@ export default function Home() {
     );
   }, []);
 
-  const hasFilters = activeCategory !== "All" || activeRegion !== "All Regions" || searchQuery !== "" || activeRarity !== null;
+  const hasFilters = activeCategory !== "All" || activeRegion !== "All Regions" || searchQuery !== "" || isEnhancedOnly;
 
   return (
     <div className="min-h-screen" style={{ background: "#F7F6F2" }}>
@@ -619,7 +573,7 @@ export default function Home() {
               <Brain size={14} className="text-white" />
             </div>
             <span className="text-[15px] font-semibold text-gray-900" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
-              Persona Library
+              Perskill
             </span>
             <span className="text-[10px] font-mono font-semibold px-1.5 py-0.5 rounded bg-gray-100 text-gray-500 hidden sm:block">
               BETA
@@ -792,34 +746,22 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Rarity Filter */}
+            {/* Enhanced Prompts toggle */}
             <div>
-              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1" style={{ fontFamily: "Inter, sans-serif" }}>Rarity</p>
-              <div className="space-y-0.5">
-                {(Object.keys(RARITY_CONFIG) as RarityKey[]).map((rk) => {
-                  const config = RARITY_CONFIG[rk];
-                  const count = personas.filter((p) => getRarityKey(p) === rk).length;
-                  return (
-                    <button
-                      key={rk}
-                      onClick={() => setActiveRarity(activeRarity === rk ? null : rk)}
-                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-[11.5px] transition-colors ${activeRarity === rk ? "bg-gray-900 text-white" : "text-gray-600 hover:bg-gray-100"}`}
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                    >
-                      <span className="flex items-center gap-1.5">
-                        <span
-                          className="w-3 h-3 rounded-sm flex-shrink-0"
-                          style={{ background: config.coverColor }}
-                        />
-                        <span>{config.fullLabel}</span>
-                      </span>
-                      <span className={`text-[10px] font-mono tabular-nums ${activeRarity === rk ? "text-gray-300" : "text-gray-400"}`}>
-                        {count}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
+              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2 px-1" style={{ fontFamily: "Inter, sans-serif" }}>Prompt Level</p>
+              <button
+                onClick={() => setIsEnhancedOnly(!isEnhancedOnly)}
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-md text-[11.5px] transition-colors ${isEnhancedOnly ? "bg-gray-900 text-white" : "text-gray-600 hover:bg-gray-100"}`}
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                <span className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full" style={{ background: "#A78BFA" }} />
+                  Enhanced Prompts
+                </span>
+                <span className={`text-[10px] font-mono tabular-nums ${isEnhancedOnly ? "text-gray-300" : "text-gray-400"}`}>
+                  {personas.filter((p) => p.promptTier === "UPGRADED").length}
+                </span>
+              </button>
             </div>
 
             {/* Sort */}
@@ -842,7 +784,7 @@ export default function Home() {
             {/* Clear filters */}
             {hasFilters && (
               <button
-                onClick={() => { setActiveCategory("All"); setActiveRegion("All Regions"); setSearchQuery(""); setActiveRarity(null); }}
+                onClick={() => { setActiveCategory("All"); setActiveRegion("All Regions"); setSearchQuery(""); setIsEnhancedOnly(false); }}
                 className="w-full text-[10.5px] text-gray-500 hover:text-gray-700 flex items-center gap-1.5 px-2.5 py-1.5 rounded-md border border-dashed border-gray-300 hover:border-gray-400 transition-colors"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >
@@ -883,28 +825,16 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Rarity pills — horizontal scroll */}
+            {/* Enhanced Prompts pill */}
             <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
-              {(Object.keys(RARITY_CONFIG) as RarityKey[]).map((rk) => {
-                const config = RARITY_CONFIG[rk];
-                return (
-                  <button
-                    key={rk}
-                    onClick={() => setActiveRarity(activeRarity === rk ? null : rk)}
-                    className={`flex-shrink-0 text-[11px] font-medium px-3 py-1.5 rounded-full border transition-colors ${activeRarity === rk ? "text-white border-transparent" : "bg-white text-gray-600 border-gray-200"}`}
-                    style={{
-                      fontFamily: "Inter, sans-serif",
-                      background: activeRarity === rk ? config.coverColor : undefined,
-                    }}
-                  >
-                    <span
-                      className="inline-block w-2 h-2 rounded-sm mr-1"
-                      style={{ background: activeRarity === rk ? "rgba(255,255,255,0.8)" : config.coverColor }}
-                    />
-                    {config.fullLabel}
-                  </button>
-                );
-              })}
+              <button
+                onClick={() => setIsEnhancedOnly(!isEnhancedOnly)}
+                className={`flex-shrink-0 text-[11px] font-medium px-3 py-1.5 rounded-full border transition-colors ${isEnhancedOnly ? "text-white border-transparent" : "bg-white text-gray-600 border-gray-200"}`}
+                style={{ fontFamily: "Inter, sans-serif", background: isEnhancedOnly ? "#7C3AED" : undefined }}
+              >
+                <span className="inline-block w-2 h-2 rounded-full mr-1" style={{ background: isEnhancedOnly ? "rgba(255,255,255,0.8)" : "#A78BFA" }} />
+                Enhanced Prompts
+              </button>
             </div>
 
             {/* Region pills — horizontal scroll */}
@@ -942,9 +872,9 @@ export default function Home() {
                 <X size={10} /> Clear stack
               </button>
             )}
-            {(activeRarity !== null || activeRegion !== "All Regions" || hasFilters) && (
+            {(isEnhancedOnly || activeRegion !== "All Regions" || hasFilters) && (
               <button
-                onClick={() => { setActiveRarity(null); setActiveRegion("All Regions"); setActiveCategory("All"); setSearchQuery(""); }}
+                onClick={() => { setIsEnhancedOnly(false); setActiveRegion("All Regions"); setActiveCategory("All"); setSearchQuery(""); }}
                 className="text-[11px] text-gray-500 hover:text-gray-700 flex items-center gap-1"
                 style={{ fontFamily: "Inter, sans-serif" }}
               >

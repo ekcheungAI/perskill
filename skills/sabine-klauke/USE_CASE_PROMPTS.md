@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Aerospace Technology Strategy ✈️
+Evaluate an aerospace technology against digital thread and decarbonization principles
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Sabine Klauke evaluating this aerospace technology. Apply the digital thread framework: is this digitally connected from design to in-service?
+```

@@ -285,3 +285,125 @@ export async function researchPersona(name: string): Promise<{
     relationships: [],
   };
 }
+
+/**
+ * Research decision heuristics from web sources
+ * Searches for this person's known decision-making rules, if-then patterns, and principles
+ */
+export async function researchDecisionHeuristics(
+  name: string
+): Promise<{ heuristics: Array<{ name: string; scenario: string; example: string }>; sources: string[] }> {
+  const query = `${name} decision making principles rules heuristics quotes`;
+  const research = await deepResearch(query, 365 * 3);
+
+  if (!research) return { heuristics: [], sources: [] };
+
+  const heuristics: Array<{ name: string; scenario: string; example: string }> = [];
+
+  // Extract quoted rules and principles
+  const quotePattern = /["""]([^"""\n]{20,200})["""]/g;
+  let match;
+  while ((match = quotePattern.exec(research.markdown)) !== null) {
+    const quote = match[1].trim();
+    if (quote.length > 15) {
+      const firstFew = quote.split(' ').slice(0, 5).join(' ');
+      heuristics.push({
+        name: firstFew + '…',
+        scenario: 'Based on public statements and documented behavior',
+        example: quote,
+      });
+    }
+  }
+
+  return {
+    heuristics: heuristics.slice(0, 8),
+    sources: research.sources,
+  };
+}
+
+/**
+ * Research intellectual lineage from web sources
+ * Finds who influenced this person and who they influenced
+ */
+export async function researchIntellectualLineage(
+  name: string
+): Promise<{
+  influences: Array<{ person: string; influence: string }>;
+  influenced: Array<{ person: string; way: string }>;
+  sources: string[];
+}> {
+  const query = `${name} influenced by mentor teacher intellectual influences`;
+  const research = await deepResearch(query, 365 * 5);
+
+  if (!research) return { influences: [], influenced: [], sources: [] };
+
+  const influences: Array<{ person: string; influence: string }> = [];
+  const influenced: Array<{ person: string; way: string }> = [];
+
+  // Extract names mentioned as influences
+  const lines = research.markdown.split('\n');
+  for (const line of lines) {
+    if (/influenced by|inspired by|learned from|mentor|teacher|role model/i.test(line)) {
+      const nameMatch = line.match(/([A-Z][a-z]+(?: [A-Z][a-z]+)+)/);
+      if (nameMatch && nameMatch[1] !== name) {
+        influences.push({
+          person: nameMatch[1],
+          influence: line.slice(0, 120).trim(),
+        });
+      }
+    }
+    if (/influenced|inspired|shaped|mentored|taught|guided/i.test(line) && !/influenced by/i.test(line)) {
+      const nameMatch = line.match(/([A-Z][a-z]+(?: [A-Z][a-z]+)+)/);
+      if (nameMatch && nameMatch[1] !== name) {
+        influenced.push({
+          person: nameMatch[1],
+          way: line.slice(0, 120).trim(),
+        });
+      }
+    }
+  }
+
+  return {
+    influences: influences.slice(0, 5),
+    influenced: influenced.slice(0, 5),
+    sources: research.sources,
+  };
+}
+
+/**
+ * Research mental models from web sources
+ * Uses Firecrawl deep search to extract this person's thinking frameworks
+ */
+export async function researchMentalModels(
+  name: string
+): Promise<{ models: Array<{ name: string; origin: string; trigger: string; internalMonologue: string; output: string; confidence: string }>; sources: string[] }> {
+  const query = `${name} mental models thinking frameworks philosophy methodology`;
+  const research = await deepResearch(query, 365 * 5);
+
+  if (!research) return { models: [], sources: [] };
+
+  const models: Array<{ name: string; origin: string; trigger: string; internalMonologue: string; output: string; confidence: string }> = [];
+
+  // Extract framework-like concepts from headings
+  for (const section of research.sections) {
+    const headingMatch = section.title.match(/([A-Z][^#\n]{5,60})/);
+    if (headingMatch && section.content.length > 100) {
+      const firstLine = section.content.split('\n').find((l) => l.trim().length > 20) || '';
+      const cleanedFirst = firstLine.replace(/^#{1,6}\s*/, '').trim().slice(0, 100);
+
+      models.push({
+        name: headingMatch[1].trim(),
+        origin: `Developed through ${name}'s career and public writings`,
+        trigger: `When facing problems in ${research.title.split(' ').slice(0, 3).join(' ')} domain`,
+        internalMonologue: `I recall that ${cleanedFirst.toLowerCase().slice(0, 80)}`,
+        output: cleanedFirst,
+        confidence: 'Pragmatic',
+      });
+    }
+  }
+
+  return {
+    models: models.slice(0, 6),
+    sources: research.sources,
+  };
+}

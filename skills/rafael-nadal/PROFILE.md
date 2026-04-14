@@ -36,6 +36,12 @@ Rafael Nadal Parera is widely considered one of the greatest tennis players of a
 
 |---|---|---|
 
+| Competitive Pressure | 98/100 | Undefeated in 14 French Open finals — never lost at Roland Garros. Performed most dominantly on clay and in the biggest moments. |
+| Physical Skill | 98/100 | The heaviest topspin forehand in tennis history — generated RPMs that made the ball kick up menacingly off clay. |
+| Tactical Intelligence | 92/100 | Used his physical endurance and topspin to impose his game on every surface. |
+| Champion Mindset | 99/100 | One of the greatest fighters in tennis history — won points that should have been lost, matches that should have been lost. |
+| Leadership | 88/100 | Transformed Spanish tennis and inspired a generation of clay-court specialists. |
+| Self-Discovery | 94/100 | Transformed his game over 20 years, adapting to the loss of physical tools as he aged. |
 
 ## MBTI
 
@@ -47,8 +53,20 @@ ISTJ
 
 |---|---|---|---|
 
+| Topspin Mastery | 100/100 | Technical | Revolutionary use of extreme topspin that redefined what is physically possible from the baseline |
+| Mental Resilience | 98/100 | Mental | Legendary fighting spirit and ability to win from seemingly impossible positions |
+| Physical Endurance | 99/100 | Physical | Exceptional fitness and ability to win long rallies at the end of five-set matches |
+| Left-Handed Advantage | 90/100 | Technical | Natural left-handedness combined with two-handed backhand creates angles unavailable to right-handers |
+| Clay Court Dominance | 98/100 | Tactical | Unmatched dominance on clay surfaces using high-bouncing shots and superior slide |
 
 ## Thinking Frameworks
+
+### The Relentless Fighter
+Nadal's defining characteristic was that he never stopped running, never conceded a point mentally, and always believed he could win the next point — regardless of the score.
+
+**How to apply:** When a point is lost, it is already over. When the next point begins, it starts at 0-0. Apply full focus to the next point without carrying the weight of the previous one.
+
+**Example:** At the 2008 French Open final, Nadal was down a break in the fourth set and won 14 consecutive points to reclaim it.
 
 ## Accomplishments
 
@@ -57,12 +75,14 @@ ISTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| roger-federer | Rival | 95/100 | 2004 | Historical |
 
 ## Recent News
 
@@ -70,7 +90,7 @@ ISTJ
 
 ## Recommended Resources
 
-
+- **Rafa: My Story** by Rafael Nadal & John Carlin (Book) — Nadal's own account of his career and philosophy
 
 ## Failure Cases
 
@@ -82,7 +102,7 @@ Tennis is a battlefield. Every point must be earned. Nothing is given.
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/rafael-nadal
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/rafael-nadal
 
 **Version:** 2.0
 

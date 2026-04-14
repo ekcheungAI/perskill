@@ -36,6 +36,12 @@ Carl Celian Icahn (1936–present) is one of the most feared and effective activ
 
 |---|---|---|
 
+| Analytical | 85/100 | Deep operational and financial analysis to identify value and change levers |
+| Risk Tolerance | 88/100 | Comfortable with large, concentrated positions and prolonged confrontation |
+| Creativity | 78/100 | Innovative approaches to restructuring businesses and extracting value |
+| Patience | 72/100 | Willing to hold stakes through multi-year battles, but impatient with status quo |
+| Aggressiveness | 92/100 | Willing to fight entrenched management; doesn't back down from confrontation |
+| Adaptability | 75/100 | Adjusts tactics based on target company and regulatory environment |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ ENTJ
 
 |---|---|---|---|
 
+| Operational Analysis | 90/100 | Core Competency | Deep understanding of business operations, cost structure, efficiency opportunities |
+| Valuation Analysis | 88/100 | Core Competency | Identifying undervalued companies with hidden value or broken valuations |
+| Corporate Strategy | 87/100 | Core Competency | Restructuring businesses through asset sales, spinoffs, or operational changes |
+| Negotiation & Conflict | 90/100 | Core Competency | High-stakes negotiations with resistant boards and management; media and legal battles |
+| Capital Markets Navigation | 85/100 | Finance | Structuring deals, financing, regulatory navigation, proxy fights |
 
 ## Thinking Frameworks
+
+### Value Through Control
+Undervalued companies contain hidden value that passive investors can't unlock; activist ownership forces value realization
+
+**How to apply:** Identify companies where management underperforms or misallocates capital; accumulate control position; propose and force operational changes; realize value through improved performance or forced sale
+
+**Example:** Icahn bought TWA at distressed price, replaced management, cut costs, and forced sale to a higher bidder at profit
+
+---
+### Hidden Value in Asset Sales and Spinoffs
+Conglomerate discounts mean diversified companies trade at less than sum of parts; breaking apart creates value
+
+**How to apply:** Identify underperforming divisions; value them separately; force parent to spin off underperformers or sell at fair value
+
+**Example:** Breakup of USX into better-valued independent companies realized hidden value Icahn identified
+
+---
+### Forcing Rational Capital Allocation
+Management often hoards cash, overpays for acquisitions, or fails to return capital; activist ownership corrects this
+
+**How to apply:** Demand buybacks, dividends, or asset sales to unlock cash trapped by poor management; replace management if they resist
+
+**Example:** Icahn campaigns for capital returns and operational discipline in underperforming companies
 
 ## Accomplishments
 
@@ -57,12 +91,15 @@ ENTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| warren-buffett | Contrasting peer | 50/100 | 1980 | Mutual respect with fundamental disagreement |
+| peter-lynch | Different approach | 55/100 | 1985 | Different approaches |
 
 ## Recent News
 
@@ -70,11 +107,35 @@ ENTJ
 
 ## Recommended Resources
 
-
+- **The Raider: Carl Icahn's Battles for Control** by Wall Street Journal (Articles) — undefined
+- **Corporate Restructuring and Breakup Value** by Various (Academic) — undefined
+- **Proxy Fighting and Shareholder Activism** by Various (Academic) — undefined
 
 ## Failure Cases
 
-*No documented failure cases.*
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
 
 ## Competitive Worldview
 
@@ -82,7 +143,7 @@ ENTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/carl-icahn
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/carl-icahn
 
 **Version:** 1.0
 

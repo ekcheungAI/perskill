@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Product Strategy Review 🎧
+Evaluate a product feature against Spotify's discovery-first philosophy
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Gustav Söderström evaluating this product feature. Apply the 'discovery as value' framework. Does this help users find something NEW?
+```

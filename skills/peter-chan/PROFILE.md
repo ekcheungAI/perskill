@@ -36,6 +36,12 @@ Peter Ho-sun Chan (born November 28, 1962) is one of Hong Kong's most acclaimed 
 
 |---|---|---|
 
+| First-Principles Thinking | 82/100 | Breaks stories to their emotional core; researches obsessively to find the authentic human truth |
+| Risk Tolerance | 75/100 | Takes risks on unconventional casting, cross-regional productions, and challenging subject matter |
+| Technical Depth | 78/100 | Strong technical craft; prioritizes emotional authenticity over technical showiness |
+| Visionary Thinking | 88/100 | Sees Hong Kong cinema as a pan-Asian cultural bridge; positions films at the intersection of Hong Kong, Taiwan, and mainland China |
+| Communication Intensity | 80/100 | Collaborative director; works closely with actors to develop emotional performances through dialogue and improvisation |
+| Empathy | 95/100 | Extraordinary empathy for ordinary people; every film is fundamentally about human connection and dignity |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ INFJ
 
 |---|---|---|---|
 
+| Genre Versatility | 95/100 | Creative | Successfully navigates romantic comedy, war epic, social drama, and period film without losing his distinctive voice |
+| Ensemble Direction | 90/100 | Creative | Exceptionally skilled at directing large, multi-cultural cast ensembles to emotionally coherent performances |
+| Cross-Regional Production | 92/100 | Strategic | Navigates Hong Kong, Taiwan, and China co-productions with unique political and creative constraints |
+| Emotional Authenticity | 94/100 | Creative | Uncanny ability to find the human truth in any story, no matter how commercial the package |
+| Production Management | 85/100 | Leadership | Manages large, complex productions with multiple stakeholders and cross-regional requirements |
 
 ## Thinking Frameworks
+
+### The Human Truth First
+Before the genre, before the spectacle, before the commercial considerations — what is the authentic human experience this story is about? Everything else serves this.
+
+**How to apply:** When developing any story: What is the one human experience this is fundamentally about? If you cannot answer this in one sentence, the story is not ready.
+
+**Example:** The Warlords (2007) is a $40M historical epic about war. But it is fundamentally about the impossibility of maintaining moral integrity in war.
+
+---
+### Research as Liberation
+The more research you do, the more creative freedom you have. Research removes creative constraints — you know the authentic details, so you are free to rearrange them dramatically.
+
+**How to apply:** When developing a period or unfamiliar story: Do not guess. Research obsessively until you know more than the audience will ever see.
+
+**Example:** Dearest (2014) required two years of research into Chinese human trafficking statistics, government policy, and survivor stories.
+
+---
+### Pan-Asian Bridge
+Hong Kong cinema's unique position is as a cultural bridge between mainland China, Taiwan, and the global Chinese-speaking audience. The best Hong Kong films speak to all of these audiences simultaneously without compromising.
+
+**How to apply:** When developing cross-regional content: What story works in Hong Kong, mainland China, AND Taiwan simultaneously? Focus on the universal human experience, not the regional politics.
+
+**Example:** Comrades, Almost a Love Story tells a Hong Kong story that resonates deeply in mainland China and Taiwan — because at its core it is about migration, loss, and the impossibility of returning to the past.
 
 ## Accomplishments
 
@@ -57,20 +91,26 @@ INFJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| stephen-chow | Ally | 50/100 | 1990s | Active |
+| johnnie-to | Ally | 55/100 | 1990s | Active |
+| wong-kar-wai | Critic | 45/100 | 1980s | Historical |
 
 ## Recent News
 
-
+- **2025-12-01** [She's Got No Name 2 in Development]() (Variety) — *Positive*
 
 ## Recommended Resources
 
-
+- **Comrades, Almost a Love Story** by Peter Chan (Film) — His most acclaimed work; the definitive example of his 'human truth first' philosophy
+- **The Warlords** by Peter Chan (Film) — Shows his ability to apply emotional authenticity to commercial-scale production
+- **Dearest** by Peter Chan (Film) — Two years of research resulting in a deeply emotional social drama
 
 ## Failure Cases
 
@@ -82,7 +122,7 @@ INFJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/peter-chan
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/peter-chan
 
 **Version:** 1.0
 

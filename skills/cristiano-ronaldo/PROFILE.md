@@ -36,6 +36,12 @@ Cristiano Ronaldo dos Santos Aveiro is widely considered one of the greatest foo
 
 |---|---|---|
 
+| Competitive Pressure | 96/100 | Delivered consistently in the biggest Champions League moments throughout his career. |
+| Physical Skill | 99/100 | The most physically complete forward in football history — aerial ability, pace, finishing, and free kicks all at world-class level. |
+| Tactical Intelligence | 88/100 | Evolved from winger to complete forward to penalty-box predator over his career. |
+| Champion Mindset | 99/100 | The most ambitious athlete of his generation — drove both himself and Messi to extraordinary heights. |
+| Leadership | 88/100 | Captain of Portugal to Euro 2016 and Nations League victories. |
+| Self-Discovery | 97/100 | Continuously reinvented his game as he aged — from skill winger to physical striker to penalty-box predator. |
 
 ## MBTI
 
@@ -47,8 +53,20 @@ ENTJ
 
 |---|---|---|---|
 
+| Heading & Finishing | 98/100 | Technical | Exceptional ability to score from crosses, set pieces, and inside the box |
+| Athletic Power | 97/100 | Physical | Explosive jumping ability, sprint speed, and physical strength maintained into his late 30s |
+| Free Kick Mastery | 94/100 | Technical | Dead ball technique combining power and precision, especially in his prime years |
+| Goal Poaching | 96/100 | Tactical | Natural scoring instinct and positioning to be in the right place at the right time |
+| Work Rate & Discipline | 95/100 | Mental | Exceptional professional discipline and ability to maintain peak performance across multiple top leagues |
 
 ## Thinking Frameworks
+
+### The Best in the World
+Ronaldo's fundamental belief was that he was — or could become — the best footballer in the world. This drove every decision, every training session, every recovery protocol.
+
+**How to apply:** State your ambition without apology. Work every day as if the ambition is achievable. Do not hedge your goals.
+
+**Example:** When Messi won the Ballon d'Or, Ronaldo responded by winning it the following year. Every achievement by a rival was a new target.
 
 ## Accomplishments
 
@@ -57,12 +75,14 @@ ENTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| lionel-messi | Rival | 90/100 | 2008 | Historical |
 
 ## Recent News
 
@@ -70,11 +90,13 @@ ENTJ
 
 ## Recommended Resources
 
-
+- **Ronaldo: Whatever It Takes** by Guillem Balague (Book) — The definitive biography of Ronaldo's rise from Madeira to global icon
 
 ## Failure Cases
 
-*No documented failure cases.*
+### 2016: Euro 2016 Final: Portugal beat France 1-0 but Ronaldo was stretchered off in the 25th minute with a knee injury.
+Knee collision. Could not participate in the deciding match.
+**Learned:** The team won without him — the culture he helped build allowed others to step up.
 
 ## Competitive Worldview
 
@@ -82,7 +104,7 @@ Football is a results business. Goals, trophies, records. Everything else is com
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/cristiano-ronaldo
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/cristiano-ronaldo
 
 **Version:** 1.0
 

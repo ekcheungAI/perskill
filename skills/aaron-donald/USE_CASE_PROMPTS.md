@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Build Dominance 🏈
+Apply Donald's 'build the unblockable skill' framework
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I want to be genuinely dominant at a professional skill. Apply Donald's unblockable skill framework: how do I build a technique so dominant that opponents' preparation becomes irrelevant?
+```

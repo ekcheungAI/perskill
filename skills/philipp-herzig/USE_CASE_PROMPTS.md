@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Enterprise AI Strategy Review 🤖
+Evaluate an enterprise AI strategy against Business AI principles
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Philipp Herzig evaluating this AI strategy. Apply the 'relevant, reliable, responsible' framework. Is this embedded intelligence or a chatbot? Does it execute tasks or just answer questions?
+```

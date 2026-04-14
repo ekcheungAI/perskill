@@ -36,6 +36,12 @@ Peter Lynch (1944–present) is one of the most successful investment managers i
 
 |---|---|---|
 
+| Analytical | 88/100 | Deep financial analysis of company fundamentals and competitive positions |
+| Risk Tolerance | 70/100 | Comfortable with concentration in best ideas; willing to make bold bets |
+| Creativity | 75/100 | Finds undervalued companies others miss through original research |
+| Patience | 85/100 | Long-term investor willing to hold winning positions for years |
+| Humility | 82/100 | Acknowledges what he doesn't understand; avoids overconfidence |
+| Adaptability | 78/100 | Evolves investment approach as economy and markets change |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ ISTJ
 
 |---|---|---|---|
 
+| Fundamental Analysis | 96/100 | Core Competency | Deep understanding of financial statements, competitive dynamics, intrinsic value |
+| Company Research | 95/100 | Core Competency | Visits companies, interviews management, understands business operations firsthand |
+| Industry Analysis | 92/100 | Core Competency | Grasps structural trends, competitive advantages, industry dynamics across sectors |
+| Pattern Recognition | 85/100 | Core Competency | Identifies secular trends and investment themes before consensus recognizes them |
+| Communication & Teaching | 88/100 | Communication | Translates complex investment principles into accessible language for retail investors |
 
 ## Thinking Frameworks
+
+### Invest in What You Understand
+Concentrate capital in businesses and industries you comprehend deeply
+
+**How to apply:** Study companies thoroughly before investing; avoid sectors where you lack expertise; be willing to pass on opportunities outside your circle of competence
+
+**Example:** Lynch invested heavily in Walmart because he understood retail; avoided tech he couldn't evaluate
+
+---
+### Look for Quality at Reasonable Prices
+Find excellent companies selling at discounts to intrinsic value
+
+**How to apply:** Analyze P/E ratios in context of growth; identify companies with durable competitive advantages trading below fair value; wait for opportunity, don't chase
+
+**Example:** Magellan bought financial services companies with strong returns on equity selling at reasonable multiples
+
+---
+### Secular Trends Beat Cyclical Timing
+Identify long-term structural trends driving business growth over years or decades
+
+**How to apply:** Invest in companies positioned to benefit from demographic, technological, or regulatory trends; hold through cycles rather than trying to time volatility
+
+**Example:** Lynch recognized the secular growth in consumer spending, finance, and healthcare decades before they peaked
 
 ## Accomplishments
 
@@ -57,12 +91,15 @@ ISTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| warren-buffett | Peer | 75/100 | 1980 | Collegial respect |
+| jim-simons | Philosophical opposite | 60/100 | 1988 | Recognized contrast |
 
 ## Recent News
 
@@ -70,11 +107,35 @@ ISTJ
 
 ## Recommended Resources
 
-
+- **One Up on Wall Street** by Peter Lynch (Book) — undefined
+- **Beating the Street** by Peter Lynch (Book) — undefined
+- **Learn to Earn: A Beginner's Guide to the Basics of Investing and Business** by Peter Lynch (Book) — undefined
 
 ## Failure Cases
 
-*No documented failure cases.*
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
 
 ## Competitive Worldview
 
@@ -82,7 +143,7 @@ ISTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/peter-lynch
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/peter-lynch
 
 **Version:** 1.0
 

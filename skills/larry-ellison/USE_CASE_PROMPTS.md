@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Evaluate a Business Strategy 🎯
+Get Larry's brutally honest assessment of a business plan or competitive strategy
+
+**Tags:** 
+
+**Prompt:**
+
+```
+Review this business strategy as Larry Ellison. Is this a winning strategy? Who are we competing against? What is our unfair advantage? Give me the brutal truth, not the diplomatic version.
+```

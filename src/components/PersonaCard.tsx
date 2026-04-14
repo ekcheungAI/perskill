@@ -2,7 +2,7 @@
 // Used in PersonaMatch results
 
 import { useState } from "react";
-import { type Persona, getRarity, getRarityKey, type RarityKey } from "@/lib/personas";
+import { type Persona } from "@/lib/personas";
 import { Copy, Check, Layers, Brain, ArrowRight, BookOpen } from "lucide-react";
 import { toast } from "sonner";
 import { Link } from "wouter";
@@ -20,36 +20,13 @@ function getInitials(name: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
-function getRarityFull(rarityKey: RarityKey) {
-  const map: Record<RarityKey, { label: string; coverColor: string; badgeColor: string; badgeBg: string; shine: boolean }> = {
-    C:   { label: "Common",       coverColor: "#6B7280", badgeColor: "#6B7280", badgeBg: "rgba(107,114,128,0.12)", shine: false },
-    CC:  { label: "Uncommon",     coverColor: "#2563EB", badgeColor: "#2563EB", badgeBg: "rgba(37,99,235,0.12)", shine: false },
-    R:   { label: "Rare",        coverColor: "#7C3AED", badgeColor: "#7C3AED", badgeBg: "rgba(124,58,237,0.12)", shine: false },
-    RR:  { label: "Double Rare", coverColor: "#B45309", badgeColor: "#B45309", badgeBg: "rgba(180,83,9,0.12)", shine: true },
-    RRR: { label: "Ultra Rare",  coverColor: "#991B1B", badgeColor: "#991B1B", badgeBg: "rgba(153,27,27,0.12)", shine: true },
-  };
-  return map[rarityKey] ?? map["C"];
-}
-
 export default function PersonaCard({ persona, index, onToggle, isSelected = false }: PersonaCardProps) {
   const [copied, setCopied] = useState(false);
   const [imgFailed, setImgFailed] = useState(false);
 
-  const rarityKey = getRarityKey(persona);
-  const rarity = getRarityFull(rarityKey);
   const archetype = persona.thinkingFrameworks[0]?.name ?? "Strategic Thinker";
   const topDims = persona.personalityDimensions.slice(0, 3);
   const initials = getInitials(persona.name);
-
-  const hash = persona.name.split("").reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const angle = 135 + (hash % 30);
-  const svgPattern = `<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'>
-    <circle cx='30' cy='30' r='20' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='1'/>
-    <circle cx='0' cy='0' r='15' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/>
-    <circle cx='60' cy='60' r='15' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1'/>
-    <circle cx='60' cy='0' r='10' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/>
-  </svg>`;
-  const encodedSvg = `url("data:image/svg+xml,${encodeURIComponent(svgPattern)}")`;
 
   const handleCopyPrompt = async (e: React.MouseEvent) => {
     e.preventDefault();
@@ -89,42 +66,20 @@ export default function PersonaCard({ persona, index, onToggle, isSelected = fal
         animation: `fadeInUp 0.5s ease-out ${animationDelay} forwards`,
       }}
     >
-      {/* ── Cover area: rarity-driven color ── */}
+      {/* ── Cover area: accentColor-driven ── */}
       <div className="relative overflow-hidden flex-shrink-0" style={{ height: 110 }}>
-        {/* SVG pattern + gradient cover */}
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: `${encodedSvg}, linear-gradient(${angle}deg, ${rarity.coverColor}F0 0%, ${rarity.coverColor}BB 100%)`,
+            background: `linear-gradient(135deg, ${persona.accentColor}F0 0%, ${persona.accentColor}BB 100%)`,
           }}
         />
-        {/* RR/RRR shimmer */}
-        {rarity.shine && (
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: "linear-gradient(120deg, rgba(255,255,255,0) 30%, rgba(255,255,255,0.18) 50%, rgba(255,255,255,0) 70%)",
-            }}
-          />
-        )}
-
-        {/* Top badges */}
-        <div className="absolute top-3 left-3 z-10">
-          <span
-            className="px-2 py-0.5 rounded-full text-[10px] font-bold tracking-wide"
-            style={{ background: rarity.badgeBg, color: rarity.badgeColor, fontFamily: "Inter, sans-serif" }}
-          >
-            {rarity.label}
-          </span>
-        </div>
-        <div className="absolute top-3 right-3 z-10 flex items-center gap-1 px-2 py-1 rounded-full" style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(4px)" }}>
-          <span
-            className="w-1.5 h-1.5 rounded-full"
-            style={{ background: persona.freshnessStatus === "LIVE" ? "#4ADE80" : persona.freshnessStatus === "RECENT" ? "#FCD34D" : "#9CA3AF" }}
-          />
-          <span className="text-[9px] font-semibold text-white/90" style={{ fontFamily: "Inter, sans-serif" }}>
-            {persona.freshnessStatus}
-          </span>
+        <div className="absolute top-3 right-3 z-10 flex flex-col items-end gap-1">
+          {/* Prompt Tier */}
+          <div className="flex items-center gap-1 px-2 py-1 rounded-full" style={{ background: "rgba(0,0,0,0.35)", backdropFilter: "blur(4px)" }}>
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#A78BFA" }} />
+            <span className="text-[9px] font-semibold text-white/90">{persona.promptTier}</span>
+          </div>
         </div>
 
         {/* Avatar centered at bottom */}

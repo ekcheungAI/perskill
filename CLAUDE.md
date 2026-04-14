@@ -1,6 +1,6 @@
-# AI Persona Library — Claude Code Handoff
+# Perskill — Claude Code Handoff
 
-> This file is the complete context document for continuing development of the **AI Persona Library** in Claude Code. Read this entire file before making any changes.
+> This file is the complete context document for continuing development of **Perskill** in Claude Code. Read this entire file before making any changes.
 
 ---
 
@@ -38,7 +38,7 @@ The product is aimed at **vibe coders and AI agent builders** who want to instal
 ## Project Structure
 
 ```
-Skillist/
+Perskill/
 ├── CLAUDE.md                              ← You are here
 ├── PRODUCT_ARCHITECTURE.md                ← Product vision and Phase 1/2 roadmap
 ├── package.json                           ← React 19 + Vite + npm dependencies
@@ -51,7 +51,7 @@ Skillist/
     ├── index.css                         ← Global design tokens + Foil shimmer animation
     ├── vite-env.d.ts
     ├── lib/
-    │   └── personas.ts                   ← 5 personas with full profiles + rarityOverride
+    │   └── personas.ts                   ← 22 personas with full profiles
     ├── pages/
     │   ├── Home.tsx                     ← Card grid + sidebar (rarity filter) + stack tray (mobile)
     │   ├── PersonaDetail.tsx            ← 6-tab profile + nativeName display
@@ -75,7 +75,7 @@ Skillist/
 ## Project Structure
 
 ```
-persona-library/
+perskill/
 ├── CLAUDE.md                          ← You are here
 ├── PRODUCT_ARCHITECTURE.md            ← Product vision and Phase 1/2 roadmap
 ├── client/
@@ -124,21 +124,8 @@ persona-library/
 - **Inter** — body text, UI labels, stats
 - **JetBrains Mono** — AI prompts, code blocks, version numbers
 
-### Rarity System (Card Cover Colors)
-The card cover background color is determined by rarity tier, NOT per-persona accent color:
-
-| Tier | Label | Cover Color | Badge Style | Shine |
-|---|---|---|---|---|
-| C | Common | `#6B7280` (gray) | Gray badge | No |
-| CC | Uncommon | `#2563EB` (blue) | Blue badge | No |
-| R | Rare | `#7C3AED` (purple) | Purple badge | No |
-| RR | Double Rare | `#B45309` (amber) | Amber badge | Yes |
-| RRR | Ultra Rare | `#991B1B` (crimson) | Red badge | Yes |
-
-Rarity is auto-computed from `personalityDimensions` average score:
-- `< 60` → C, `60–74` → CC, `75–84` → R, `85–92` → RR, `≥ 93` → RRR
-
-To override rarity manually, add a `rarity` field to the `Persona` interface and check it first in `getRarityKey()` in `Home.tsx`.
+### Prompt Level Filter (Sidebar)
+A single toggle that filters to personas with enhanced (custom-written) AI system prompts. Personas with `promptTier: "UPGRADED"` include killa-xbt, li-ka-shing, justin-sun, and others.
 
 ### Category Colors (Sidebar)
 ```
@@ -170,8 +157,8 @@ interface Persona {
   accentColor: string;           // hex, used for UI accents (NOT card cover)
   image: string;                 // URL or "" (falls back to initials)
 
-  // Freshness
-  freshnessStatus: "LIVE" | "RECENT" | "STALE" | "OUTDATED";
+  // Prompt Tier
+  promptTier: PromptTier;
   lastUpdated: string;           // "2025-01-15"
   nextUpdateDue: string;
   dataSourceCount: number;
@@ -320,8 +307,7 @@ Results are also displayed in the **Research tab** on each persona's detail page
    - `personalityTraits` from bio analysis
 5. Set `image: ""` if no photo — initials fallback handles it
 6. Set `categories` to valid `PersonaCategory` values
-7. Set `rarityOverride` based on average `personalityDimensions` score
-8. If adding a new category, add it to:
+7. If adding a new category, add it to:
    - `PersonaCategory` type in `personas.ts`
    - `CATEGORY_CONFIG` in `Home.tsx`
 
@@ -331,6 +317,10 @@ The **Research tab** on `PersonaDetail` shows the raw collected data:
 - Import pipeline output into `src/lib/research/{id}.json`
 - Add entry to `src/lib/research-data.ts` → `researchDrafts` map
 - Tab auto-appears when `researchDrafts[persona.id]` exists
+
+**Supported research data types** in `research-data.ts`:
+- `ResearchDraft` — Twitter pipeline output (structured tweet analysis with vocabulary, engagement stats, top tweets)
+- `WebResearchData` — Firecrawl web deep-research output (article analysis, decision patterns, geopolitical coverage)
 
 ### API Keys
 
@@ -342,16 +332,12 @@ Located in `.env`:
 
 ## Known Issues / TODO
 
-- [x] **Rarity manual override**: `rarityOverride?: RarityKey` added to Persona interface; applied to Larry Ellison (RR), Erik Ekudden (R), Stephen Chow (RRR), Philipp Herzig (R), Gustav Söderström (R), Lars Reger (R), Sabine Klauke (R), Tsui Hark (RR), Peter Chan (R), Johnnie To (RR), Wong Kar-wai (RRR), John Woo (RR)
 - [x] **Native Chinese names on detail page**: `nativeName` is now displayed in PersonaDetail hero section below English name
-- [x] **Foil shimmer animation for RR/RRR**: CSS-only `card-shine` animation added to `index.css`, applied to CoverBackground component
-- [x] **Rarity filter in sidebar**: Added to both desktop sidebar and mobile pill row
-- [x] **Home page mobile layout**: Mobile filter section now shows category pills + rarity pills + region pills; 3-column grid already responsive
+- [x] **Prompt Level filter** (Apr 2026): Sidebar now has a single "Enhanced Prompts" toggle button instead of two-button Standard/Enhanced filter
+- [x] **Home page mobile layout**: Mobile filter section now shows category pills + Enhanced Prompts pill + region pills; 3-column grid already responsive
 - [x] **Stack Tray mobile**: Added mobile bottom-sheet expand/collapse behavior with `mobileExpanded` state
 - [ ] **Real persona photos**: all personas currently use initials fallback; upload headshots to CDN and set `image` field
-- [x] **All 9 new personas added** (Apr 2026): Philipp Herzig, Gustav Söderström, Lars Reger, Sabine Klauke (European Tech), Tsui Hark, Peter Chan, Johnnie To, Wong Kar-wai, John Woo (HK Directors)
-- [x] **UpgradeModal.tsx**: deleted (legacy component, unused, referenced non-existent TIER_FEATURES)
-- [ ] **PersonaCard.tsx**: legacy component; PersonaMatch uses it for results cards (still functional)
+- [x] **All 22 personas added**: Full library complete
 
 ---
 
@@ -362,8 +348,8 @@ Located in `.env`:
 - ✅ One-click copy system prompt
 - ✅ Stack builder (composite prompt)
 - ✅ Persona Match quiz
-- ✅ Category + region + rarity filtering
-- ✅ Rarity tier system
+- ✅ Category + region + prompt level filtering
+- ✅ Accent color card covers (accentColor-driven, not rarity-driven)
 
 ### Phase 2 (Next — Research Pipeline)
 - Firecrawl `/deep-research` for new persona onboarding
@@ -387,7 +373,7 @@ Located in `.env`:
 | Decision | Rationale |
 |---|---|
 | No backend | Phase 1 is pure demand validation; static site loads instantly and can be published with one click |
-| Rarity-based cover colors | Prevents rainbow chaos from 16 different accent colors; makes the card game metaphor coherent |
+| AccentColor-driven card covers | Each persona has a unique accent color used for card covers and highlights; no longer rarity-driven |
 | Complementarity matching (not similarity) | Users don't want an AI that thinks like them — they want one that fills their gaps |
 | Fraunces serif for headings | Distinctive, editorial feel that avoids the "AI slop" look of Inter-only interfaces |
 | All content open (no paywall) | Removed paywall to maximize shareability and trust; monetization deferred to Phase 2 |

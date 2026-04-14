@@ -36,6 +36,12 @@ John Clifton Bogle (1929–2019) was arguably the most influential investor of t
 
 |---|---|---|
 
+| Principle Orientation | 93/100 | Driven by what's right for investors, not what maximizes company profits |
+| Intellectual Honesty | 92/100 | Acknowledges what research shows—most active management underperforms; willing to admit limitations |
+| Long-term Focus | 95/100 | Patient, compound-focused approach; uninterested in short-term trading or performance chasing |
+| Simplicity | 91/100 | Believes simple, low-cost approaches outperform complex, expensive ones |
+| Moral Conviction | 90/100 | Strong ethical beliefs about fiduciary duty and treating investors fairly |
+| Humility | 88/100 | Acknowledges that markets are hard to beat; focuses on what can be controlled (costs) |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ ISTJ
 
 |---|---|---|---|
 
+| Investment Principle Development | 93/100 | Core Competency | Understanding what drives long-term investment returns; simplifying to essential factors |
+| Cost Structure Optimization | 95/100 | Core Competency | Obsessive focus on reducing fees and expense ratios to maximize investor returns |
+| Index Strategy | 94/100 | Core Competency | Developing and implementing low-cost index fund approach that outperforms 95% of active management |
+| Organizational Leadership | 88/100 | Leadership | Building Vanguard around fiduciary principles and investor-centric values |
+| Advocacy and Communication | 87/100 | Communication | Educating investors and advocating for reform against industry resistance |
 
 ## Thinking Frameworks
+
+### The Irrelevance of Stock-Picking for Most Investors
+Markets are efficient enough that few active managers beat the index after fees; investors should focus on what they can control
+
+**How to apply:** Accept that beating the market is very difficult; invest in low-cost index funds instead; focus on controlling costs, not picking winners; diversify broadly
+
+**Example:** Bogle's analysis showed that over 20-year periods, 85%+ of active mutual funds underperformed their benchmark after fees
+
+---
+### Costs Are Permanent Drags on Returns
+High fees and expenses are borne by investors but don't create additional value; every basis point saved is permanent return advantage
+
+**How to apply:** Obsess over fees and costs in every investment decision; choose lowest-cost options; avoid expensive managed accounts, loaded funds, frequent trading
+
+**Example:** A 1% fee difference on $100,000 invested at 7% return means $6,100 difference over 20 years—a massive permanent drag
+
+---
+### Time, Discipline, and Diversification Beat Timing and Selection
+Market timing and stock selection are unreliable; time in market, diversification, and discipline are reliable
+
+**How to apply:** Dollar-cost average into diversified index funds; hold long-term despite volatility; rebalance mechanically; avoid emotional trading
+
+**Example:** Long-term indexers who ignored market cycles and kept investing consistently outperformed traders trying to time markets
 
 ## Accomplishments
 
@@ -57,12 +91,15 @@ ISTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| warren-buffett | Ally | 80/100 | 1980 | Aligned philosophy |
+| benjamin-graham | Philosophical alignment | 75/100 | 1975 | Shared philosophy |
 
 ## Recent News
 
@@ -70,11 +107,35 @@ ISTJ
 
 ## Recommended Resources
 
-
+- **Common Sense on Mutual Funds** by John Bogle (Book) — undefined
+- **The Little Book of Common Sense Investing** by John Bogle (Book) — undefined
+- **Enough: True Measures of Money, Business, and Life** by John Bogle (Book) — undefined
 
 ## Failure Cases
 
-*No documented failure cases.*
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
 
 ## Competitive Worldview
 
@@ -82,7 +143,7 @@ ISTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/john-bogle
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/john-bogle
 
 **Version:** 1.0
 

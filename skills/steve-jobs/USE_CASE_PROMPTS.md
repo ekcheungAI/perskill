@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Product Vision Development Lightbulb
+Develop a product vision using Jobs' first-principles and simplicity framework
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I need to design [PRODUCT/FEATURE]. Jobs-style approach: (1) What is the core job this product does? (2) What is the simplest way to do that job? (3) What must we remove to achieve simplicity? (4) How should this feel? (5) What detail will make this magical? Sketch the vision.
+```

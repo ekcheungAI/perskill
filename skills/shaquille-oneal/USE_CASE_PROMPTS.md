@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Dominate Your Field 🏀
+Identify and leverage your overwhelming advantage
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I want to be more dominant. Apply O'Neal's dominance framework: identify your overwhelming advantage and make it the center of everything. Give me the approach.
+```

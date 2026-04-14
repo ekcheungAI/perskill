@@ -36,6 +36,12 @@ Patrick Lavon Mahomes II is widely considered one of the most dynamic quarterbac
 
 |---|---|---|
 
+| Competitive Pressure | 97/100 | Extraordinary clutch performance — multiple game-winning drives in conference championships and Super Bowls. |
+| Physical Skill | 98/100 | Exceptional arm talent and mobility. Makes throws from arm angles no other quarterback can replicate. |
+| Tactical Intelligence | 95/100 | Extends plays with his legs, reads defenses in real time, makes split-second decisions at elite speed. |
+| Champion Mindset | 96/100 | Has won three Super Bowls in his first seven seasons. |
+| Leadership | 95/100 | Transformed the Chiefs' culture alongside Andy Reid. Magnetic personality that makes teammates play harder. |
+| Self-Discovery | 94/100 | Continuous evolution of his game — from scrambler to disciplined pocket passer while maintaining creativity. |
 
 ## MBTI
 
@@ -47,14 +53,27 @@ ENFP
 
 |---|---|---|---|
 
+| Arm Talent | 99/100 | Technical | Exceptional arm strength and throwing mechanics enabling impossible off-platform passes |
+| Off-Platform Throwing | 98/100 | Technical | Ability to make accurate throws from any body position, arm angle, or platform |
+| Playmaking Vision | 97/100 | Tactical | Exceptional ability to read defenses and find open receivers with creative, off-schedule throws |
+| Athletic Mobility | 93/100 | Physical | Elite running ability for a quarterback, capable of making defenders miss in the pocket |
+| Clutch Performance | 96/100 | Mental | Exceptional ability to perform at his best in high-pressure, game-deciding moments |
 
 ## Thinking Frameworks
+
+### The Impossible Throw
+Mahomes' defining characteristic is making throws that violate conventional wisdom — sidearm, no-look, from impossible angles — and making them work.
+
+**How to apply:** When the designed play breaks, create. Use your full toolkit, not just the standard one.
+
+**Example:** In Super Bowl LVII, Mahomes threw a no-look pass to Juju Smith-Schuster — one of the most impossible-looking throws in NFL history.
 
 ## Accomplishments
 
 | Year | Title | Impact | Description |
 
 |---|---|---|---|
+
 
 
 ## Relationships
@@ -64,13 +83,14 @@ ENFP
 |---|---|---|---|---|
 
 
+
 ## Recent News
 
 
 
 ## Recommended Resources
 
-
+- **Mahomes: The Journey** by NFL Films (Documentary) — Behind-the-scenes account of Mahomes' rise from Texas to Super Bowl champion
 
 ## Failure Cases
 
@@ -82,7 +102,7 @@ NFL is the ultimate team sport. The quarterback is the conductor of the offense.
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/patrick-mahomes
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/patrick-mahomes
 
 **Version:** 1.0
 

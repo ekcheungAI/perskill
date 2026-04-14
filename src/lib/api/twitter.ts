@@ -68,7 +68,7 @@ export interface ExpressionDNA {
   rhythm: {
     leadsWithConclusion: boolean;
     usesAnalogies: boolean;
-   转折Frequency: number;
+   transitionFrequency: number;
   };
 }
 
@@ -209,7 +209,7 @@ export function analyzeExpressionDNA(tweets: TwitterTweet[]): ExpressionDNA {
       sentenceStyle: { avgLength: 0, questionRatio: 0, exclamationRatio: 0, imperativeRatio: 0 },
       vocabulary: { highFrequencyWords: [], signaturePhrases: [], tabooWords: [] },
       tone: { certainty: 'medium', formality: 'mixed', humor: 'none' },
-      rhythm: { leadsWithConclusion: false, usesAnalogies: false, 转折Frequency: 0 },
+      rhythm: { leadsWithConclusion: false, usesAnalogies: false, transitionFrequency: 0 },
     };
   }
 
@@ -301,7 +301,7 @@ export function analyzeExpressionDNA(tweets: TwitterTweet[]): ExpressionDNA {
     return firstClause.length > 20 && /^(yes|no|so|the|i think|i believe|actually)/i.test(firstClause) === false;
   }).length;
   const usesAnalogies = texts.filter((t) => /like |比喻|如同|好像|就好比/i.test(t)).length;
-  const 转折Count = texts.filter((t) => /but|however|though|although|然而|但是|不过/i.test(t)).length;
+  const transitionCount = texts.filter((t) => /but|however|though|although|然而|但是|不过/i.test(t)).length;
 
   return {
     sentenceStyle: {
@@ -323,9 +323,88 @@ export function analyzeExpressionDNA(tweets: TwitterTweet[]): ExpressionDNA {
     rhythm: {
       leadsWithConclusion: conclusionFirst / texts.length > 0.3,
       usesAnalogies: usesAnalogies > texts.length * 0.05,
-      转折Frequency: Math.round(转折Count / tweets.length * 100),
+      transitionFrequency: Math.round(transitionCount / tweets.length * 100),
     },
   };
+}
+
+/**
+ * Build a human-readable expression DNA string for prompt use
+ * Returns a structured text block suitable for aiPersonaPrompt
+ */
+export function buildExpressionDNAString(dna: ExpressionDNA, personName: string): string {
+  const humorText = {
+    none: 'serious',
+    dry: 'dry humor',
+    witty: 'witty',
+    'self-deprecating': 'self-deprecating',
+  }[dna.tone.humor] ?? 'mixed';
+
+  const certaintyText = {
+    high: 'high — uses definitive language',
+    medium: 'medium — balanced certainty',
+    low: 'low — hedges with qualifiers',
+  }[dna.tone.certainty] ?? 'medium';
+
+  const rhythmNotes: string[] = [];
+  if (dna.rhythm.leadsWithConclusion) rhythmNotes.push('leads with conclusion');
+  if (dna.rhythm.usesAnalogies) rhythmNotes.push('uses analogies');
+  if (dna.rhythm.transitionFrequency > 20) rhythmNotes.push('frequent transitions');
+  const rhythmText = rhythmNotes.length > 0 ? rhythmNotes.join(', ') : 'direct linear style';
+
+  const signaturePhrases =
+    dna.vocabulary.signaturePhrases.length > 0
+      ? `Signature phrases: "${dna.vocabulary.signaturePhrases.slice(0, 5).join('", "')}"`
+      : 'No consistent signature phrases detected';
+
+  return [
+    `Sentence style: avg ${dna.sentenceStyle.avgLength} words/sentence, ` +
+      `${dna.sentenceStyle.questionRatio}% questions, ${dna.sentenceStyle.exclamationRatio}% exclamations, ` +
+      `${dna.sentenceStyle.imperativeRatio}% imperatives.`,
+    `Tone: ${dna.tone.formality} formality, ${humorText}, certainty: ${certaintyText}.`,
+    `Rhythm: ${rhythmText}.`,
+    `High-frequency words: ${dna.vocabulary.highFrequencyWords.slice(0, 10).join(', ')}.`,
+    signaturePhrases,
+  ].join('\n');
+}
+
+/**
+ * Build expression DNA rules for AI persona output
+ * Based on the "Expression DNA" section from persona data
+ */
+export function buildExpressionRules(dna: ExpressionDNA): string {
+  const rules: string[] = [];
+
+  if (dna.tone.humor === 'dry') {
+    rules.push('- Dry humor: deliver absurd content deadpan, without "haha" or "just kidding" — let readers laugh on their own');
+  }
+  if (dna.tone.humor === 'witty') {
+    rules.push('- Witty humor: unexpected analogies and reversals, no need to explain');
+  }
+
+  if (dna.tone.certainty === 'high') {
+    rules.push('- Do not soften extreme words: use direct equivalents for stupid/evil/insanity, no softening');
+  }
+
+  if (dna.sentenceStyle.imperativeRatio > 10) {
+    rules.push('- Prioritize imperatives: "Don't ask... first ask...", "Ask yourself...", "Prescription:"');
+  }
+
+  if (dna.rhythm.leadsWithConclusion) {
+    rules.push('- Lead with conclusion, no preamble or explanation');
+  }
+
+  if (dna.rhythm.usesAnalogies) {
+    rules.push('- Downward analogies: pull abstract concepts down to the physical/sensory level');
+  }
+
+  if (dna.vocabulary.signaturePhrases.length > 0) {
+    rules.push(
+      `- Preserve signature phrases: ${dna.vocabulary.signaturePhrases.slice(0, 3).join(', ')} and other signature expressions`
+    );
+  }
+
+  return rules.length > 0 ? rules.join('\n') : '';
 }
 
 /**

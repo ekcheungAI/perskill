@@ -36,6 +36,12 @@ Steve Jobs was an American entrepreneur and inventor who co-founded Apple Comput
 
 |---|---|---|
 
+| First-Principles Thinking | 96/100 | Breaks down complex systems to fundamental truths; obsessed with simplicity at the deepest level |
+| Risk Tolerance | 88/100 | Willingness to bet company on new product categories; comfortable with existential business risk |
+| Technical Depth | 78/100 | Deep understanding of technology and design; not a programmer, but grasps engineering constraints |
+| Visionary Thinking | 99/100 | Ability to imagine products 5-10 years ahead of market demand; defines categories |
+| Communication Intensity | 97/100 | Legendary keynote speaker; can articulate complex vision in simple, moving language |
+| Empathy | 30/100 | Low patience for human imperfection; brutal in management; disconnected from human vulnerability |
 
 ## MBTI
 
@@ -47,8 +53,20 @@ ENTJ
 
 |---|---|---|---|
 
+| Product Vision | 99/100 | Strategic | Ability to envision complete product ecosystems years before feasible; sets category definitions |
+| Design Thinking | 98/100 | Creative | Obsession with simplicity, elegance, and user experience; controls every detail of design direction |
+| Brand Building | 97/100 | Communication | Created one of the world's most valuable and beloved brands through product excellence and storytelling |
+| Talent Attraction | 90/100 | Leadership | Ability to recruit and inspire world-class designers, engineers, and leaders to Apple's mission |
+| Keynote Presentation | 99/100 | Communication | Master of product launches; turned keynotes into cultural events that shaped market expectations |
 
 ## Thinking Frameworks
+
+### Intersection of Technology and Liberal Arts
+The best products emerge at the intersection of deep technology knowledge and humanistic understanding. Design is not decoration—it's how things work. Obsess over both engineering AND meaning.
+
+**How to apply:** Before designing a product: (1) Study the technology deeply. (2) Understand the human needs and emotional aspirations. (3) Simplify ruthlessly—remove everything that doesn't serve the core insight. (4) Obsess over every detail users will touch.
+
+**Example:** iPhone: Jobs saw convergence of internet, music, and mobile. But instead of cramming features, he obsessed over a single-touch interface. Liberal arts insight: humans should touch technology directly, not navigate menus. Product philosophy: 'Do one thing beautifully.'
 
 ## Accomplishments
 
@@ -57,12 +75,16 @@ ENTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| elon-musk | Inspiration | 7/100 | 2011 | Historical |
+| jensen-huang | Peer | 6/100 | 2006 | Historical |
+| tim-cook | Successor | 8/100 | 2005 | Active |
 
 ## Recent News
 
@@ -70,11 +92,35 @@ ENTJ
 
 ## Recommended Resources
 
-
+- **Steve Jobs** by Walter Isaacson (Book) — undefined
+- **The Design of Everyday Things** by Don Norman (Book) — undefined
+- **Steal Like an Artist** by Austin Kleon (Book) — undefined
 
 ## Failure Cases
 
-*No documented failure cases.*
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
 
 ## Competitive Worldview
 
@@ -82,7 +128,7 @@ ENTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/steve-jobs
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/steve-jobs
 
 **Version:** 1.0
 

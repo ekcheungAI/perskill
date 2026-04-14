@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Multi-Discipline Analysis Framework Lightbulb
+Apply latticework of mental models from multiple disciplines
+
+**Tags:** 
+
+**Prompt:**
+
+```
+undefined
+```

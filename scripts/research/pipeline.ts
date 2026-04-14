@@ -3,14 +3,15 @@
  * pipeline.ts
  *
  * Orchestrates the full persona research pipeline:
- * 1. Scrape tweets from Twitter/X
+ * 1. Scrape tweets from Twitter/X (if handle has Twitter)
  * 2. Deep-research via Firecrawl
- * 3. Analyze and structure the data into a persona draft
+ * 3. Generate structured markdown research files aligned with distill_templates
  *
  * Usage:
  *   npx tsx scripts/research/pipeline.ts KillaXBT
  *   npx tsx scripts/research/pipeline.ts KillaXBT --count 300
  *   npx tsx scripts/research/pipeline.ts KillaXBT --skip-tweets
+ *   npx tsx scripts/research/pipeline.ts KillaXBT --deep-research
  */
 
 // Load .env variables automatically
@@ -38,9 +39,10 @@ import { scrapeTwitter } from "./twitter-scraper.js";
 import {
   scrapePage,
   deepResearch,
-  buildResearchUrls,
+  buildResearchUrlsForType,
+  type PersonaResearchType,
 } from "./firecrawl-research.js";
-import { writeFileSync, mkdirSync, readFileSync } from "fs";
+import { writeFileSync, mkdirSync } from "fs";
 import { resolve } from "path";
 
 // ─── CLI ────────────────────────────────────────────────────────────────────
@@ -50,7 +52,7 @@ interface PipelineOptions {
   skipTweets: boolean;
   skipWeb: boolean;
   deepResearch: boolean;
-  outputFormat: "json" | "yaml" | "both";
+  type: PersonaResearchType;
 }
 
 function parseArgs(): { handle: string; options: PipelineOptions } {
@@ -61,7 +63,7 @@ function parseArgs(): { handle: string; options: PipelineOptions } {
     skipTweets: false,
     skipWeb: false,
     deepResearch: false,
-    outputFormat: "json",
+    type: "TWITTER_CRYPTO",
   };
 
   for (const arg of args) {
@@ -69,69 +71,90 @@ function parseArgs(): { handle: string; options: PipelineOptions } {
     if (arg === "--skip-tweets") options.skipTweets = true;
     if (arg === "--skip-web") options.skipWeb = true;
     if (arg === "--deep-research") options.deepResearch = true;
-    if (arg === "--output=yaml") options.outputFormat = "yaml";
-    if (arg === "--output=both") options.outputFormat = "both";
+    if (arg.startsWith("--type=")) options.type = arg.split("=")[1] as PersonaResearchType;
   }
 
   return { handle, options };
 }
 
-// ─── Persona domain detection ─────────────────────────────────────────────────
+// ─── Enhanced tweet analysis ─────────────────────────────────────────────────
 
-interface DomainInfo {
-  domain?: string;
-  knownFor: string;
-  suggestedCategories: string[];
+const EN_STOPWORDS = new Set([
+  "https", "http", "that", "this", "with", "from", "have", "will",
+  "just", "like", "would", "could", "should", "been", "were", "they",
+  "their", "what", "when", "which", "your", "more", "some", "into",
+  "over", "also", "than", "them", "then", "very", "only", "about",
+  "after", "back", "want", "need", "make", "know", "think", "take",
+  "come", "here", "there", "year", "being", "other", "these", "those",
+]);
+
+function detectLang(text: string): "en" | "zh" | "mixed" {
+  const zhChars = (text.match(/[\u4e00-\u9fff]/g) || []).length;
+  const enChars = (text.match(/[a-zA-Z]/g) || []).length;
+  if (zhChars > enChars * 0.3) return "zh";
+  if (enChars > 0) return "en";
+  return "mixed";
 }
 
-function detectDomain(handle: string): DomainInfo {
-  const knownProfiles: Record<string, DomainInfo> = {
-    KillaXBT: {
-      domain: "https://killalabs.io",
-      knownFor: "quantitative crypto trading methodology",
-      suggestedCategories: ["Crypto", "Trading", "Investing"],
-    },
-   elonmusk: {
-      domain: "https://x.com/elonmusk",
-      knownFor: "tech entrepreneur, Tesla/SpaceX/X CEO",
-      suggestedCategories: ["Tech", "Business", "Entrepreneurship"],
-    },
-  };
-
-  return (
-    knownProfiles[handle] || {
-      knownFor: "public figure / thought leader",
-      suggestedCategories: ["Business"],
-    }
-  );
-}
-
-// ─── Analysis functions ────────────────────────────────────────────────────────
-
-function analyzeTweets(tweets: any[]): {
-  vocabularyPatterns: { phrase: string; count: number }[];
-  engagementStats: { avgLikes: number; avgRetweets: number; totalViews: number };
-  topTweets: { text: string; likes: number; date: string }[];
-  tweetFrequency: { byMonth: Record<string, number>; avgPerDay: number };
+interface TweetAnalysis {
+  totalCount: number;
+  enCount: number;
+  zhCount: number;
+  followerCount: number;
+  dateRange: { start: string | null; end: string | null };
+  avgTweetsPerDay: number;
+  lengthDist: { lt50: number; between50_140: number; between140_280: number; gt280: number };
+  typeDist: { original: number; reply: number; retweet: number };
+  engagementStats: { avgLikes: number; avgRetweets: number; avgViews: number; totalViews: number };
   dayOfWeekStats: Record<string, { count: number; avgLikes: number }>;
-  threadTopics: string[];
-} {
-  const words: Record<string, number> = {};
+  byMonth: Record<string, number>;
+  enVocab: { phrase: string; count: number }[];
+  zhVocab: { phrase: string; count: number }[];
+  emojiStats: { emoji: string; count: number }[];
+  topTweets: { text: string; likes: number; date: string; lang: string }[];
+}
+
+function analyzeTweets(tweets: any[]): TweetAnalysis {
+  const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+  const enWords: Record<string, number> = {};
+  const zhWords: Record<string, number> = {};
+  const emojis: Record<string, number> = {};
   const byMonth: Record<string, number> = {};
   const dayStats: Record<string, { count: number; likes: number }> = {};
-  const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const dates: string[] = [];
+  let enCount = 0, zhCount = 0;
+  let lt50 = 0, between50_140 = 0, between140_280 = 0, gt280 = 0;
+  let original = 0, reply = 0, retweet = 0;
+  let totalLikes = 0, totalRetweets = 0, totalViews = 0;
 
   for (const tweet of tweets) {
-    // Word frequency
-    const text = (tweet.text || "")
-      .toLowerCase()
-      .replace(/https?:\/\/\S+/g, "")
-      .replace(/[^\w\s]/g, " ");
-    for (const word of text.split(/\s+/).filter((w: string) => w.length > 4)) {
-      words[word] = (words[word] || 0) + 1;
-    }
+    const text = tweet.text || "";
+    const lang = detectLang(text);
+    const cleanText = text.replace(/https?:\/\/\S+/g, "").trim();
+    const len = cleanText.length;
 
-    // Monthly frequency
+    if (lang === "en") enCount++;
+    else if (lang === "zh") zhCount++;
+    else if (lang === "mixed") { enCount++; zhCount++; }
+
+    // Length distribution
+    if (len < 50) lt50++;
+    else if (len <= 140) between50_140++;
+    else if (len <= 280) between140_280++;
+    else gt280++;
+
+    // Type distribution
+    if (text.startsWith("RT @")) retweet++;
+    else if (tweet.isReply || tweet.conversationId !== tweet.id) reply++;
+    else original++;
+
+    // Engagement
+    totalLikes += tweet.likeCount || 0;
+    totalRetweets += tweet.retweetCount || 0;
+    totalViews += tweet.viewCount || 0;
+
+    // Month
     const month = tweet.createdAt?.slice(0, 7) || "";
     if (month) byMonth[month] = (byMonth[month] || 0) + 1;
 
@@ -141,299 +164,445 @@ function analyzeTweets(tweets: any[]): {
       if (!dayStats[dow]) dayStats[dow] = { count: 0, likes: 0 };
       dayStats[dow].count++;
       dayStats[dow].likes += tweet.likeCount || 0;
+      dates.push(tweet.createdAt);
+    }
+
+    // English vocabulary
+    if (lang === "en" || lang === "mixed") {
+      const words = cleanText
+        .toLowerCase()
+        .replace(/[^\w\s]/g, " ")
+        .split(/\s+/)
+        .filter((w: string) => w.length > 3);
+      for (const w of words) {
+        if (!EN_STOPWORDS.has(w)) {
+          enWords[w] = (enWords[w] || 0) + 1;
+        }
+      }
+    }
+
+    // Chinese vocabulary
+    if (lang === "zh" || lang === "mixed") {
+      const chars = (cleanText.match(/[\u4e00-\u9fff]{2,}/g) || []);
+      for (const w of chars) {
+        zhWords[w] = (zhWords[w] || 0) + 1;
+      }
+    }
+
+    // Emoji frequency
+    const emojiMatches = text.match(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[\u{1F600}-\u{1F64F}]/gu) || [];
+    for (const e of emojiMatches) {
+      emojis[e] = (emojis[e] || 0) + 1;
     }
   }
 
-  const topWords = Object.entries(words)
-    .filter(([w]) => !["https", "http", "that", "this", "with", "from", "have"].includes(w))
+  const sortedDates = dates.filter(Boolean).sort();
+  const firstDate = sortedDates[0] || null;
+  const lastDate = sortedDates[sortedDates.length - 1] || null;
+  const daysActive = firstDate && lastDate
+    ? Math.max(1, Math.round((new Date(lastDate).getTime() - new Date(firstDate).getTime()) / (1000 * 60 * 60 * 24)))
+    : 1;
+  const avgPerDay = Math.round((tweets.length / daysActive) * 10) / 10;
+
+  const topEnVocab = Object.entries(enWords)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 30)
     .map(([phrase, count]) => ({ phrase, count }));
 
-  const avgLikes = tweets.reduce((s: number, t: any) => s + (t.likeCount || 0), 0) / tweets.length;
-  const avgRetweets = tweets.reduce((s: number, t: any) => s + (t.retweetCount || 0), 0) / tweets.length;
-  const totalViews = tweets.reduce((s: number, t: any) => s + (t.viewCount || 0), 0);
+  const topZhVocab = Object.entries(zhWords)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 30)
+    .map(([phrase, count]) => ({ phrase, count }));
+
+  const topEmojis = Object.entries(emojis)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([emoji, count]) => ({ emoji, count }));
 
   const topTweets = [...tweets]
     .sort((a: any, b: any) => (b.likeCount || 0) - (a.likeCount || 0))
     .slice(0, 10)
-    .map((t: any) => ({ text: t.text, likes: t.likeCount, date: t.createdAt }));
-
-  // Days active
-  const dates = tweets.map((t: any) => t.createdAt).filter(Boolean).sort();
-  const firstDate = dates[0] ? new Date(dates[0]) : new Date();
-  const lastDate = dates[dates.length - 1] ? new Date(dates[dates.length - 1]) : new Date();
-  const daysActive = Math.max(
-    1,
-    Math.round((lastDate.getTime() - firstDate.getTime()) / (1000 * 60 * 60 * 24))
-  );
-  const avgPerDay = Math.round((tweets.length / daysActive) * 10) / 10;
+    .map((t: any) => ({
+      text: t.text,
+      likes: t.likeCount || 0,
+      date: t.createdAt || "",
+      lang: detectLang(t.text || ""),
+    }));
 
   return {
-    vocabularyPatterns: topWords,
+    totalCount: tweets.length,
+    enCount,
+    zhCount,
+    followerCount: tweets[0]?.author?.followers || 0,
+    dateRange: { start: firstDate, end: lastDate },
+    avgTweetsPerDay: avgPerDay,
+    lengthDist: { lt50, between50_140, between140_280, gt280 },
+    typeDist: { original, reply, retweet },
     engagementStats: {
-      avgLikes: Math.round(avgLikes),
-      avgRetweets: Math.round(avgRetweets),
+      avgLikes: tweets.length ? Math.round(totalLikes / tweets.length) : 0,
+      avgRetweets: tweets.length ? Math.round(totalRetweets / tweets.length) : 0,
+      avgViews: tweets.length ? Math.round(totalViews / tweets.length) : 0,
       totalViews,
     },
-    topTweets,
-    tweetFrequency: { byMonth, avgPerDay },
     dayOfWeekStats: Object.fromEntries(
-      weekdays.map((d) => [
-        d,
-        dayStats[d] || { count: 0, avgLikes: 0 },
-      ])
+      weekdays.map((d) => [d, dayStats[d] || { count: 0, avgLikes: 0 }])
     ),
-    threadTopics: [], // filled by LLM in next phase
+    byMonth,
+    enVocab: topEnVocab,
+    zhVocab: topZhVocab,
+    emojiStats: topEmojis,
+    topTweets,
   };
 }
 
-function analyzeWebContent(pages: any[]): {
-  keyPhrases: string[];
-  bio: string;
-  accomplishments: string[];
-  links: { url: string; label: string }[];
-} {
-  const allText = pages.map((p) => p.markdown || "").join("\n\n");
-  const links: { url: string; label: string }[] = [];
+// ─── Markdown output generators ───────────────────────────────────────────────
 
-  // Extract URLs
-  const urlRegex = /https?:\/\/[^\s\)\"\]]+/g;
-  const found = new Set<string>();
-  for (const match of allText.match(urlRegex) || []) {
-    if (!found.has(match) && match.length < 200) {
-      found.add(match);
-      const label = match
-        .replace(/^https?:\/\/(www\.)?/, "")
-        .replace(/\/$/, "")
-        .slice(0, 50);
-      links.push({ url: match, label });
+function generateTweetStatisticsMd(
+  handle: string,
+  analysis: TweetAnalysis,
+  profileName: string
+): string {
+  const total = analysis.totalCount;
+  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const maxDay = Math.max(...days.map(d => analysis.dayOfWeekStats[d]?.count || 0), 1);
+  const maxMonth = Math.max(...Object.values(analysis.byMonth), 1);
+
+  const lines: string[] = [];
+  lines.push(`# ${profileName} — Tweet Statistics`);
+  lines.push("");
+  lines.push(`> Generated ${new Date().toISOString().slice(0, 10)} | ${total.toLocaleString()} tweets analyzed`);
+  lines.push("");
+
+  // Volume summary
+  lines.push("## 1. Volume Overview");
+  lines.push("");
+  lines.push(`| Metric | Value |`);
+  lines.push(`|--------|-------|`);
+  lines.push(`| Total tweets | ${total.toLocaleString()} |`);
+  lines.push(`| English | ${analysis.enCount.toLocaleString()} |`);
+  lines.push(`| Chinese | ${analysis.zhCount.toLocaleString()} |`);
+  lines.push(`| Followers | ~${analysis.followerCount.toLocaleString()} |`);
+  lines.push(`| Date range | ${analysis.dateRange.start?.slice(0, 10) ?? "?"} → ${analysis.dateRange.end?.slice(0, 10) ?? "?"} |`);
+  lines.push(`| Avg/day | ${analysis.avgTweetsPerDay} |`);
+  lines.push("");
+
+  // Length distribution
+  lines.push("## 2. Tweet Length Distribution");
+  lines.push("");
+  const pct = (n: number) => total ? `${Math.round((n / total) * 100)}%` : "0%";
+  lines.push(`| Bucket | Count | % |`);
+  lines.push(`|--------|------:|--:|`);
+  lines.push(`| <50 chars | ${analysis.lengthDist.lt50.toLocaleString()} | ${pct(analysis.lengthDist.lt50)} |`);
+  lines.push(`| 50–140 chars | ${analysis.lengthDist.between50_140.toLocaleString()} | ${pct(analysis.lengthDist.between50_140)} |`);
+  lines.push(`| 140–280 chars | ${analysis.lengthDist.between140_280.toLocaleString()} | ${pct(analysis.lengthDist.between140_280)} |`);
+  lines.push(`| >280 chars | ${analysis.lengthDist.gt280.toLocaleString()} | ${pct(analysis.lengthDist.gt280)} |`);
+  lines.push("");
+
+  // Type distribution
+  lines.push("## 3. Tweet Type Distribution");
+  lines.push("");
+  lines.push(`| Type | Count | % |`);
+  lines.push(`|------|------:|--:|`);
+  lines.push(`| Original | ${analysis.typeDist.original.toLocaleString()} | ${pct(analysis.typeDist.original)} |`);
+  lines.push(`| Reply | ${analysis.typeDist.reply.toLocaleString()} | ${pct(analysis.typeDist.reply)} |`);
+  lines.push(`| Retweet | ${analysis.typeDist.retweet.toLocaleString()} | ${pct(analysis.typeDist.retweet)} |`);
+  lines.push("");
+
+  // Engagement
+  lines.push("## 4. Engagement Summary");
+  lines.push("");
+  lines.push(`| Metric | Value |`);
+  lines.push(`|--------|------:|`);
+  lines.push(`| Avg likes/tweet | ${analysis.engagementStats.avgLikes.toLocaleString()} |`);
+  lines.push(`| Avg retweets/tweet | ${analysis.engagementStats.avgRetweets.toLocaleString()} |`);
+  lines.push(`| Avg views/tweet | ${analysis.engagementStats.avgViews.toLocaleString()} |`);
+  lines.push(`| Total views | ${(analysis.engagementStats.totalViews / 1e6).toFixed(1)}M |`);
+  lines.push("");
+
+  // Day of week
+  lines.push("## 5. Day-of-Week Pattern");
+  lines.push("");
+  lines.push("| Day | Count | Bar | Avg Likes |");
+  lines.push("|-----|------:|-----|----------:|");
+  for (const d of days) {
+    const stats = analysis.dayOfWeekStats[d];
+    const bar = "█".repeat(Math.round(((stats?.count || 0) / maxDay) * 20));
+    const avgLikes = stats?.count ? Math.round((stats.avgLikes || 0) / stats.count) : 0;
+    lines.push(`| ${d} | ${stats?.count || 0} | ${bar} | ${avgLikes.toLocaleString()} |`);
+  }
+  lines.push("");
+
+  // Monthly volume (top 10 months)
+  lines.push("## 6. Monthly Volume (Top 10)");
+  lines.push("");
+  const topMonths = Object.entries(analysis.byMonth)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10);
+  lines.push("| Month | Count | Bar |");
+  lines.push("|-------|------:|-----|");
+  for (const [month, count] of topMonths) {
+    const bar = "█".repeat(Math.round((count / maxMonth) * 20));
+    lines.push(`| ${month} | ${count} | ${bar} |`);
+  }
+  lines.push("");
+
+  // English vocabulary
+  if (analysis.enVocab.length > 0) {
+    lines.push("## 7. English Vocabulary (Top 20)");
+    lines.push("");
+    lines.push("| Word | Count |");
+    lines.push("|------|------:|");
+    for (const { phrase, count } of analysis.enVocab.slice(0, 20)) {
+      lines.push(`| ${phrase} | ${count} |`);
+    }
+    lines.push("");
+  }
+
+  // Chinese vocabulary
+  if (analysis.zhVocab.length > 0) {
+    lines.push("## 8. Chinese Vocabulary (Top 20)");
+    lines.push("");
+    lines.push("| 词汇 | 频次 |");
+    lines.push("|------|------:|");
+    for (const { phrase, count } of analysis.zhVocab.slice(0, 20)) {
+      lines.push(`| ${phrase} | ${count} |`);
+    }
+    lines.push("");
+  }
+
+  // Emojis
+  if (analysis.emojiStats.length > 0) {
+    lines.push("## 9. Emoji Fingerprint");
+    lines.push("");
+    lines.push("| Emoji | Count |");
+    lines.push("|-------|------:|");
+    for (const { emoji, count } of analysis.emojiStats) {
+      lines.push(`| ${emoji} | ${count} |`);
+    }
+    lines.push("");
+  }
+
+  // Top tweets
+  lines.push("## 10. Top 10 Most-Liked Tweets");
+  lines.push("");
+  for (let i = 0; i < analysis.topTweets.length; i++) {
+    const t = analysis.topTweets[i];
+    lines.push(`### ${i + 1}. ❤️ ${t.likes.toLocaleString()} — ${t.date?.slice(0, 10) ?? ""}`);
+    lines.push("");
+    lines.push(`> ${t.text}`);
+    lines.push("");
+  }
+
+  return lines.join("\n");
+}
+
+function generateSourceCatalogMd(
+  handle: string,
+  webPages: any[],
+  deepData: any | null
+): string {
+  const lines: string[] = [];
+  lines.push("# Source Catalog");
+  lines.push("");
+  lines.push(`> Compiled ${new Date().toISOString().slice(0, 10)} | ${webPages.length} web pages scraped`);
+  lines.push("");
+
+  // Group by domain
+  const groups: Record<string, { url: string; title: string; chars: number; status: number }[]> = {};
+  for (const page of webPages) {
+    try {
+      const domain = new URL(page.url).hostname.replace("www.", "");
+      if (!groups[domain]) groups[domain] = [];
+      groups[domain].push({
+        url: page.url,
+        title: page.title || page.url,
+        chars: page.markdown?.length || 0,
+        status: page.statusCode || 0,
+      });
+    } catch {
+      const key = "other";
+      if (!groups[key]) groups[key] = [];
+      groups[key].push({
+        url: page.url,
+        title: page.title || page.url,
+        chars: page.markdown?.length || 0,
+        status: page.statusCode || 0,
+      });
     }
   }
 
-  // Bio: first substantial paragraph
-  const paragraphs = allText.split(/\n\n+/).filter((p: string) => p.trim().length > 100);
-  const bio = paragraphs[0]?.trim() || "";
+  lines.push("## Web Sources by Domain");
+  lines.push("");
+  for (const [domain, pages] of Object.entries(groups).sort((a, b) => b[1].length - a[1].length)) {
+    lines.push(`### ${domain} (${pages.length} page${pages.length !== 1 ? "s" : ""})`);
+    lines.push("");
+    lines.push(`| Status | Title | Chars |`);
+    lines.push(`|--------|-------|------:|`);
+    for (const p of pages) {
+      const title = p.title?.slice(0, 60) || p.url.slice(0, 60);
+      const statusIcon = p.status === 200 ? "✅" : "❌";
+      lines.push(`| ${statusIcon} ${p.status} | [${title}](${p.url}) | ${p.chars.toLocaleString()} |`);
+    }
+    lines.push("");
+  }
 
-  return {
-    keyPhrases: [],
-    bio,
-    accomplishments: [],
-    links,
-  };
+  if (deepData?.data?.sources?.length) {
+    lines.push("## Deep Research Sources");
+    lines.push("");
+    lines.push("| # | Source |");
+    lines.push("|--|--------|");
+    for (let i = 0; i < deepData.data.sources.length; i++) {
+      const src = deepData.data.sources[i];
+      lines.push(`| ${i + 1} | ${src} |`);
+    }
+    lines.push("");
+  }
+
+  return lines.join("\n");
 }
 
-// ─── Persona draft generator ───────────────────────────────────────────────────
-
-interface PersonaDraft {
-  id: string;
-  name: string;
-  twitterHandle: string;
-  title: string;
-  shortBio: string;
-  fullBio: string;
-  born: string;
-  nationality: string;
-  categories: string[];
-  accentColor: string;
-  image: string;
-  freshnessStatus: "LIVE" | "RECENT" | "STALE" | "OUTDATED";
-  lastUpdated: string;
-  nextUpdateDue: string;
-  dataSourceCount: number;
-  // Raw analysis (to be turned into structured fields by LLM)
-  rawAnalysis: {
-    tweetCount: number;
-    followerCount: number;
-    topVocabulary: { phrase: string; count: number }[];
-    dayOfWeekStats: Record<string, { count: number; avgLikes: number }>;
-    topTweets: { text: string; likes: number; date: string }[];
-    engagementStats: { avgLikes: number; avgRetweets: number; totalViews: number };
-    tweetFrequency: { byMonth: Record<string, number>; avgPerDay: number };
-    webSources: { url: string; title: string; chars: number }[];
-    rawBio: string;
-    links: { url: string; label: string }[];
-  };
-}
-
-function generateDraft(
-  handle: string,
-  tweetData: any,
-  webData: any
-): PersonaDraft {
-  const domainInfo = detectDomain(handle);
-  const tweets = tweetData?.tweets || [];
-  const profile = tweetData?.profile || {};
-  const analysis = analyzeTweets(tweets);
-  const webAnalysis = analyzeWebContent(webData || []);
-
-  const id = handle.toLowerCase().replace(/[^a-z0-9-]/g, "-");
-  const name = profile.name || handle;
-  const title = domainInfo.knownFor;
-  const tweetCount = tweets.length;
-  const followerCount = profile.followers || 0;
-
-  return {
-    id,
-    name,
-    twitterHandle: handle,
-    title,
-    shortBio: `X: @${handle} · ${followerCount.toLocaleString()} followers · ${tweetCount} tweets analyzed`,
-    fullBio: webAnalysis.bio || profile.bio || `Public figure active on X/Twitter as @${handle}.`,
-    born: "Unknown",
-    nationality: "Unknown",
-    categories: domainInfo.suggestedCategories,
-    accentColor: "#7C3AED",
-    image: profile.profileImage || "",
-    freshnessStatus: "LIVE",
-    lastUpdated: new Date().toISOString().slice(0, 10),
-    nextUpdateDue: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-    dataSourceCount: tweetCount,
-    rawAnalysis: {
-      tweetCount,
-      followerCount,
-      topVocabulary: analysis.vocabularyPatterns.slice(0, 30),
-      dayOfWeekStats: analysis.dayOfWeekStats,
-      topTweets: analysis.topTweets.slice(0, 10),
-      engagementStats: analysis.engagementStats,
-      tweetFrequency: analysis.tweetFrequency,
-      webSources: (webData || []).map((p: any) => ({
-        url: p.url,
-        title: p.title,
-        chars: (p.markdown || "").length,
-      })),
-      rawBio: webAnalysis.bio,
-      links: webAnalysis.links.slice(0, 20),
-    },
-  };
-}
-
-// ─── Research pipeline ────────────────────────────────────────────────────────
+// ─── Research pipeline ───────────────────────────────────────────────────────
 
 async function runPipeline(
   handle: string,
   options: PipelineOptions
-): Promise<{ draft: PersonaDraft; tweetData: any; webData: any }> {
+): Promise<{ handle: string; analysis: TweetAnalysis | null; webPages: any[]; deepData: any | null }> {
   const apiKey = process.env.VITE_TWITTER_API_KEY!;
   const firecrawlKey = process.env.VITE_FIRECRAWL_API_KEY!;
-  const domainInfo = detectDomain(handle);
 
-  mkdirSync("scripts/research/data", { recursive: true });
-  mkdirSync("scripts/research/output", { recursive: true });
+  const outDir = resolve("scripts/research/output", handle);
+  const dataDir = resolve("scripts/research/data");
+  mkdirSync(dataDir, { recursive: true });
+  mkdirSync(outDir, { recursive: true });
 
-  // Step 1: Scrape tweets
   let tweetData: any = null;
+  let analysis: TweetAnalysis | null = null;
+
+  // Step 1: Twitter scraping (if applicable)
   if (!options.skipTweets) {
     console.log("\n📡 Step 1: Scraping Twitter/X...");
-    tweetData = await scrapeTwitter(apiKey, handle, {
-      maxTweets: options.maxTweets,
-    });
+    try {
+      tweetData = await scrapeTwitter(apiKey, handle, { maxTweets: options.maxTweets });
+      writeFileSync(resolve(dataDir, `${handle}_tweets.json`), JSON.stringify(tweetData, null, 2));
+      console.log(`   ✅ Saved ${tweetData.tweets.length} tweets`);
 
-    // Save raw data
-    writeFileSync(
-      `scripts/research/data/${handle}_tweets.json`,
-      JSON.stringify(tweetData, null, 2)
-    );
-    console.log(`   ✅ Saved ${tweetData.tweets.length} tweets`);
+      // Analyze
+      analysis = analyzeTweets(tweetData.tweets);
+
+      // Output markdown
+      const tweetMd = generateTweetStatisticsMd(handle, analysis, tweetData.profile?.name || handle);
+      writeFileSync(resolve(outDir, "01-tweet-statistics.md"), tweetMd);
+      console.log(`   ✅ Generated 01-tweet-statistics.md`);
+    } catch (e: any) {
+      console.warn(`   ⚠️  Twitter scraping failed: ${e.message}`);
+    }
   }
 
   // Step 2: Web research
-  let webData: any[] = [];
+  let webPages: any[] = [];
   if (!options.skipWeb) {
     console.log("\n🌐 Step 2: Web research via Firecrawl...");
-    const urls = buildResearchUrls(handle, domainInfo.domain);
-    const { scrapeUrls } = await import("./firecrawl-research.js");
+    const urls = buildResearchUrlsForType(handle, options.type);
 
-    const pages = await scrapeUrls(firecrawlKey, urls.map((u) => u.url));
-    webData = pages.filter((p) => p.statusCode === 200 && p.markdown.length > 100);
+    webPages = [];
+    for (const { url, label } of urls) {
+      console.log(`   📄 ${label}: ${url}`);
+      try {
+        const result = await scrapePage(firecrawlKey, url);
+        webPages.push(result);
+        await new Promise((r) => setTimeout(r, 300));
+      } catch (e: any) {
+        console.warn(`   ⚠️  Failed: ${e.message}`);
+      }
+    }
 
-    writeFileSync(
-      `scripts/research/data/${handle}_web.json`,
-      JSON.stringify(webData, null, 2)
-    );
+    const successful = webPages.filter(p => p.statusCode === 200 && p.markdown.length > 100);
+    writeFileSync(resolve(dataDir, `${handle}_web.json`), JSON.stringify(webPages, null, 2));
     console.log(
-      `   ✅ Scraped ${webData.length} web pages ` +
-        `(${webData.reduce((s, p) => s + p.markdown.length, 0).toLocaleString()} total chars)`
+      `   ✅ Scraped ${successful.length}/${webPages.length} pages ` +
+      `(${successful.reduce((s: number, p: any) => s + p.markdown.length, 0).toLocaleString()} total chars)`
     );
+
+    // Source catalog
+    const catalogMd = generateSourceCatalogMd(handle, successful, null);
+    writeFileSync(resolve(outDir, "00-source-catalog.md"), catalogMd);
+    console.log(`   ✅ Generated 00-source-catalog.md`);
   }
 
-  // Step 3: Deep research (if enabled)
+  // Step 3: Deep research
+  let deepData: any | null = null;
   if (options.deepResearch) {
     console.log("\n🔬 Step 3: Deep research...");
+    const topicsByType: Record<PersonaResearchType, string> = {
+      TWITTER_CRYPTO: `${handle} trading methodology analysis`,
+      CHINESE_BUSINESS: `${handle} management philosophy investment strategy biography`,
+      HK_ENTREPRENEUR: `${handle} Hong Kong real estate business strategy management`,
+      WESTERN_INVESTOR: `${handle} investment philosophy strategy biography`,
+    };
     try {
-      const dr = await deepResearch(firecrawlKey, `${handle} trading methodology analysis`, {
-        recencyDays: 365,
+      deepData = await deepResearch(firecrawlKey, topicsByType[options.type] || handle, {
+        recencyDays: 730,
         limit: 20,
       });
-      writeFileSync(
-        `scripts/research/data/${handle}_deep.json`,
-        JSON.stringify(dr, null, 2)
-      );
+      writeFileSync(resolve(dataDir, `${handle}_deep.json`), JSON.stringify(deepData, null, 2));
       console.log(`   ✅ Deep research complete`);
     } catch (e: any) {
       console.warn(`   ⚠️  Deep research failed: ${e.message}`);
     }
   }
 
-  // Step 4: Generate draft
-  console.log("\n📝 Step 4: Generating persona draft...");
-  const draft = generateDraft(handle, tweetData, webData);
+  // Step 4: Generate PLAN.md from template
+  console.log("\n📋 Step 4: Generating PLAN.md...");
+  const profileName = tweetData?.profile?.name || handle;
+  const planMd = [
+    `# Distillation Plan — ${profileName}`,
+    "",
+    `> Generated ${new Date().toISOString().slice(0, 10)}. Fill in before spending API credits.`,
+    "",
+    "## Pre-flight qualification",
+    "",
+    "- [ ] **Kill-switch check**: Book or 60+ min adversarial source exists? (If no, this will be hagiography)",
+    "- [ ] **Data check**: 2,000+ public utterances available?",
+    "- [ ] **Contradiction check**: At least one documented value vs behavior contradiction?",
+    "- [ ] **Audience check**: Relevant to AI builders / operators / vibe coders?",
+    "- [ ] **Time check**: 15–25 hours of reading available?",
+    "",
+    "## Collection checklist",
+    "",
+    "- [ ] Agent 1 (Published works):",
+    "- [ ] Agent 2 (Interviews):",
+    "- [ ] Agent 3 (Social DNA): " + (analysis ? `${analysis.totalCount} tweets` : "N/A — no Twitter"),
+    "- [ ] Agent 4 (Adversarial):",
+    "- [ ] Agent 5 (Behavioral records):",
+    "- [ ] Agent 6 (Biographical timeline):",
+    "",
+    "## Credit budget",
+    "",
+    "- TwitterAPI.io: ~$2–8",
+    "- Firecrawl /scrape: ~$2–4",
+    "- Firecrawl /deep-research: ~$3–6",
+    "- Firecrawl /search: ~$1–2",
+    "- **Total target: $8–20**",
+    "",
+  ].join("\n");
+  writeFileSync(resolve(outDir, "PLAN.md"), planMd);
+  console.log(`   ✅ Generated PLAN.md`);
 
-  const outFile = `scripts/research/output/${handle}_draft.json`;
-  writeFileSync(outFile, JSON.stringify(draft, null, 2));
-  console.log(`   ✅ Draft saved to ${outFile}`);
-
-  return { draft, tweetData, webData };
-}
-
-// ─── Print summary ────────────────────────────────────────────────────────────
-
-function printSummary(draft: PersonaDraft) {
+  // Print summary
   console.log("\n" + "═".repeat(60));
-  console.log(`  PERSONA RESEARCH SUMMARY: @${draft.twitterHandle}`);
+  console.log(`  RESEARCH OUTPUT: @${handle}`);
   console.log("═".repeat(60));
-
-  console.log(`\n📊 Data Collected:`);
-  console.log(`   Tweets analyzed:  ${draft.rawAnalysis.tweetCount.toLocaleString()}`);
-  console.log(`   Followers:      ${draft.rawAnalysis.followerCount.toLocaleString()}`);
-  console.log(`   Avg likes:      ${draft.rawAnalysis.engagementStats.avgLikes.toLocaleString()}`);
-  console.log(
-    `   Total views:    ${(draft.rawAnalysis.engagementStats.totalViews / 1e6).toFixed(1)}M`
-  );
-  console.log(`   Web pages:     ${draft.rawAnalysis.webSources.length}`);
-
-  console.log(`\n📅 Day-of-Week Stats (tweet volume → avg likes):`);
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  for (const d of days) {
-    const stats = draft.rawAnalysis.dayOfWeekStats[d] || { count: 0, avgLikes: 0 };
-    const avg = stats.count > 0 ? Math.round(stats.avgLikes / stats.count) : 0;
-    const bar = "█".repeat(Math.min(Math.round(stats.count / 2), 20));
-    console.log(
-      `   ${d.padEnd(4)} ${bar.padEnd(20, " ")} ${stats.count.toString().padStart(4)} tweets  avg ${avg.toString().padStart(5)} likes`
-    );
+  console.log(`  Output dir: scripts/research/output/${handle}/`);
+  if (analysis) {
+    console.log(`  Tweets: ${analysis.totalCount.toLocaleString()} (EN: ${analysis.enCount}, ZH: ${analysis.zhCount})`);
+    console.log(`  Avg/day: ${analysis.avgTweetsPerDay}`);
+    console.log(`  Avg likes: ${analysis.engagementStats.avgLikes.toLocaleString()}`);
   }
-
-  console.log(`\n🔤 Top Vocabulary:`);
-  for (const { phrase, count } of draft.rawAnalysis.topVocabulary.slice(0, 15)) {
-    console.log(`   ${count.toString().padStart(4)} × ${phrase}`);
-  }
-
-  console.log(`\n🏆 Top 5 Most-Liked Tweets:`);
-  for (const tweet of draft.rawAnalysis.topTweets.slice(0, 5)) {
-    const short = tweet.text.replace(/\n/g, " ").slice(0, 80);
-    console.log(`   ❤️ ${tweet.likes.toLocaleString()}  ${short}${short.length < tweet.text.length ? "…" : ""}`);
-  }
-
-  if (draft.rawAnalysis.webSources.length > 0) {
-    console.log(`\n🌐 Web Sources:`);
-    for (const src of draft.rawAnalysis.webSources.slice(0, 5)) {
-      console.log(`   ${src.title.slice(0, 60) || src.url.slice(0, 60)}`);
-    }
-  }
-
-  console.log(`\n⚠️  Next Step: LLM processing to convert raw data → structured Persona schema`);
-  console.log(`   Edit: scripts/research/output/${draft.twitterHandle}_draft.json`);
+  console.log(`  Web pages: ${webPages.length}`);
+  console.log(`  Deep research: ${options.deepResearch ? "ON" : "off"}`);
   console.log("═".repeat(60) + "\n");
+
+  return { handle, analysis, webPages, deepData };
 }
 
 // ─── CLI entry point ──────────────────────────────────────────────────────────
@@ -442,28 +611,38 @@ async function main() {
   const { handle, options } = parseArgs();
 
   if (!handle) {
-    console.error("Usage: npx tsx scripts/research/pipeline.ts <twitterHandle> [options]");
+    console.error("Usage: npx tsx scripts/research/pipeline.ts <handle> [options]");
     console.error("\nOptions:");
     console.error("  --count=N          Number of tweets to fetch (default: 500)");
-    console.error("  --skip-tweets      Skip Twitter scraping");
+    console.error("  --skip-tweets      Skip Twitter scraping (for non-Twitter personas)");
     console.error("  --skip-web         Skip web research");
-    console.error("  --deep-research    Run Firecrawl deep-research (uses more credits)");
-    console.error("  --output=yaml      Output as YAML instead of JSON");
+    console.error("  --deep-research    Run Firecrawl deep-research");
+    console.error("  --type=TYPE        Persona type: TWITTER_CRYPTO | CHINESE_BUSINESS | HK_ENTREPRENEUR | WESTERN_INVESTOR");
+    console.error("\nTypes:");
+    console.error("  TWITTER_CRYPTO     Default. Crypto/trading persona with active Twitter.");
+    console.error("  CHINESE_BUSINESS   No Twitter. Chinese-language sources. 中文人物.");
+    console.error("  HK_ENTREPRENEUR   Hong Kong entrepreneur. Wikipedia/zh + industry media.");
+    console.error("  WESTERN_INVESTOR   Western investor. EN Wikipedia + annual reports.");
     process.exit(1);
   }
 
-  if (!process.env.VITE_TWITTER_API_KEY || !process.env.VITE_FIRECRAWL_API_KEY) {
-    console.error("Error: Missing API keys. Check .env file has VITE_TWITTER_API_KEY and VITE_FIRECRAWL_API_KEY");
+  if (!options.skipWeb && !process.env.VITE_FIRECRAWL_API_KEY) {
+    console.error("Error: VITE_FIRECRAWL_API_KEY not set in .env");
+    process.exit(1);
+  }
+
+  if (!options.skipTweets && !process.env.VITE_TWITTER_API_KEY) {
+    console.error("Error: VITE_TWITTER_API_KEY not set in .env");
     process.exit(1);
   }
 
   console.log(`\n🚀 Persona Research Pipeline`);
   console.log(`   Handle: @${handle}`);
+  console.log(`   Type: ${options.type}`);
   console.log(`   Max tweets: ${options.maxTweets}`);
   console.log(`   Deep research: ${options.deepResearch ? "ON" : "OFF"}`);
 
-  const { draft } = await runPipeline(handle, options);
-  printSummary(draft);
+  await runPipeline(handle, options);
 }
 
 main().catch(console.error);

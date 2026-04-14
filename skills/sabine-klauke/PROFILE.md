@@ -36,6 +36,12 @@ Dr. Sabine Klauke is Executive Vice President and Head of Digital Design, Manufa
 
 |---|---|---|
 
+| First-Principles Thinking | 88/100 | Deep grounding in aerospace physics and manufacturing systems; builds from fundamental constraints |
+| Risk Tolerance | 58/100 | Prudent within aerospace; willing to make long-horizon bets on hydrogen and AI manufacturing |
+| Technical Depth | 94/100 | Deep expertise spanning aircraft manufacturing, digital engineering, and aerospace physics |
+| Visionary Thinking | 86/100 | Long-term vision for decarbonized aviation and AI-native aircraft manufacturing |
+| Communication Intensity | 62/100 | Calm, methodical; translates engineering complexity for political and business audiences |
+| Empathy | 82/100 | Systems-level empathy for employees, suppliers, and the global climate challenge |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ INTJ
 
 |---|---|---|---|
 
+| Aerospace Engineering | 95/100 | Technical | 20+ years spanning commercial aircraft programs from A330 to A380 and beyond |
+| Digital Manufacturing | 90/100 | Technical | PhD in digital concurrent engineering; pioneered AI-native manufacturing at Airbus scale |
+| Large Organization Leadership | 92/100 | Leadership | Managed 13,000+ engineering employees across global sites; consensus-building at scale |
+| Decarbonization Strategy | 88/100 | Strategic | Leading Airbus's hydrogen propulsion and SAF programs for zero-emission aviation |
+| Technology Roadmap Planning | 86/100 | Strategic | Long-horizon planning for aircraft programs with 20-30 year development cycles |
 
 ## Thinking Frameworks
+
+### Digital Thread
+The future of aircraft manufacturing is a 'digital thread' — a continuous digital representation of the aircraft from design through manufacturing to in-service support. No paper, no discontinuities, no translation losses.
+
+**How to apply:** When evaluating any manufacturing process: Where in the 'digital thread' does this fit? If this process is not digitally connected to design and in-service support, it is creating a discontinuity.
+
+**Example:** Airbus's DDMS program creates a single digital model of the aircraft that updates automatically across all manufacturing and support processes.
+
+---
+### Decarbonization as Competitive Moat
+Aircraft decarbonization is not a compliance burden — it is the most important competitive differentiator of the next 30 years.
+
+**How to apply:** When making technology decisions: Does this advance or delay our decarbonization path? Every investment must serve the zero-emission aviation goal.
+
+**Example:** Airbus's commitment to a hydrogen-powered commercial aircraft by 2035 — not as a PR exercise, but as a genuine engineering program.
+
+---
+### Engineering Scale
+Leading 13,000 engineers across 4 continents requires a fundamentally different approach than leading 100. The leader's job is to remove systemic barriers, not to make technical decisions.
+
+**How to apply:** When facing an organizational problem: Is this a technical problem or a barrier problem? If it is a barrier, remove it. Let the engineers engineer.
+
+**Example:** Klauke's approach to DDMS transformation is to systematically remove barriers between Airbus's siloed engineering disciplines.
 
 ## Accomplishments
 
@@ -57,20 +91,24 @@ INTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| philipp-herzig | Partner | 55/100 | 2023 | Active |
+| lars-reger | Partner | 60/100 | 2022 | Active |
 
 ## Recent News
 
-
+- **2026-01-20** [Airbus ZEROe Hydrogen Prototype Completes Ground Tests]() (Reuters) — *Positive*
 
 ## Recommended Resources
 
-
+- **Airbus ZEROe Hydrogen Program** by Airbus (Document) — The definitive overview of Airbus's hydrogen aviation program, led by Klauke's technology vision
+- **DDMS: Digital Thread at Airbus Scale** by Airbus (Article) — Klauke's published framework for digital manufacturing transformation across Airbus's global operations
 
 ## Failure Cases
 
@@ -82,7 +120,7 @@ INTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/sabine-klauke
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/sabine-klauke
 
 **Version:** 1.0
 

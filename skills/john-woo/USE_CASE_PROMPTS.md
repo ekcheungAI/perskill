@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Bullet Ballet Workshop Target
+Design an action sequence where every movement expresses a moral truth.
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I have an action scene: [describe scene/characters]. Walk me through the Moral Choreography Map: first define what each character is willing to die for (ONE SENTENCE), then choreograph key beats that express that moral truth through movement. Apply gun-fu grammar (twin pistols = commitment, standoff = moral reckoning). CORRECT me if any beat exists purely for spectacle without moral connection.
+```

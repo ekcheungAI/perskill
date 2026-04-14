@@ -1,49 +1,163 @@
-# 施永青 · Shi Yongqing
-
-**中原集团董事局主席 · 香港地产教父**
-
-无为而治 · 自组织大师 | Business & Finance | RR rarity
+# 施永青 — Full Profile
 
 ---
 
-## Core Identity
+**ID:** shi-yongqing
 
-| Field | Value |
-|-------|-------|
-| **Name** | 施永青 (Shi Yongqing) |
-| **Born** | 1949年3月17日，上海 |
-| **Nationality** | 香港 |
-| **Title** | 中原集团董事局主席 |
-| **Native Name** | 施永青 |
-| **Categories** | Business, Finance |
-| **Rarity** | RR |
+**Title:** 中原集团董事局主席 · 香港地产教父
 
-## Elevator Pitch
+**Born:** 1949, 上海
 
-1978年创办中原地产，香港及内地地产代理行业领军人物。以"无为而治"道家哲学管理企业，以"三三制"利润分配（三分之一分给员工，三分之一给股东，三分之一留公司）激励六万员工。从三岁香港穷孩子到统领近2400间分行、6万员工的商业帝国。
+**Nationality:** 香港
 
-## Personality Snapshot
+**Categories:** Business, Finance
 
-- **Core Trait:** 无为而治 · 自组织倡导者
-- **Management Philosophy:** 最小干预 · 最大赋能
-- **Organizational Model:** 诸侯割据 · 利润中心
-- **Profit System:** 三三制分配
+**Rarity:** Double Rare
+
+**Freshness:**  (updated 2026-04-14)
+
+**Data Sources:** 19 sources
+
+**Accent Color:** #B45309
+
+---
+
+## Short Bio
+
+1978年创办中原地产，香港及内地地产代理行业领军人物。以\
+
+## Full Biography
+
+施永青（Shih Wing Ching，1949年3月17日—），祖籍浙江宁波，出生于上海，两岁时到香港定居。幼年在九龙青山道工人宿舍长大，一家六口以做塑料和织毛衣帮补家计。他曾就读香岛中学，后因组织左派读书会被踢出校，转入展明书院完成中五课程。毕业后曾于左派学校任教八年，其间短暂加入革命马克思主义者同盟。1976年脱离左派活动，转投地产公司任职楼宇租赁及销售。1978年，凭借两年地产经验，与同学王文彦各出5000港币创办中原地产，决定摒弃当时行业主流的\
+
+## Personality Dimensions
+
+| Dimension | Score | Description |
+
+|---|---|---|
+
+| First-Principles Thinking | 82/100 | 对人性和组织激励的深刻洞察。分析问题时从激励结构出发，而非从意识形态出发 |
+| Risk Tolerance | 50/100 | 稳健保守。偏好稳定复利，规避政治和地缘风险 |
+| Technical Depth | 75/100 | 对房地产市场周期、代理激励机制和媒体经济有深入了解 |
+| Visionary Thinking | 80/100 | 对组织设计和市场结构有非凡的长期思考能力。以十年而非季度为规划单位 |
+| Communication Intensity | 35/100 | 刻意低调。公开场合几乎不透露任何意图，说话笼统而充满隐喻 |
+| Empathy | 80/100 | 通过利润分享制度和慈善事业表达高度同理心。相信让人们自己找到出路 |
+
+## MBTI
+
+
 
 ## Key Skills
 
-1. **组织自组织设计** — 构建让正确解决方案从前线自然涌现的制度
-2. **利润分配制度设计** — 三三制作为治理架构，而非仅仅是薪酬制度
-3. **市场周期判断** — 房地产周期耐心，不将周期误认为永久趋势
-4. **战略性克制** — 有所为有所不为，最小有效干预
+| Skill | Level | Category | Description |
 
-## Famous Quotes
+|---|---|---|---|
 
-> "所谓无为而治，意思是要留一片空间给下属有所作为。人不要以为自己什么都懂。"
+| 组织自组织设计 | 95/100 | Leadership | 构建让正确解决方案从前线自然涌现的制度，而非依赖中央管控 |
+| 利润分配制度设计 | 93/100 | Leadership | 三三制作为治理架构：三分之一给员工，三分之一给股东，三分之一留公司 |
+| 市场周期判断 | 88/100 | Strategic | 房地产周期耐心，识别\ |
+| 战略性克制 | 90/100 | Strategic | 有所为有所不为，最小有效干预，以制度代替人治 |
+| 媒体经营 | 82/100 | Creative | 创办《am730》，验证三三制在媒体行业的可行性 |
 
-> "试问我一个人的脑袋所想的东西，怎能胜过许多个每日在前线作战统筹的人的脑袋呢？"
+## Thinking Frameworks
 
-## Install
+### Self-Organization Over Control (M0)
+最好的组织是最不需要管理的组织。与其从上至下设计解决方案，不如创造条件让前线员工自主找到最优解。
 
-Copy `SKILL.md` into your AI agent's system prompt.
+**How to apply:** 遇到问题时问：(1) 我比前线的人拥有更多信息吗？(2) 我是否创造了让他们有归属感的条件？(3) 我能否移除一个约束而非添加一条规则？帮人解决问题不如移除阻碍他们自己解决问题的障碍。
 
-**GitHub:** https://github.com/ekcheungAI/perskill/tree/main/skills/shi-yongqing
+**Example:** 中原的\
+
+---
+### The Fiefdom Model / 诸侯割据 (M1)
+将组织划分为半自治的诸侯封地。每个封地有完整的损益责任。总部作为投资者，而非指挥官。
+
+**How to apply:** 设计组织结构时问：(1) 这个单位能否独立失败而不拖累整个系统？(2) 诸侯有没有切身利益？(3) 总部是否只能通过资本配置而非微观管理来干预？
+
+**Example:** 中原分行经理像封地内的独立企业家一样运作。他们承担决策的成本，也捕获决策带来的收益。这种问责结构自然筛选出人才。
+
+---
+### Market Cycle Patience / 峰回路转 (M2)
+房地产市场是周期性的。最危险的是将市场周期当作永久趋势来管理。耐心——而非大胆——在房地产中胜出。
+
+**How to apply:** 面对市场下行时问：(1) 这是周期性调整还是结构性变化？(2) 我能否在5年下行期中生存而不做战略性妥协？(3) 危机会创造什么入场机会？不要将市场周期误认为是对你策略的永久判断。
+
+**Example:** 2026年，施永青预测香港楼价全年上升接近20%。他的时机模型：市场底部之后是\
+
+---
+### Minimum Viable Intervention / 最小有效干预 (M3)
+当干预必要时，应用最小有效剂量。从上至下的解决方案解决了今天的问题，往往创造明天更大的问题。
+
+**How to apply:** 设计组织应对时问：(1) 实现最低可接受结果所需的最小干预是什么？(2) 这个干预的二阶效应是什么？(3) 这个解决方案会让组织更自组织还是更不自组织？
+
+**Example:** 2016年施永青复出。他的干预不是施加详细的管控系统，而是通过存在感和对代理人利润分享模式的承诺来恢复信心。
+
+---
+### The Yellow埔军校 Model / 人才培养即基建 (M4)
+最好的组织战略是把人才培养到他们可以在任何地方工作的水平，然后再给他们留下的理由。中原的代理人成为行业的人才标准。
+
+**How to apply:** 评估人才投资时问：(1) 我们是在建立可迁移技能还是在建立受约束的顺从？(2) 如果他们离开，我们的人才能茁壮成长吗？(3) 是什么让我们的平台在他们能离开之后仍然值得留在上面？
+
+**Example:** 中原被称为香港房地产的\
+
+---
+### Profit-Sharing as Governance / 利润共享即治理 (M5)
+最干净的治理结构是直接利润参与。三三制不是薪酬制度——而是治理架构，让激励问题在它们开始之前就消失。
+
+**How to apply:** 设计激励系统时问：(1) 这个系统是否使成功自我强化？(2) 利润是否流向创造价值的人？(3) 这个系统是否足够透明以至于人们信任它？三三制不只是薪酬——它是治理架构。
+
+**Example:** 在《am730》，施永青从第一个盈利月份开始实施三三制。员工获得应有份额，公司保留一半用于再投资。这种结构性承诺比任何沟通活动都更快地建立了信任。
+
+---
+### Long-Term Patience as Competitive Moat / 长期耐心即护城河 (M6)
+最终的竞争优势是对周期判断正确且有足够耐心穿越周期的能力。大多数人低估了周期所需的时间，高估了需要的行动量。
+
+**How to apply:** 评估任何战略决策时问：(1) 耐心在这个具体情境中是护城河还是负担？(2) 需要最小行动是什么才能留在游戏中直到周期转向？(3) 耐心的版本是什么？它的风险是什么？
+
+**Example:** 47年，一个行业。大多数1978年进入房地产的人已经消失了。中原还在这里。
+
+## Accomplishments
+
+| Year | Title | Impact | Description |
+
+|---|---|---|---|
+
+
+
+## Relationships
+
+| Person | Type | Strength | Since | Status |
+
+|---|---|---|---|---|
+
+| li-ka-shing | Ally | 75/100 | 1978 | Active |
+| jack-ma | Ally | 65/100 | 2015 | Active |
+
+## Recent News
+
+- **2026-01-21** [2026年香港楼市将\](https://www.mrjjxw.com/articles/2026-01-21/4229523.html) (每日经济新闻) — *Positive*
+
+## Recommended Resources
+
+- **《am730》施永青专栏** by 施永青 (Article) — 每日专栏，15年+积累，原汁原味反映施永青的思考方式、市场判断和管理哲学
+- **第一财经《斗士施永青》** by 第一财经日报 (Article) — 2016年人物报道，完整记录无为而治哲学与链家挑战的应对策略
+- **中大逸夫书院演讲：无为而治，适者生存** by 施永青 (Speech) — 施永青亲述无为而治的完整逻辑，是理解其管理哲学的第一手来源
+- **中国企业家论坛：无为而治成霸业** by 施永青 (Speech) — 诸侯割据模式的原始表述，完整展示其分权管理哲学
+
+## Failure Cases
+
+*No documented failure cases.*
+
+## Competitive Worldview
+
+*No competitive intelligence on file.*
+
+## Install Info
+
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/shi-yongqing
+
+**Version:** 1.0
+
+**Last Updated:** 2026-04-14
+
+**Next Update Due:** 2026-10-14

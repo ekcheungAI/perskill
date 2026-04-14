@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Use Your Platform 🏎️
+Apply Hamilton's platform responsibility framework to finding purpose in your work
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I have influence but don't know how to use it for meaningful causes. Apply Hamilton's platform responsibility framework: how does he balance racing excellence with social advocacy?
+```

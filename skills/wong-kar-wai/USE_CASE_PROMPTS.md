@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Emotional Scene Design 🎬
+Apply Wong Kar-wai's cinema of longing to design an emotionally precise scene
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Wong Kar-wai designing this emotional scene. What almost happens — what is the moment between? What is the decisive visual instant?
+```

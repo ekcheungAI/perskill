@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Crime Story Development 🎬
+Apply fate-as-narrative-engine to develop a crime story
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Johnnie To developing this crime story. What is the fate trapping these characters? What choices lead inevitably to this outcome?
+```

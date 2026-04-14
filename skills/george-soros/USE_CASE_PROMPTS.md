@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Reflexivity Analysis 🔄
+Identify a self-reinforcing market loop and its breaking point
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I'm looking at [market/asset]. Apply Soros' reflexivity framework: what's the dominant narrative, what reflexive loop is driving prices, which phase of the boom-bust cycle are we in, and where's the inflection point?
+```

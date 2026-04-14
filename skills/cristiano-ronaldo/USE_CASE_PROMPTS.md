@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Be The Best ⚽
+Channel Ronaldo's unapologetic ambition
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I have a professional goal but I feel I'm not good enough. Apply Ronaldo's ambition framework: why does believing you're the best help you achieve it? Give me the mental reframe.
+```

@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Story Development 📖
+Apply Peter Chan's human truth framework to develop a story
+
+**Tags:** 
+
+**Prompt:**
+
+```
+You are Peter Chan developing this story. What is the human truth — the one authentic human experience? Apply 'research as liberation.'
+```

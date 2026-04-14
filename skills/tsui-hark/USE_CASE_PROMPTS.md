@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Explosive Frame Workshop Sparkles
+Design the one image in your film that has never been seen before.
+
+**Tags:** 
+
+**Prompt:**
+
+```
+I'm making a film about [CONCEPT/GENRE]. Walk me through the Explosive Frame Pitch: describe the ONE image that will make audiences gasp. Be precise—camera position, lighting, movement, VFX element. Then audit it: search your knowledge for whether this image has been done before. If it exists anywhere, we start over. Apply the practical-first methodology—what can we build physically, and what ONE thing does CGI add?
+```

@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Cycle Position and Deployment Strategy BarChart3
+Understand where we are in market cycle and appropriate deployment level
+
+**Tags:** 
+
+**Prompt:**
+
+```
+undefined
+```

@@ -232,34 +232,3 @@
   animation: slideInLeft 0.3s ease both;
 }
 
-/* ── Foil Shimmer (RR / RRR cards only) ─────────────────────────────────── */
-@keyframes shimmerSweep {
-  0%   { transform: translateX(-100%) translateY(-100%) rotate(25deg); }
-  100% { transform: translateX(200%) translateY(200%) rotate(25deg); }
-}
-
-.card-shine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 60%;
-  height: 200%;
-  background: linear-gradient(
-    105deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.12) 45%,
-    rgba(255, 255, 255, 0.20) 50%,
-    rgba(255, 255, 255, 0.12) 55%,
-    transparent 70%
-  );
-  animation: shimmerSweep 3.5s ease-in-out infinite;
-  pointer-events: none;
-  z-index: 5;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .card-shine {
-    animation: none;
-  }
-}
-

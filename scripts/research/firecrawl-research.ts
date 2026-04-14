@@ -36,6 +36,90 @@ import type { WebResearchResult } from "./types.js";
 
 const FIRECRAWL_BASE = "https://api.firecrawl.dev/v1";
 
+// ─── Persona type configuration ─────────────────────────────────────────────────
+
+export type PersonaResearchType =
+  | "TWITTER_CRYPTO"
+  | "CHINESE_BUSINESS"
+  | "HK_ENTREPRENEUR"
+  | "WESTERN_INVESTOR";
+
+interface UrlTarget {
+  url: string;
+  label: string;
+  priority: "high" | "medium" | "low";
+}
+
+/**
+ * Build contextually appropriate research URLs based on persona type.
+ * Replaces the generic buildResearchUrls() with type-aware targeting.
+ */
+export function buildResearchUrlsForType(
+  handle: string,
+  type: PersonaResearchType
+): UrlTarget[] {
+  switch (type) {
+    case "TWITTER_CRYPTO":
+      return [
+        { url: `https://en.wikipedia.org/wiki/${encodeURIComponent(handle)}`, label: "Wikipedia (EN)", priority: "high" },
+        { url: `https://x.com/${handle}`, label: "X Profile", priority: "high" },
+        { url: `https://www.youtube.com/results?search_query=${encodeURIComponent(handle + " interview")}`, label: "YouTube", priority: "medium" },
+        { url: `https://www.google.com/search?q=${encodeURIComponent(handle + " trading methodology")}`, label: "Google", priority: "medium" },
+      ];
+
+    case "CHINESE_BUSINESS": {
+      const encoded = encodeURIComponent(handle);
+      return [
+        { url: `https://zh.wikipedia.org/wiki/${encoded}`, label: "Wikipedia (中文)", priority: "high" },
+        { url: `https://baike.baidu.com/item/${encoded}`, label: "Baidu Baike", priority: "high" },
+        { url: `https://www.yicai.com/newssearch?keys=${encoded}`, label: "第一财经 Yicai", priority: "high" },
+        { url: `https://m.21jingji.com/search?key=${encoded}`, label: "21财经 21jingji", priority: "high" },
+        { url: `https://en.wikipedia.org/wiki/${encoded}`, label: "Wikipedia (EN)", priority: "medium" },
+        { url: `https://finance.sina.com.cn/search/?q=${encoded}`, label: "新浪财经", priority: "medium" },
+        { url: `https://www.google.com/search?q=${encoded}+${encodeURIComponent("管理哲学 OR 投资哲学 OR 商业策略")}`, label: "Google Search", priority: "medium" },
+      ];
+    }
+
+    case "HK_ENTREPRENEUR": {
+      const encoded = encodeURIComponent(handle);
+      return [
+        { url: `https://zh.wikipedia.org/wiki/${encoded}`, label: "Wikipedia (中文)", priority: "high" },
+        { url: `https://en.wikipedia.org/wiki/${encoded}`, label: "Wikipedia (EN)", priority: "high" },
+        { url: `https://baike.baidu.com/item/${encoded}`, label: "Baidu Baike", priority: "high" },
+        { url: `https://www.yicai.com/newssearch?keys=${encoded}`, label: "第一财经", priority: "high" },
+        { url: `https://m.21jingji.com/search?key=${encoded}`, label: "21财经", priority: "high" },
+        { url: `https://www.hk01.com/search?keywords=${encoded}`, label: "HK01", priority: "medium" },
+        { url: `https://www.scmp.com/search?q=${encoded}`, label: "SCMP", priority: "medium" },
+        { url: `https://www.hkcd.com.hk/search?keyword=${encoded}`, label: "香港商报 HKCD", priority: "medium" },
+      ];
+    }
+
+    case "WESTERN_INVESTOR":
+      return [
+        { url: `https://en.wikipedia.org/wiki/${encodeURIComponent(handle)}`, label: "Wikipedia (EN)", priority: "high" },
+        { url: `https://www.google.com/search?q=${encodeURIComponent(handle + " investor philosophy biography")}`, label: "Google Search", priority: "high" },
+        { url: `https://www.youtube.com/results?search_query=${encodeURIComponent(handle + " investor interview")}`, label: "YouTube", priority: "medium" },
+      ];
+
+    default:
+      return [
+        { url: `https://en.wikipedia.org/wiki/${encodeURIComponent(handle)}`, label: "Wikipedia (EN)", priority: "high" },
+        { url: `https://x.com/${handle}`, label: "X Profile", priority: "high" },
+        { url: `https://www.google.com/search?q=${encodeURIComponent(handle)}`, label: "Google Search", priority: "medium" },
+      ];
+  }
+}
+
+/**
+ * @deprecated Use buildResearchUrlsForType() instead — this is kept for backward compat.
+ */
+export function buildResearchUrls(
+  handle: string,
+  domain?: string
+): UrlTarget[] {
+  return buildResearchUrlsForType(handle, domain ? "TWITTER_CRYPTO" : "TWITTER_CRYPTO");
+}
+
 // ─── Firecrawl scrape ────────────────────────────────────────────────────────
 
 export async function scrapePage(
@@ -124,30 +208,6 @@ export async function scrapeUrls(
     await new Promise((r) => setTimeout(r, 300));
   }
   return results;
-}
-
-// ─── Default research targets for a persona ──────────────────────────────────
-
-export function buildResearchUrls(
-  handle: string,
-  domain?: string
-): { url: string; label: string }[] {
-  const targets: { url: string; label: string }[] = [
-    { url: `https://x.com/${handle}`, label: "X (Twitter) Profile" },
-  ];
-
-  if (domain) {
-    targets.push({ url: domain, label: "Official Website" });
-  }
-
-  // Add known educational/research platforms
-  targets.push(
-    { url: `https://www.youtube.com/@${handle.replace("@", "")}`, label: "YouTube" },
-    { url: `https://en.wikipedia.org/wiki/${encodeURIComponent(handle)}`, label: "Wikipedia" },
-    { url: `https://www.google.com/search?q=${encodeURIComponent(handle)}+trading+methodology`, label: "Google Search" }
-  );
-
-  return targets;
 }
 
 // ─── CLI ────────────────────────────────────────────────────────────────────

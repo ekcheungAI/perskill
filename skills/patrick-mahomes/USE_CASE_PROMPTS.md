@@ -2,7 +2,7 @@
 
 ---
 
-**0 prompts available.**
+**1 prompts available.**
 
 ---
 
@@ -15,3 +15,14 @@ For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into 
 ---
 
 ## Quick-Use Prompts
+
+### 1. Create From Nothing 🏈
+Apply Mahomes' improvisation framework to creative problem-solving
+
+**Tags:** 
+
+**Prompt:**
+
+```
+My plan has gone off the rails. Apply Mahomes' 'create from nothing' framework: how does he turn a broken play into a positive outcome?
+```

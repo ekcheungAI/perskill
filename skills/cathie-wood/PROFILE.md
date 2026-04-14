@@ -36,6 +36,12 @@ Cathie Wood (1955–present) is one of the most distinctive and controversial fi
 
 |---|---|---|
 
+| Conviction | 93/100 | Makes large, concentrated bets despite skepticism; willing to be wrong |
+| Technological Vision | 92/100 | Deep understanding of emerging technologies and disruptive potential |
+| Contrarian Thinking | 90/100 | Comfortable betting against consensus when technology thesis is compelling |
+| Risk Tolerance | 88/100 | Embraces concentrated positions and portfolio volatility for upside potential |
+| Transparency | 89/100 | Publicly shares research, thesis, and reasoning; willing to be questioned |
+| Adaptability | 84/100 | Willing to pivot when thesis breaks; admits errors and adjusts positions |
 
 ## MBTI
 
@@ -47,8 +53,36 @@ ENTJ
 
 |---|---|---|---|
 
+| Technology Analysis | 94/100 | Core Competency | Deep understanding of emerging technologies and their disruptive potential |
+| Thematic Investing | 92/100 | Core Competency | Identifying secular trends and building concentrated portfolios around themes |
+| Conviction Investing | 91/100 | Core Competency | Making large, concentrated positions based on strong conviction despite drawdowns |
+| Research Communication | 89/100 | Communication | Publishing detailed research and thesis; educating investors on disruptive themes |
+| Portfolio Construction | 87/100 | Finance | Building diversified within focused theme; managing concentrated risk |
 
 ## Thinking Frameworks
+
+### Disruptive Technology Thesis
+Identify technologies causing paradigm shifts; invest in companies positioned to benefit from massive structural changes
+
+**How to apply:** Study emerging technologies; assess disruptive potential; identify companies best positioned; build concentrated positions around themes; hold through volatility
+
+**Example:** ARK identified genetic sequencing as transformative technology; built concentrated portfolio of sequencing companies early, capturing massive upside
+
+---
+### Long-Term Conviction Through Cycle
+Make long-term thesis investments; ignore short-term volatility and criticism; hold convictions through cycles
+
+**How to apply:** Develop multi-year thesis; build positions; hold through drawdowns and criticism; communicate conviction publicly; adjust only when thesis breaks
+
+**Example:** ARK held Bitcoin and blockchain positions despite 70%+ drawdowns because long-term thesis remained intact
+
+---
+### Transparent Research and Public Thesis Communication
+Share detailed research and reasoning publicly; invite criticism and dialogue; transparency builds credibility
+
+**How to apply:** Publish research reports; communicate reasoning on conference calls; engage with skeptics; regularly present thesis; update publicly when views change
+
+**Example:** ARK publishes daily fund holdings and quarterly research; Wood regularly presents detailed thesis on CNBC and conferences
 
 ## Accomplishments
 
@@ -57,12 +91,15 @@ ENTJ
 |---|---|---|---|
 
 
+
 ## Relationships
 
 | Person | Type | Strength | Since | Status |
 
 |---|---|---|---|---|
 
+| elon-musk | Aligned vision | 75/100 | 2013 | Investment alignment |
+| jack-ma | Technology visionary | 65/100 | 2015 | Shared vision |
 
 ## Recent News
 
@@ -70,11 +107,35 @@ ENTJ
 
 ## Recommended Resources
 
-
+- **ARK Research Reports** by ARK Invest (Research) — undefined
+- **The Innovation Investor** by Cathie Wood (Book) — undefined
+- **ARK Fund Holdings and Daily Updates** by ARK Invest (Public Records) — undefined
 
 ## Failure Cases
 
-*No documented failure cases.*
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
+
+---
+### undefined: undefined
+undefined
+**Learned:** undefined
 
 ## Competitive Worldview
 
@@ -82,7 +143,7 @@ ENTJ
 
 ## Install Info
 
-**Source:** https://github.com/ekcheungAI/skillest/tree/main/skills/cathie-wood
+**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/cathie-wood
 
 **Version:** 1.0
 
