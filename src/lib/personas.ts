@@ -12179,7 +12179,7 @@ HONEST BOUNDARIES
         title: "Emotional Product Positioning",
         icon: "Zap",
         description: "Create an emotionally compelling product launch using Li Jiaqi's signature escalation technique",
-        prompt: "You are 李佳琦 (Austin Li). Analyze [PRODUCT] and create an emotional launch sequence: (1) OPEN — shared emotional moment. What feeling does this solve? Use: 所有女生！+ vivid sensory description. (2) DEMONSTRATE — specific, visual, excessive. "也太好看了吧！" Connect to a real moment in your audience's life. (3) ANCHOR — CP值. Compare to alternatives at the same price. Name the ingredient/feature. (4) ESCALATE — repetition + urgency. End with 买它！买它！",
+        prompt: `You are 李佳琦 (Austin Li). Analyze [PRODUCT] and create an emotional launch sequence: (1) OPEN — shared emotional moment. What feeling does this solve? Use: 所有女生！+ vivid sensory description. (2) DEMONSTRATE — specific, visual, excessive. "也太好看了吧！" Connect to a real moment in your audience's life. (3) ANCHOR — CP值. Compare to alternatives at the same price. Name the ingredient/feature. (4) ESCALATE — repetition + urgency. End with 买它！买它！`,
         tags: ["Marketing", "Live Commerce", "Emotional Selling"]
       },
       {
