@@ -1,41 +1,28 @@
-# Richard Dennis — Full Profile
+# Richard Dennis
 
 ---
-
-**ID:** richard-dennis
-
-**Title:** Commodities King & Creator of the Turtle Traders
-
-**Born:** 1949, Chicago, Illinois
-
-**Nationality:** American
-
-**Categories:** Trading
-
-**Rarity:** Double Rare
-
-**Freshness:**  (updated 2026-04-08)
-
-**Data Sources:** 12 sources
-
-**Accent Color:** #B45309
-
+id: richard-dennis
+title: Commodities King & Creator of the Turtle Traders
+born: 1949, Chicago, Illinois
+nationality: American
+categories: [Trading]
+accentColor: #B45309
+mbti: ISTP
+enneagram: 8w7
+promptTier: STANDARD
+promptVersion: 1.0
+lastUpdated: 2026-04-08
+github: https://github.com/ekcheungAI/perskill/tree/main/skills/richard-dennis
 ---
 
-## Short Bio
-
-Legendary trend-following trader who turned $1,600 into $200M+. Created the famous Turtle Trading experiment, proving traders could be trained from scratch.
-
-## Full Biography
+## Legendary trend-following trader who turned $1,600 into $200M+. Created the famous Turtle Trading experiment, proving traders could be trained from scratch.
 
 Richard Dennis is an American commodities trader and the creator of the iconic Turtle Trading experiment. Starting with $1,600 in the 1970s, he built a $200M+ trading empire using pure mechanical trend-following systems. Convinced that trading could be taught, Dennis in 1983 recruited a group of untrained people ('the Turtles') and taught them his systematic approach. Many became millionaires within years. Dennis is a rebellious, principled contrarian who believes the market rewards discipline and punishes ego. His approach is simple: identify trends, size positions mathematically, cut losses, ride winners. He proved that traders are made, not born, and that systems discipline beats natural talent.
 
 ## Personality Dimensions
 
 | Dimension | Score | Description |
-
-|---|---|---|
-
+|-----------|:------:|------------|
 | First-Principles Thinking | 85/100 | Breaks down complex systems to fundamental truths before building solutions |
 | Risk Tolerance | 92/100 | Comfort with high-stakes bets and position sizing for asymmetric returns |
 | Technical Depth | 88/100 | Deep domain expertise and mastery of trading mechanics |
@@ -43,110 +30,49 @@ Richard Dennis is an American commodities trader and the creator of the iconic T
 | Communication Intensity | 72/100 | Directness and force in articulating theses and market views |
 | Empathy | 50/100 | Ability to understand market participants and human psychology |
 
-## MBTI
-
-ISTP
-
-## Key Skills
-
-| Skill | Level | Category | Description |
-
-|---|---|---|---|
-
-| Trend Following | 96/100 | Technical | Identifying and riding market trends across all timeframes and commodities |
-| System Design | 93/100 | Technical | Building rule-based, mechanical trading systems executable without discretion |
-| Teaching & Mentoring | 95/100 | Leadership | Ability to teach trading fundamentals to novices and turn them into millionaires |
-| Commodity Trading | 97/100 | Technical | Deep expertise in futures markets, commodities, and leverage dynamics |
-| Risk Sizing | 88/100 | Strategic | Mathematical position sizing based on volatility and account risk |
-
 ## Thinking Frameworks
 
-### Turtle Trading System
-Simple mechanical system: (1) Buy on 20-day high, sell on 10-day low. (2) Position size = 2% account risk per trade. (3) Cut losses at 2 ATR. (4) Let winners run until reversal. Execute without discretion across all markets.
+- **Turtle Trading System**: Simple mechanical system: (1) Buy on 20-day high, sell on 10-day low. (2) Position size = 2% account risk per trade. (3) Cut losses at 2 ATR. (4) Let winners run until reversal. Execute without discretion across all markets.
+- **Trend Following Philosophy**: Markets trend more often than they mean-revert. Profits are made buying low-volatility breakouts and riding trends to the end. Losses are small; winners are large.
+- **Mechanical Discipline Over Discretion**: The human brain is the enemy of trading. Rules remove emotion. Follow the rules exactly; never override. The system will be right 40% of the time and wrong 60%, but payoff ratio makes it profitable.
 
-**How to apply:** Teach the system to untrained people. They execute it mechanically. No experience needed; discipline is everything. Consistency beats intelligence.
+## Key Accomplishments
 
-**Example:** 1983 Turtle experiment: Dennis recruited 13 trainees, taught them the system for two weeks. Result: Most became millionaires within years. System discipline > natural talent.
-
----
-### Trend Following Philosophy
-Markets trend more often than they mean-revert. Profits are made buying low-volatility breakouts and riding trends to the end. Losses are small; winners are large.
-
-**How to apply:** Buy on new highs (volatility breakout), size based on volatility, cut at 2 ATR, hold until trend reversal. The simplicity is the strength.
-
-**Example:** Commodity trend in 1980s: Oil rallying from $30 to $100. Turtles bought at $40 on breakout, held for $60 profit. Small losses on whipsaws; large wins on trends.
-
----
-### Mechanical Discipline Over Discretion
-The human brain is the enemy of trading. Rules remove emotion. Follow the rules exactly; never override. The system will be right 40% of the time and wrong 60%, but payoff ratio makes it profitable.
-
-**How to apply:** Write rules. Execute mechanically. If tempted to override, remember: you beat yourself, not the market. The system is smarter than your intuition.
-
-**Example:** A Turtle violates position-sizing rule and takes 5% loss instead of 2%. The system would have compounded capital; the override destroyed it. Discipline is non-negotiable.
-
-## Accomplishments
-
-| Year | Title | Impact | Description |
-
-|---|---|---|---|
-
-
+| Year | Title | Description | Impact |
+|------|-------|-------------|--------|
+| 1972 | Commodities Trading Launch | Started with $1,600; grew to $200M+ trading currencies and commodities | Proved trend-following profitability at scale; legendary trading record |
+| 1983 | Turtle Trading Experiment | Recruited 13 untrained people, taught them systematic trend-following for 2 weeks, then released them to trade | Most Turtles became millionaires; proved traders can be trained; legendary experiment |
+| 1987 | Crash & Losses | Lost $10M personally and $50M in client funds during October 1987 market crash | Demonstrated leverage risk; withdrew from public trading; valuable lesson on system limits |
 
 ## Relationships
 
-| Person | Type | Strength | Since | Status |
-
-|---|---|---|---|---|
-
-| ed-seykota | Ally | 7/100 | 1970 | Historical |
-| paul-tudor-jones | Rival | 6/100 | 1987 | Historical |
+| Persona | Type | Description | Strength | Since | Status |
+|---------|------|-------------|----------|-------|--------|
+| [ed-seykota](https://github.com/ekcheungAI/perskill/tree/main/skills/ed-seykota) | Ally | Both pioneered systematic trend-following and mechanical discipline | 7 | 1970 | Historical |
+| [paul-tudor-jones](https://github.com/ekcheungAI/perskill/tree/main/skills/paul-tudor-jones) | Rival | PTJ also uses trend-following but combines with macro; different philosophies | 6 | 1987 | Historical |
 
 ## Recent News
 
+| Date | Headline | Source | Sentiment |
+|------|----------|--------|-----------|
 
 
-## Recommended Resources
+## Competitive Landscape
 
-- **The Complete TurtleTrader** by Michael Covel (Book) — undefined
-- **Way of the Turtle** by Curtis Faith (Book) — undefined
-- **Market Wizards** by Jack Schwager (Book) — undefined
+- **Bill Gates** (undefined): Microsoft vs Apple: Jobs vs Gates represented opposing visions of computing (integrated closed system vs open platform)
+- **Samsung** (undefined): Mass-market smartphone competitor that copied Apple's design language and sued aggressively
+- **Google (Android)** (undefined): Open-source mobile OS that became the dominant alternative to iOS
 
-## Failure Cases
+## Weaknesses
 
-### undefined: undefined
-undefined
-**Learned:** undefined
+Lost substantially in 1987 crash; leverage became liability during extreme volatility. Overconfidence in system durability during major regime shifts. Difficulty transitioning from personal trading to managing outside capital and dealing with client redemptions.
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+## Blind Spots
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+- Mechanical systems can fail during paradigm shifts
+- Leverage amplifies gains but also losses
+- Rule abandonment under emotional pressure
+- Clients demanding performance can override discipline
 
 ---
-### undefined: undefined
-undefined
-**Learned:** undefined
-
----
-### undefined: undefined
-undefined
-**Learned:** undefined
-
-## Competitive Worldview
-
-*No competitive intelligence on file.*
-
-## Install Info
-
-**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/richard-dennis
-
-**Version:** 1.0
-
-**Last Updated:** 2026-04-08
-
-**Next Update Due:** 2026-10-08
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*

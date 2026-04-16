@@ -1,49 +1,79 @@
-# Persona Distillation Templates
+# Distill Templates
 
-Standardized scaffolding for turning any public figure into a high-quality Perskill persona. Built on the Nuwa-skill extraction framework and the depth-patterns from `justin-sun-perspective`.
+This directory contains all templates used during the persona distillation workflow.
 
-## The four artifacts
+## File Inventory
 
-| File | Used when | Purpose |
-|------|-----------|---------|
-| `DISTILL_PLAN.md` | BEFORE spending API credits | 6-agent parallel collection checklist, kill-switch qualification, credit budget, time estimate |
-| `TRIPLE_VERIFY.md` | DURING distillation | Gating log that decides Mental Model vs. Heuristic vs. Cut. The single most important quality lever. |
-| `SKILL_TEMPLATE.md` | DURING drafting | The 11-section scaffold for the final `SKILL.md`. Bilingual-aware, with mandatory Contradictions section. |
-| `VALIDATION_HARNESS.md` | BEFORE shipping | 3 known-statement tests + 1 novel-question test. Catches parroting and fabrication. |
+| File | Purpose | Used by |
+|------|---------|---------|
+| `DISTILL_PLAN.md` | Pre-research planning document (kill-switch, credit budget, 6-agent checklist) | `scaffold.ts` |
+| `SKILL_TEMPLATE.md` | Target format for `SKILL.md` (11-section structure, ~300 lines) | `scaffold.ts`, `export-all-skills.ts` |
+| `TRIPLE_VERIFY.md` | Mental model gating document (3 tests, candidate log, promotion ledger) | `scaffold.ts`, `validation-runner.ts` |
+| `VALIDATION_HARNESS.md` | Pre-ship test harness (3 known-statement + 1 novel question) | `scaffold.ts`, `validation-runner.ts` |
+| `RESEARCH_README.md` | Template for `skills/{id}/research/README.md` | `skill-file-generator.ts` |
+| `SKILL_SYSTEM_PROMPT_TEMPLATE.md` | Template for `SYSTEM_PROMPT.md` (YAML frontmatter + short + full + changelog) | `skill-file-generator.ts` |
+| `USE_CASE_TEMPLATE.md` | Template for `USE_CASE_PROMPTS.md` | `skill-file-generator.ts` |
+| `README.md` | This file | — |
 
-## The core principle
+## SKILL.md 格式标准 (11 sections)
 
-Depth comes from **triangulation discipline**, not source volume. 270 sources triangulated into 14 mental models (Justin Sun) is good work. 270 sources that yield 30 "insights" is slop. The triple verification log is the cure.
+Every persona's `SKILL.md` must contain these 11 sections:
 
-## Tool division of labor
+| # | Section | Required | Content |
+|---|---------|----------|---------|
+| §1 | Role-Play Rules | YES | Character immersion rules, language handling, exit triggers |
+| §2 | Answer Workflow | YES | Agentic Protocol — how to classify and respond to questions |
+| §3 | Identity Card | YES | First-person narrative: origin, turning point, current state |
+| §4 | Core Mental Models | YES | 3–7 models, each with cross-domain evidence + `(N源交叉)` tag |
+| §5 | Decision Heuristics | YES | 5–10 one-liners with concrete case examples |
+| §6 | Expression DNA | YES | Quantitative fingerprint: vocabulary table, emoji table, rhetorical moves |
+| §7 | Timeline | YES | Minimum 3 eras (target 5), behavioral signatures per era |
+| §8 | Contradictions | YES | 3–6 documented tensions between stated values and observed behavior |
+| §9 | Values & Anti-patterns | YES | Ranked core values + hard lines + targets of scorn |
+| §10 | Knowledge Lineage | YES | Influences, traditions, books that shaped them |
+| §11 | Honest Boundaries | YES | Research cutoff, what this skill captures well, what it cannot |
 
-- **TwitterAPI.io** → Expression DNA (§6). Free of triangulation rules because it's quantitative fingerprinting.
-- **Firecrawl `/scrape`** → authored works, interview transcripts, filings. High-signal per credit.
-- **Firecrawl `/deep-research`** → era-windowed biographical sweeps (one run per era, 3–5 eras).
-- **Firecrawl `/search`** → adversarial coverage and decision records.
+## SKILL.md Format标准
 
-Never scrape tweets with Firecrawl. Never look up filings with TwitterAPI.io. Use the right tool per layer.
+All persona skills exported from `personas.ts` must follow the Nuwa-grade format:
 
-## Workflow at a glance
+### YAML Frontmatter
+```yaml
+---
+name: {id}-perspective
+description: |
+  {English Name}（{Native Name}）的思维框架与表达方式...
+  用途：...
+  触发词（中）：...
+  Triggers (EN): ...
+version: "X.Y"
+source: https://github.com/ekcheungAI/perskill
+persona_id: {id}
+---
+```
 
-1. Copy `DISTILL_PLAN.md` → `scripts/research/output/{slug}/PLAN.md` and fill in.
-2. Pass the pre-flight kill-switch. If any check fails, pick a different subject.
-3. Run the 6 collection agents in parallel. Commit raw outputs to `research/`.
-4. Copy `TRIPLE_VERIFY.md` → `research/triple-verify-log.md`. List 15–25 candidate patterns. Run all three tests on each.
-5. Copy `SKILL_TEMPLATE.md` → `SKILL.md` at the persona's skill folder. Fill in, capping at 3–7 models and 5–10 heuristics.
-6. Copy `VALIDATION_HARNESS.md` → `validation-log.md`. Pass 3+1. Iterate on failures.
-7. Ship. Schedule re-validation in 3 months.
+### Content Standards
+- §4 Mental Models: Each entry must have `(N源交叉)` tag, ≥2 domain evidence, application prompt, limitation
+- §6 Expression DNA: Must include actual data from `vocabularyPatterns` in `personas.ts`
+- §8 Contradictions: Must have 3–6 entries; source citations required
+- §11 Honest Boundaries: Must include `research cutoff` date
 
-## Why this structure beats ad-hoc research
+## File Output Locations
 
-Without a template, every persona is a unicorn. Voice drifts, depth is inconsistent, and you can't compare or stack personas. With this template:
-- Every persona has the same 11 sections → users learn one reading pattern.
-- Every mental model has `(N源交叉)` evidence → users can see receipts.
-- Every persona has §8 Contradictions → users get honesty, not hagiography.
-- Every persona has §11 Honest Boundaries → the skill knows what it doesn't know.
+When `export-all-skills.ts` runs, it writes to:
+```
+skills/{id}/
+├── SKILL.md               ← 11-section format (Nuwa-grade)
+├── SYSTEM_PROMPT.md       ← YAML frontmatter + short + full + version history
+├── USE_CASE_PROMPTS.md    ← one section per use-case prompt
+├── PROFILE.md             ← Wikipedia-depth profile (from persona fields)
+├── README.md               ← Quick-reference install + file listing
+└── research/
+    ├── README.md          ← Research archive index
+    ├── triple-verify-log.md   ← Blank template (for manual fill)
+    └── validation-log.md      ← Blank template (for manual fill)
+```
 
-## References
+---
 
-- [Nuwa skill extraction framework](https://github.com/alchaincyf/nuwa-skill/blob/main/references/extraction-framework.md)
-- `/sessions/intelligent-practical-carson/mnt/.claude/skills/justin-sun-perspective/SKILL.md` — canonical worked example
-- `/sessions/intelligent-practical-carson/mnt/.claude/skills/justin-sun-perspective/research/01-tweet-statistics.md` — Expression DNA format reference
+*Last updated: 2026-04-16*

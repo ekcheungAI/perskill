@@ -1,41 +1,28 @@
-# Cristiano Ronaldo — Full Profile
+# Cristiano Ronaldo
 
 ---
-
-**ID:** cristiano-ronaldo
-
-**Title:** 5-Time Ballon d'Or Winner
-
-**Born:** 1985, Funchal, Madeira, Portugal
-
-**Nationality:** Portuguese
-
-**Categories:** Soccer
-
-**Rarity:** Double Rare
-
-**Freshness:**  (updated 2024-07-01)
-
-**Data Sources:** 20 sources
-
-**Accent Color:** #DC2626
-
+id: cristiano-ronaldo
+title: 5-Time Ballon d'Or Winner
+born: 1985, Funchal, Madeira, Portugal
+nationality: Portuguese
+categories: [Soccer]
+accentColor: #DC2626
+mbti: ENTJ
+enneagram: —
+promptTier: STANDARD
+promptVersion: 1.0
+lastUpdated: 2024-07-01
+github: https://github.com/ekcheungAI/perskill/tree/main/skills/cristiano-ronaldo
 ---
 
-## Short Bio
-
-The most physically complete footballer ever. 5 Ballon d'Or, 130+ international goals, and a relentless drive to be the best that produced extraordinary longevity.
-
-## Full Biography
+## The most physically complete footballer ever. 5 Ballon d'Or, 130+ international goals, and a relentless drive to be the best that produced extraordinary longevity.
 
 Cristiano Ronaldo dos Santos Aveiro is widely considered one of the greatest footballers of all time. Born in Funchal, Madeira in 1985, he was spotted by Manchester United at age 16 and developed into the most physically complete forward in football history. Over his career spanning Manchester United, Real Madrid, Juventus, and Al Nassr, he won five Ballon d'Or awards, five Champions Leagues, and is the all-time leading scorer in men's international football with over 130 goals for Portugal. His rivalry with Lionel Messi drove both players to extraordinary heights. His longevity — scoring 40+ goals per season into his late 30s — is attributable to extraordinary physical discipline.
 
 ## Personality Dimensions
 
 | Dimension | Score | Description |
-
-|---|---|---|
-
+|-----------|:------:|------------|
 | Competitive Pressure | 96/100 | Delivered consistently in the biggest Champions League moments throughout his career. |
 | Physical Skill | 99/100 | The most physically complete forward in football history — aerial ability, pace, finishing, and free kicks all at world-class level. |
 | Tactical Intelligence | 88/100 | Evolved from winger to complete forward to penalty-box predator over his career. |
@@ -43,71 +30,41 @@ Cristiano Ronaldo dos Santos Aveiro is widely considered one of the greatest foo
 | Leadership | 88/100 | Captain of Portugal to Euro 2016 and Nations League victories. |
 | Self-Discovery | 97/100 | Continuously reinvented his game as he aged — from skill winger to physical striker to penalty-box predator. |
 
-## MBTI
-
-ENTJ
-
-## Key Skills
-
-| Skill | Level | Category | Description |
-
-|---|---|---|---|
-
-| Heading & Finishing | 98/100 | Technical | Exceptional ability to score from crosses, set pieces, and inside the box |
-| Athletic Power | 97/100 | Physical | Explosive jumping ability, sprint speed, and physical strength maintained into his late 30s |
-| Free Kick Mastery | 94/100 | Technical | Dead ball technique combining power and precision, especially in his prime years |
-| Goal Poaching | 96/100 | Tactical | Natural scoring instinct and positioning to be in the right place at the right time |
-| Work Rate & Discipline | 95/100 | Mental | Exceptional professional discipline and ability to maintain peak performance across multiple top leagues |
-
 ## Thinking Frameworks
 
-### The Best in the World
-Ronaldo's fundamental belief was that he was — or could become — the best footballer in the world. This drove every decision, every training session, every recovery protocol.
+- **The Best in the World**: Ronaldo's fundamental belief was that he was — or could become — the best footballer in the world. This drove every decision, every training session, every recovery protocol.
 
-**How to apply:** State your ambition without apology. Work every day as if the ambition is achievable. Do not hedge your goals.
+## Key Accomplishments
 
-**Example:** When Messi won the Ballon d'Or, Ronaldo responded by winning it the following year. Every achievement by a rival was a new target.
-
-## Accomplishments
-
-| Year | Title | Impact | Description |
-
-|---|---|---|---|
-
-
+| Year | Title | Description | Impact |
+|------|-------|-------------|--------|
+| 2016 | Euro 2016 — Portugal's First Trophy | Captain of Portugal to Euro 2016 victory — the country's first major trophy. | Transformative |
+| 2016-2018 | Four consecutive Champions Leagues | Won four consecutive Champions League titles with Real Madrid — the most dominant run in Champions League history. | Transformative |
+| 2021 | International Goals Record | Became the all-time leading scorer in men's international football. | Transformative |
 
 ## Relationships
 
-| Person | Type | Strength | Since | Status |
-
-|---|---|---|---|---|
-
-| lionel-messi | Rival | 90/100 | 2008 | Historical |
+| Persona | Type | Description | Strength | Since | Status |
+|---------|------|-------------|----------|-------|--------|
+| [lionel-messi](https://github.com/ekcheungAI/perskill/tree/main/skills/lionel-messi) | Rival | The defining rivalry of football's modern era — drove both players to extraordinary heights over 15 years. | 90 | 2008 | Historical |
 
 ## Recent News
 
+| Date | Headline | Source | Sentiment |
+|------|----------|--------|-----------|
 
 
-## Recommended Resources
+## Competitive Landscape
 
-- **Ronaldo: Whatever It Takes** by Guillem Balague (Book) — The definitive biography of Ronaldo's rise from Madeira to global icon
+- **Lionel Messi** (Primary Rival): undefined
 
-## Failure Cases
+## Weaknesses
 
-### 2016: Euro 2016 Final: Portugal beat France 1-0 but Ronaldo was stretchered off in the 25th minute with a knee injury.
-Knee collision. Could not participate in the deciding match.
-**Learned:** The team won without him — the culture he helped build allowed others to step up.
+His confidence sometimes manifested as ego that created friction in team environments.
 
-## Competitive Worldview
+## Blind Spots
 
-Football is a results business. Goals, trophies, records. Everything else is commentary.
 
-## Install Info
 
-**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/cristiano-ronaldo
-
-**Version:** 1.0
-
-**Last Updated:** 2024-07-01
-
-**Next Update Due:** 2026-01-01
+---
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*

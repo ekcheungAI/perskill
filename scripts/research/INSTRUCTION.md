@@ -65,7 +65,7 @@
 
 ```bash
 # 生成研究项目模板（推荐）
-npx tsx scripts/research/persona-research.ts <id> --type=<TYPE> --name="<Full Name>"
+npx tsx scripts/research/0_scaffold/scaffold.ts <id> --type=<TYPE> --name="<Full Name>"
 
 # TYPE 选项：
 #   TWITTER_CRYPTO    有活跃 Twitter 的 crypto/trading 人设
@@ -74,7 +74,7 @@ npx tsx scripts/research/persona-research.ts <id> --type=<TYPE> --name="<Full Na
 #   WESTERN_INVESTOR   西方投资人（英文为主）
 
 # 示例：
-npx tsx scripts/research/persona-research.ts warren-buffett --type=WESTERN_INVESTOR --name="Warren Buffett"
+npx tsx scripts/research/0_scaffold/scaffold.ts warren-buffett --type=WESTERN_INVESTOR --name="Warren Buffett"
 ```
 
 此命令生成：
@@ -83,16 +83,16 @@ npx tsx scripts/research/persona-research.ts warren-buffett --type=WESTERN_INVES
 - `scripts/research/output/{id}/triple-verify-log.md` — 空白验证日志
 - `scripts/research/output/{id}/validation-log.md` — 空白验证测试
 - `skills/{id}/research/` — Git 追踪的最终档案目录
-- `scripts/research/{id}-deep.ts` — persona-specific 深度研究脚本
+- `scripts/research/personas-deep-research/${id}-deep.ts` — persona-specific 深度研究脚本
 
 ### Step 2: 数据收集 — 运行 pipeline
 
 ```bash
 # 有 Twitter 的 persona
-npx tsx scripts/research/pipeline.ts <handle> --count=500 --deep-research --type=TWITTER_CRYPTO
+npx tsx scripts/research/1_collect/pipeline.ts <handle> --count=500 --deep-research --type=TWITTER_CRYPTO
 
 # 无 Twitter 的 persona（中文人物）
-npx tsx scripts/research/pipeline.ts none --skip-tweets --deep-research --type=HK_ENTREPRENEUR
+npx tsx scripts/research/1_collect/pipeline.ts none --skip-tweets --deep-research --type=HK_ENTREPRENEUR
 
 # 自定义抓取（手动指定 URL）
 npx tsx scripts/research/firecrawl-research.ts https://zh.wikipedia.org/wiki/施永青
@@ -120,7 +120,7 @@ pipeline 输出到 `scripts/research/output/{id}/`：
 ### Step 4: 验证
 
 ```bash
-npx tsx scripts/research/run-validation.ts <id>
+npx tsx scripts/research/3_validate/validation-runner.ts <id>
 ```
 
 此脚本：

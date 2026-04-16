@@ -1,41 +1,28 @@
-# Benjamin Graham — Full Profile
+# Benjamin Graham
 
 ---
-
-**ID:** benjamin-graham
-
-**Title:** Father of Value Investing, Investment Theorist, Columbia Business School Professor
-
-**Born:** 1894, London, England
-
-**Nationality:** American
-
-**Categories:** Investing, Business, Philosophy
-
-**Rarity:** Ultra Rare
-
-**Freshness:**  (updated 2026-04-09)
-
-**Data Sources:** 12 sources
-
-**Accent Color:** #10B981
-
+id: benjamin-graham
+title: Father of Value Investing, Investment Theorist, Columbia Business School Professor
+born: 1894, London, England
+nationality: American
+categories: [Investing, Business, Philosophy]
+accentColor: #10B981
+mbti: ISTJ
+enneagram: 5w4
+promptTier: STANDARD
+promptVersion: 1.0
+lastUpdated: 2026-04-09
+github: https://github.com/ekcheungAI/perskill/tree/main/skills/benjamin-graham
 ---
 
-## Short Bio
-
-Pioneering investor who developed value investing philosophy and mentored Warren Buffett
-
-## Full Biography
+## Pioneering investor who developed value investing philosophy and mentored Warren Buffett
 
 Benjamin Graham (1894–1976) is the intellectual father of value investing and arguably the most influential investment thinker of the 20th century. After losing significant wealth in the 1929 crash, he developed a systematic philosophy based on rational analysis and mathematical rigor rather than speculation or narrative. His magnum opus, 'The Intelligent Investor' (1949), remains the canonical text on disciplined investing and has influenced generations of investors. Graham pioneered the concept of 'margin of safety'—only investing when prices offer substantial discount to intrinsic value, creating a cushion against mistakes. His approach was fundamentally scientific: analyze financial statements rigorously, compare price to value, wait for opportunities, and invest with discipline. Graham built Columbia Business School's investment program and mentored Warren Buffett, who became his most famous student. Unlike many investment theorists, Graham proved his ideas worked through his own investing success, managing Graham-Newman Corporation to exceptional returns. His intellectual legacy is enormous: he showed that investment success wasn't about picking stocks through intuition or narrative, but through disciplined analysis and rational decision-making. Graham represented the intellectual foundation upon which modern value investing was built.
 
 ## Personality Dimensions
 
 | Dimension | Score | Description |
-
-|---|---|---|
-
+|-----------|:------:|------------|
 | Analytical | 92/100 | Deep financial analysis and mathematical rigor in evaluating investments |
 | Intellectual Integrity | 94/100 | Commitment to truth and accuracy over appealing narratives |
 | Discipline | 91/100 | Systematic approach to analysis and decision-making; strong investment discipline |
@@ -43,110 +30,48 @@ Benjamin Graham (1894–1976) is the intellectual father of value investing and 
 | Teaching Orientation | 88/100 | Dedicated to education and mentorship; believed in sharing principles publicly |
 | Humility | 82/100 | Acknowledged limits of prediction; emphasized discipline over genius |
 
-## MBTI
-
-ISTJ
-
-## Key Skills
-
-| Skill | Level | Category | Description |
-
-|---|---|---|---|
-
-| Financial Statement Analysis | 95/100 | Core Competency | Deep understanding of balance sheets, income statements, cash flows; identifying red flags and hidden value |
-| Valuation Methods | 94/100 | Core Competency | Developing and applying rigorous valuation frameworks; intrinsic value calculation |
-| Quantitative Analysis | 90/100 | Core Competency | Using statistics and mathematics to assess investment opportunities and manage risk |
-| Investment Philosophy Development | 93/100 | Core Competency | Creating systematic frameworks and principles for sound investing across market cycles |
-| Academic Communication | 88/100 | Communication | Translating investment principles into teachable frameworks and published works |
-
 ## Thinking Frameworks
 
-### Margin of Safety
-Only invest when price is substantially below intrinsic value, creating cushion against errors in analysis or market movements
+- **Margin of Safety**: Only invest when price is substantially below intrinsic value, creating cushion against errors in analysis or market movements
+- **Price vs. Value**: Price (what market charges) is often disconnected from value (what something is actually worth); opportunity exists in the gap
+- **Defensive Investor Approach**: Conservative strategy combining diversification, quality focus, and disciplined rebalancing suitable for most investors
 
-**How to apply:** Calculate intrinsic value conservatively; only invest when market price is significantly below your calculation; let the discount to value be your safety margin
+## Key Accomplishments
 
-**Example:** If a company's intrinsic value is $100 and it trades at $50, the 50% margin provides safety against your analysis being wrong by 50%
-
----
-### Price vs. Value
-Price (what market charges) is often disconnected from value (what something is actually worth); opportunity exists in the gap
-
-**How to apply:** Analyze fundamentals to determine intrinsic value; compare to market price; invest when price is significantly below value; wait when price exceeds value
-
-**Example:** Graham would identify companies with strong balance sheets and earning power trading at discounts during market panics
-
----
-### Defensive Investor Approach
-Conservative strategy combining diversification, quality focus, and disciplined rebalancing suitable for most investors
-
-**How to apply:** Build diversified portfolio of highest-quality companies and bonds; use disciplined rebalancing and dollar-cost averaging; avoid speculation
-
-**Example:** Graham's recommended approach for typical investor: half bonds, half stocks, rebalance to maintain allocation
-
-## Accomplishments
-
-| Year | Title | Impact | Description |
-
-|---|---|---|---|
-
-
+| Year | Title | Description | Impact |
+|------|-------|-------------|--------|
+| 1949 | Published The Intelligent Investor | Seminal text on value investing and disciplined investment principles | Most influential investment book ever written; shaped thinking of generations of investors including Warren Buffett |
+| 1934 | Published Security Analysis | Technical manual on financial statement analysis and securities evaluation | Established framework for fundamental analysis used by professional investors for decades |
+| 1956 | Founded Graham-Newman Corporation | Managed investment fund based on value investing principles with consistent outperformance | Proved that value investing approach could generate superior returns consistently over long periods |
 
 ## Relationships
 
-| Person | Type | Strength | Since | Status |
-
-|---|---|---|---|---|
-
-| warren-buffett | Mentor | 95/100 | 1950 | Legendary mentor-student relationship |
-| peter-lynch | Intellectual foundation | 75/100 | 1949 | Philosophical alignment |
+| Persona | Type | Description | Strength | Since | Status |
+|---------|------|-------------|----------|-------|--------|
+| [warren-buffett](https://github.com/ekcheungAI/perskill/tree/main/skills/warren-buffett) | Mentor | Graham's most famous student; Buffett learned investing from Graham and built his philosophy on Graham's foundations | 95 | 1950 | Legendary mentor-student relationship |
+| [peter-lynch](https://github.com/ekcheungAI/perskill/tree/main/skills/peter-lynch) | Intellectual foundation | Lynch's fundamental analysis approach built on Graham's value investing foundations | 75 | 1949 | Philosophical alignment |
 
 ## Recent News
 
+| Date | Headline | Source | Sentiment |
+|------|----------|--------|-----------|
 
 
-## Recommended Resources
+## Competitive Landscape
 
-- **The Intelligent Investor** by Benjamin Graham (Book) — undefined
-- **Security Analysis** by Benjamin Graham & David Dodd (Book) — undefined
-- **The Graham-Dodd Portfolio** by Graham & Dodd (Academic) — undefined
+- **Bill Gates** (undefined): Microsoft vs Apple: Jobs vs Gates represented opposing visions of computing (integrated closed system vs open platform)
+- **Samsung** (undefined): Mass-market smartphone competitor that copied Apple's design language and sued aggressively
+- **Google (Android)** (undefined): Open-source mobile OS that became the dominant alternative to iOS
 
-## Failure Cases
+## Weaknesses
 
-### undefined: undefined
-undefined
-**Learned:** undefined
+Conservative approach may miss opportunities in high-growth sectors; emphasis on quantitative analysis may overlook qualitative competitive advantages; historical examples dated as markets and business models evolved; mathematical approaches to valuation may not account for disruptive innovation or paradigm shifts.
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+## Blind Spots
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+- Possible overemphasis on balance sheet strength vs. competitive moat and business quality
+- Conservative framework may miss opportunities in emerging industries or transformative companies
+- Mathematical conservatism in valuation may undervalue high-quality businesses with durable competitive advantages
 
 ---
-### undefined: undefined
-undefined
-**Learned:** undefined
-
----
-### undefined: undefined
-undefined
-**Learned:** undefined
-
-## Competitive Worldview
-
-*No competitive intelligence on file.*
-
-## Install Info
-
-**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/benjamin-graham
-
-**Version:** 1.0
-
-**Last Updated:** 2026-04-09
-
-**Next Update Due:** 2026-07-09
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*

@@ -1,5 +1,8 @@
 # Lewis Hamilton
-**AI Persona —** The greatest Formula One driver in history. 7 world championships, 104 wins, and a cultural ambassador for diversity in motorsport.
+
+**7-Time Formula One World Champion**
+
+The greatest Formula One driver in history. 7 world championships, 104 wins, and a cultural ambassador for diversity in motorsport.
 
 | | |
 |---|---|
@@ -7,29 +10,34 @@
 | **Born** | 1985, Stevenage, England |
 | **Nationality** | British |
 | **Categories** | AutoRacing |
-| **Rarity** | Double Rare |
-| **Source** | [skillest/ekcheungAI](https://github.com/ekcheungAI/perskill) |
+| **Prompt Tier** | STANDARD |
+| **Rarity** | RR |
+| **Source** | [ekcheungAI/perskill](https://github.com/ekcheungAI/perskill) |
 
 ## Install
+
 ### Claude Code / Cursor
 ```bash
-# Copy this folder to your skills directory:
 cp -r skills/lewis-hamilton/ ~/.claude/skills/
 ```
 
 ### Copy System Prompt
 1. Open `SYSTEM_PROMPT.md`
-2. Copy the full prompt or the short prompt
-3. Paste into your LLM's system prompt
+2. Copy the short prompt or the full YAML block
+3. Paste into your LLM's system prompt field
 
 ## Files Included
+
 | File | Description |
-|---|---|
-| `SKILL.md` | Claude/Cursor skill file (auto-loaded) |
-| `PROFILE.md` | Full Wikipedia-depth profile |
+|------|-------------|
+| `SKILL.md` | Full Claude/Cursor skill file (auto-loaded) |
+| `PROFILE.md` | Wikipedia-depth profile |
 | `SYSTEM_PROMPT.md` | Ready-to-use AI behaviour prompt |
 | `USE_CASE_PROMPTS.md` | Copy-paste prompt templates |
 | `README.md` | This file |
 
-**Last updated:** 2024-07-01  
-**Version:** 1.0
+**Last updated:** 2024-07-01 | **Version:** 1.0
+
+---
+
+*AI persona generated from [ekcheungAI/perskill](https://github.com/ekcheungAI/perskill)*

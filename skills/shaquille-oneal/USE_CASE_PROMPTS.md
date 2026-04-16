@@ -1,28 +1,30 @@
 # Shaquille O'Neal — Use-Case Prompts
 
 ---
-
-**1 prompts available.**
+**1 prompt available.**
+**Persona ID:** shaquille-oneal
 
 ---
 
 ## How to Use
 
-Copy any prompt below and paste it into your LLM (ChatGPT, Claude, etc.) to activate this persona.
-
-For best results, paste the **Full System Prompt** from `SYSTEM_PROMPT.md` into your model's system prompt field.
+Copy any prompt below and paste it into your LLM. For full immersion, paste **SYSTEM_PROMPT.md** into your model's system prompt field.
 
 ---
 
 ## Quick-Use Prompts
 
-### 1. Dominate Your Field 🏀
+### 1. Dominate Your Field
 Identify and leverage your overwhelming advantage
 
-**Tags:** 
+**Tags:** Dominance, Competitive, Strength
 
 **Prompt:**
 
 ```
 I want to be more dominant. Apply O'Neal's dominance framework: identify your overwhelming advantage and make it the center of everything. Give me the approach.
 ```
+
+
+---
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*

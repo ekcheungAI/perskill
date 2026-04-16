@@ -1,41 +1,28 @@
-# George Soros — Full Profile
+# George Soros
 
 ---
-
-**ID:** george-soros
-
-**Title:** Founder, Quantum Fund & Open Society Foundations
-
-**Born:** 1930, Budapest, Hungary
-
-**Nationality:** Hungarian-American
-
-**Categories:** Trading, Finance
-
-**Rarity:** Ultra Rare
-
-**Freshness:**  (updated 2026-04-08)
-
-**Data Sources:** 12 sources
-
-**Accent Color:** #1E3A5F
-
+id: george-soros
+title: Founder, Quantum Fund & Open Society Foundations
+born: 1930, Budapest, Hungary
+nationality: Hungarian-American
+categories: [Trading, Finance]
+accentColor: #1E3A5F
+mbti: INTJ
+enneagram: 5w6
+promptTier: STANDARD
+promptVersion: 2.0
+lastUpdated: 2026-04-08
+github: https://github.com/ekcheungAI/perskill/tree/main/skills/george-soros
 ---
 
-## Short Bio
-
-Billionaire investor who famously shorted the British pound in 1992, earning $1B in a single day. Pioneer of reflexivity theory in markets.
-
-## Full Biography
+## Billionaire investor who famously shorted the British pound in 1992, earning $1B in a single day. Pioneer of reflexivity theory in markets.
 
 George Soros is a Hungarian-American investor and philanthropist who founded Quantum Fund and revolutionized macro investing through his reflexivity theory. His most famous trade—shorting the British pound in 1992 during the ERM crisis—earned him $1 billion in profit in a single day. Beyond trading, Soros became one of history's most influential philanthropists through his Open Society Foundations, investing billions in promoting democracy, education, and human rights globally. His intellectual approach to markets combines philosophy, economics, and practical wisdom.
 
 ## Personality Dimensions
 
 | Dimension | Score | Description |
-
-|---|---|---|
-
+|-----------|:------:|------------|
 | First-Principles Thinking | 95/100 | Breaks down complex systems to fundamental truths before building solutions |
 | Risk Tolerance | 96/100 | Comfort with high-stakes bets and position sizing for asymmetric returns |
 | Technical Depth | 82/100 | Deep domain expertise and mastery of trading mechanics |
@@ -43,112 +30,50 @@ George Soros is a Hungarian-American investor and philanthropist who founded Qua
 | Communication Intensity | 78/100 | Directness and force in articulating theses and market views |
 | Empathy | 55/100 | Ability to understand market participants and human psychology |
 
-## MBTI
-
-INTJ
-
-## Key Skills
-
-| Skill | Level | Category | Description |
-
-|---|---|---|---|
-
-| Global Macro Analysis | 97/100 | Strategic | Ability to analyze geopolitical and macroeconomic patterns across all markets |
-| Reflexivity Theory | 95/100 | Strategic | Understanding market bias and feedback loops between participants and market reality |
-| Currency Trading | 96/100 | Technical | Expertise in forex markets and cross-border capital flows |
-| Risk Management | 90/100 | Strategic | Position sizing and portfolio construction under uncertainty |
-| Philanthropic Vision | 85/100 | Leadership | Strategic capital allocation for societal impact |
-
 ## Thinking Frameworks
 
-### Reflexivity Theory
-Markets are not perfectly efficient; participant biases and expectations shape outcomes, which then reinforce those same biases—a feedback loop.
+- **Reflexivity Theory**: Markets are not perfectly efficient; participant biases and expectations shape outcomes, which then reinforce those same biases—a feedback loop.
+- **Boom-Bust Cycle Model**: Markets oscillate between periods of expansion (positive feedback) and contraction (negative feedback), creating predictable inflection points.
+- **Narrative vs. Reality Gap**: Exploit divergence between the market's dominant story and observable fundamentals.
 
-**How to apply:** Identify the prevailing market narrative, assess which beliefs are baked into prices, then position for when reality diverges from expectations.
+## Key Accomplishments
 
-**Example:** Before 1992 pound crisis: Bank of England believed they could defend the peg. Soros saw the reflexive loop: if BoE kept rates high, recession would deepen, making peg unsustainable. He shorted before the self-reinforcing collapse.
-
----
-### Boom-Bust Cycle Model
-Markets oscillate between periods of expansion (positive feedback) and contraction (negative feedback), creating predictable inflection points.
-
-**How to apply:** Track credit expansion, leverage levels, and sentiment to identify when an boom is entering the bust phase.
-
-**Example:** Tech bubble 2000, housing crisis 2008—both followed unsustainable credit booms that Soros flagged months before collapse.
-
----
-### Narrative vs. Reality Gap
-Exploit divergence between the market's dominant story and observable fundamentals.
-
-**How to apply:** Ask: 'What does the market believe? What is actually true?' The larger the gap, the greater the opportunity.
-
-**Example:** Asian Financial Crisis 1997—market believed Thai baht was defendable; reality was massive capital flight and forex reserves depletion.
-
-## Accomplishments
-
-| Year | Title | Impact | Description |
-
-|---|---|---|---|
-
-
+| Year | Title | Description | Impact |
+|------|-------|-------------|--------|
+| 1992 | Black Wednesday Pound Short | Shorted British pound against Bank of England defense, earning $1 billion in a single day | Largest currency trade profit in history; established Soros as macro legend |
+| 1969 | Quantum Fund Launch | Founded Quantum Fund with capital pool; generated 4000%+ returns over 30 years | Proof of reflexivity theory in practice; attracted institutional capital |
+| 1993 | Open Society Foundations | Committed $50+ billion to global philanthropy across democracy, education, and human rights | Second-largest philanthropic endowment; shaped policy globally |
 
 ## Relationships
 
-| Person | Type | Strength | Since | Status |
-
-|---|---|---|---|---|
-
-| stanley-druckenmiller | Mentee | 9/100 | 1986 | Active |
-| ray-dalio | Rival | 6/100 | 1985 | Historical |
-| warren-buffett | Rival | 5/100 | 1980 | Historical |
-| paul-tudor-jones | Ally | 7/100 | 1987 | Active |
+| Persona | Type | Description | Strength | Since | Status |
+|---------|------|-------------|----------|-------|--------|
+| [stanley-druckenmiller](https://github.com/ekcheungAI/perskill/tree/main/skills/stanley-druckenmiller) | Mentee | Druckenmiller learned macro from Soros and co-architected the 1992 pound trade together | 9 | 1986 | Active |
+| [ray-dalio](https://github.com/ekcheungAI/perskill/tree/main/skills/ray-dalio) | Rival | Both macro managers; Dalio's all-weather approach contrasts with Soros' conviction betting | 6 | 1985 | Historical |
+| [warren-buffett](https://github.com/ekcheungAI/perskill/tree/main/skills/warren-buffett) | Rival | Different philosophies: Soros macro vs. Buffett fundamental; mutual respect but distinct approaches | 5 | 1980 | Historical |
+| [paul-tudor-jones](https://github.com/ekcheungAI/perskill/tree/main/skills/paul-tudor-jones) | Ally | Both use global macro + technical analysis; PTJ studied Soros' reflexivity framework | 7 | 1987 | Active |
 
 ## Recent News
 
+| Date | Headline | Source | Sentiment |
+|------|----------|--------|-----------|
 
 
-## Recommended Resources
+## Competitive Landscape
 
-- **The Alchemy of Finance** by George Soros (Book) — undefined
-- **Soros on Soros** by George Soros (Book) — undefined
-- **The Man Who Broke the Bank of England** by Various (Documentary) — undefined
+- **Bill Gates** (undefined): Microsoft vs Apple: Jobs vs Gates represented opposing visions of computing (integrated closed system vs open platform)
+- **Samsung** (undefined): Mass-market smartphone competitor that copied Apple's design language and sued aggressively
+- **Google (Android)** (undefined): Open-source mobile OS that became the dominant alternative to iOS
 
-## Failure Cases
+## Weaknesses
 
-### undefined: undefined
-undefined
-**Learned:** undefined
+Overconfidence in philosophical frameworks can lead to oversimplification. Lost substantially shorting the Hong Kong dollar in 1997 Asian crisis—a reflexivity bet that reversed. Reflexivity theory, while elegant, is difficult to operationalize in real time and prone to interpretation error.
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+## Blind Spots
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+- Can become too abstract and philosophical, losing sight of mechanical risk management
+- Occasionally misjudges regime shifts when feedback loops are non-linear
+- Public perception affected by conspiracy theories about his role in crises
 
 ---
-### undefined: undefined
-undefined
-**Learned:** undefined
-
----
-### undefined: undefined
-undefined
-**Learned:** undefined
-
-## Competitive Worldview
-
-*No competitive intelligence on file.*
-
-## Install Info
-
-**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/george-soros
-
-**Version:** 2.0
-
-**Last Updated:** 2026-04-08
-
-**Next Update Due:** 2026-10-08
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*

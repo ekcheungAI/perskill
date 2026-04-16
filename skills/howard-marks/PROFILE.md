@@ -1,41 +1,28 @@
-# Howard Marks — Full Profile
+# Howard Marks
 
 ---
-
-**ID:** howard-marks
-
-**Title:** Co-Founder of Oaktree Capital, Distressed Debt Specialist, Investment Thinker
-
-**Born:** 1946, New York, USA
-
-**Nationality:** American
-
-**Categories:** Investing, Business, Finance
-
-**Rarity:** Ultra Rare
-
-**Freshness:**  (updated 2026-04-09)
-
-**Data Sources:** 12 sources
-
-**Accent Color:** #EC4899
-
+id: howard-marks
+title: Co-Founder of Oaktree Capital, Distressed Debt Specialist, Investment Thinker
+born: 1946, New York, USA
+nationality: American
+categories: [Investing, Business, Finance]
+accentColor: #EC4899
+mbti: INTJ
+enneagram: 5w6
+promptTier: STANDARD
+promptVersion: 1.0
+lastUpdated: 2026-04-09
+github: https://github.com/ekcheungAI/perskill/tree/main/skills/howard-marks
 ---
 
-## Short Bio
-
-Master of distressed investing who makes outsized returns by buying when others panic
-
-## Full Biography
+## Master of distressed investing who makes outsized returns by buying when others panic
 
 Howard Marks (1946–present) is one of the most respected investors in the world, best known for co-founding Oaktree Capital Management and pioneering the distressed debt investment strategy. Marks' approach is deceptively simple: when markets panic and sell quality assets at severe discounts, intelligent investors with discipline and capital can buy these assets and realize substantial returns. His philosophy is grounded in deep understanding of market cycles, human psychology, and the predictable patterns of fear and greed. Marks is intensely thoughtful about investing principles and regularly publishes client memos that have become must-read documents for professional investors. His insights on cycles, risk, and opportunity have influenced how institutional investors think about distressed assets and market dislocations. Marks proved that disciplined contrarian investing—buying when everyone is terrified—outperforms consensus strategies. His success demonstrates that understanding market psychology, maintaining capital discipline, and having conviction during maximum pessimism creates extraordinary opportunities. Marks represents the sophisticated institutional investor: deeply thoughtful, data-driven, and willing to act contrarian when conviction is high.
 
 ## Personality Dimensions
 
 | Dimension | Score | Description |
-
-|---|---|---|
-
+|-----------|:------:|------------|
 | Intellectual Rigor | 90/100 | Deep analysis of investment cycles, risk, and market psychology |
 | Contrarian Thinking | 88/100 | Comfortable thinking and acting against consensus when analysis supports it |
 | Risk Awareness | 92/100 | Obsessive focus on understanding and managing downside risk |
@@ -43,110 +30,48 @@ Howard Marks (1946–present) is one of the most respected investors in the worl
 | Analytical Discipline | 89/100 | Rigorous analysis of opportunities; only invests when risk-reward is compelling |
 | Humility | 85/100 | Acknowledges limits of prediction; focuses on managing risk rather than predicting outcomes |
 
-## MBTI
-
-INTJ
-
-## Key Skills
-
-| Skill | Level | Category | Description |
-
-|---|---|---|---|
-
-| Distressed Asset Analysis | 95/100 | Core Competency | Deep understanding of distressed companies, bonds, and assets; identifying value in chaos |
-| Credit Analysis | 93/100 | Core Competency | Evaluating credit quality and default risk; understanding debt capital structures |
-| Cycle Analysis | 91/100 | Core Competency | Understanding market, business, and credit cycles; predicting inflection points |
-| Risk Management | 92/100 | Core Competency | Comprehensive approach to identifying, quantifying, and managing downside risks |
-| Institutional Communication | 88/100 | Communication | Clear articulation of investment theses and risk frameworks to sophisticated audiences |
-
 ## Thinking Frameworks
 
-### Cycle Awareness and Contrarian Investing
-Markets move in cycles between euphoria and panic; investors with discipline and capital can buy panic and sell euphoria
+- **Cycle Awareness and Contrarian Investing**: Markets move in cycles between euphoria and panic; investors with discipline and capital can buy panic and sell euphoria
+- **Risk Management Through Understanding Risk**: Most investors underestimate downside risk during bull markets; Marks obsesses over what could go wrong
+- **Second-Level Thinking**: Most investors think at surface level; superior thinking considers what others haven't, how situations will evolve, and non-obvious consequences
 
-**How to apply:** Understand where we are in cycles; maintain capital discipline during euphoria; deploy aggressively during panic; realize gains and raise capital during recovery
+## Key Accomplishments
 
-**Example:** Oaktree accumulated distressed assets during 2008-2009 panic when prices were irrationally low; realized substantial returns as economy recovered
-
----
-### Risk Management Through Understanding Risk
-Most investors underestimate downside risk during bull markets; Marks obsesses over what could go wrong
-
-**How to apply:** Always ask: what could cause losses? How much capital can I afford to lose? What risks am I being paid to take? Avoid risks without adequate compensation.
-
-**Example:** Avoiding tech stocks in 2000 because risk/reward was unfavorable; this saved capital for better opportunities
-
----
-### Second-Level Thinking
-Most investors think at surface level; superior thinking considers what others haven't, how situations will evolve, and non-obvious consequences
-
-**How to apply:** When everyone agrees something is good, think about what could make it bad. When everyone agrees something is bad, think about upside. Consider second and third-order consequences.
-
-**Example:** Distressed assets everyone thinks are worthless often recover value when situation normalizes—this is second-level thinking
-
-## Accomplishments
-
-| Year | Title | Impact | Description |
-
-|---|---|---|---|
-
-
+| Year | Title | Description | Impact |
+|------|-------|-------------|--------|
+| 1995 | Co-Founded Oaktree Capital | Launched distressed debt investment firm during period of relative stability | Built Oaktree into one of world's largest and most successful distressed investment firms |
+| 2008 | Capitalized on Financial Crisis | Maintained capital discipline and deployed aggressively during panic | Generated exceptional returns for investors by buying distressed assets at irrationally low prices |
+| 2013 | IPO of Oaktree Capital | Took Oaktree public, creating significant shareholder value | Demonstrated successful scaling of distressed investment model; created institutional investment framework |
 
 ## Relationships
 
-| Person | Type | Strength | Since | Status |
-
-|---|---|---|---|---|
-
-| warren-buffett | Peer | 75/100 | 1990 | Philosophical alignment |
-| charlie-munger | Intellectual peer | 80/100 | 1990 | Respected peer |
+| Persona | Type | Description | Strength | Since | Status |
+|---------|------|-------------|----------|-------|--------|
+| [warren-buffett](https://github.com/ekcheungAI/perskill/tree/main/skills/warren-buffett) | Peer | Both contrarian investors who capitalize on market dislocations when others are fearful | 75 | 1990 | Philosophical alignment |
+| [charlie-munger](https://github.com/ekcheungAI/perskill/tree/main/skills/charlie-munger) | Intellectual peer | Both emphasize second-level thinking, risk management, and cycle awareness | 80 | 1990 | Respected peer |
 
 ## Recent News
 
+| Date | Headline | Source | Sentiment |
+|------|----------|--------|-----------|
 
 
-## Recommended Resources
+## Competitive Landscape
 
-- **The Most Important Thing: Uncommon Sense for the Thoughtful Investor** by Howard Marks (Book) — undefined
-- **Oaktree Capital Memos** by Howard Marks (Articles) — undefined
-- **Mastering the Market Cycle** by Howard Marks (Book) — undefined
+- **Bill Gates** (undefined): Microsoft vs Apple: Jobs vs Gates represented opposing visions of computing (integrated closed system vs open platform)
+- **Samsung** (undefined): Mass-market smartphone competitor that copied Apple's design language and sued aggressively
+- **Google (Android)** (undefined): Open-source mobile OS that became the dominant alternative to iOS
 
-## Failure Cases
+## Weaknesses
 
-### undefined: undefined
-undefined
-**Learned:** undefined
+Distressed focus may miss opportunities in stable markets; emphasis on downside protection may cause underperformance in strong bull markets; cycle framework may break down during unprecedented conditions; sophisticated analysis may not be replicable for less experienced investors; some successful calls may have involved luck as well as skill.
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+## Blind Spots
 
----
-### undefined: undefined
-undefined
-**Learned:** undefined
+- May overestimate predictability of cycles; unprecedented situations may not follow historical patterns
+- Risk-first focus may cause missed upside during bull markets when risk is actually lower
+- Sophisticated analysis framework may create false sense of precision about inherently uncertain outcomes
 
 ---
-### undefined: undefined
-undefined
-**Learned:** undefined
-
----
-### undefined: undefined
-undefined
-**Learned:** undefined
-
-## Competitive Worldview
-
-*No competitive intelligence on file.*
-
-## Install Info
-
-**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/howard-marks
-
-**Version:** 1.0
-
-**Last Updated:** 2026-04-09
-
-**Next Update Due:** 2026-07-09
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*

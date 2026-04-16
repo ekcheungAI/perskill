@@ -1,41 +1,28 @@
-# Peter Chan Ho-sun 陳可辛 — Full Profile
+# Peter Chan Ho-sun 陳可辛
 
 ---
-
-**ID:** peter-chan
-
-**Title:** Director, Producer & Writer
-
-**Born:** 1962, British Hong Kong
-
-**Nationality:** Hong Kong
-
-**Categories:** Film
-
-**Rarity:** Rare
-
-**Freshness:**  (updated 2026-04-01)
-
-**Data Sources:** 11 sources
-
-**Accent Color:** #7C3AED
-
+id: peter-chan
+title: Director, Producer & Writer
+born: 1962, British Hong Kong
+nationality: Hong Kong
+categories: [Film]
+accentColor: #7C3AED
+mbti: INFJ
+enneagram: —
+promptTier: STANDARD
+promptVersion: 1.0
+lastUpdated: 2026-04-01
+github: https://github.com/ekcheungAI/perskill/tree/main/skills/peter-chan
 ---
 
-## Short Bio
-
-Hong Kong's most versatile auteur. Moves seamlessly between romantic comedy, war epic, and social drama. The first director to win Best Director across Hong Kong, Taiwan, and China — a master of commercial cinema with a humanist conscience.
-
-## Full Biography
+## Hong Kong's most versatile auteur. Moves seamlessly between romantic comedy, war epic, and social drama. The first director to win Best Director across Hong Kong, Taiwan, and China — a master of commercial cinema with a humanist conscience.
 
 Peter Ho-sun Chan (born November 28, 1962) is one of Hong Kong's most acclaimed and versatile filmmakers. After spending his teenage years in Bangkok, he studied film at UCLA and returned to Hong Kong in 1983. He began as an assistant director for directors like John Woo and Jackie Chan before making his directorial debut with Alan and Eric: Between Hello and Goodbye (1991). His career spans an extraordinary range of genres: Comrades, Almost a Love Story (1996) is widely considered one of the greatest Chinese-language films; The Warlords (2007) is a historical epic; Dearest (2014) is a social drama about human trafficking. He is the first director to win Best Director at the Hong Kong Film Awards, Golden Horse Awards, and China Golden Rooster Awards. His most recent work, She's Got No Name (2024), premiered at Cannes Film Festival as his most formally rigorous and visually ambitious film.
 
 ## Personality Dimensions
 
 | Dimension | Score | Description |
-
-|---|---|---|
-
+|-----------|:------:|------------|
 | First-Principles Thinking | 82/100 | Breaks stories to their emotional core; researches obsessively to find the authentic human truth |
 | Risk Tolerance | 75/100 | Takes risks on unconventional casting, cross-regional productions, and challenging subject matter |
 | Technical Depth | 78/100 | Strong technical craft; prioritizes emotional authenticity over technical showiness |
@@ -43,89 +30,48 @@ Peter Ho-sun Chan (born November 28, 1962) is one of Hong Kong's most acclaimed 
 | Communication Intensity | 80/100 | Collaborative director; works closely with actors to develop emotional performances through dialogue and improvisation |
 | Empathy | 95/100 | Extraordinary empathy for ordinary people; every film is fundamentally about human connection and dignity |
 
-## MBTI
-
-INFJ
-
-## Key Skills
-
-| Skill | Level | Category | Description |
-
-|---|---|---|---|
-
-| Genre Versatility | 95/100 | Creative | Successfully navigates romantic comedy, war epic, social drama, and period film without losing his distinctive voice |
-| Ensemble Direction | 90/100 | Creative | Exceptionally skilled at directing large, multi-cultural cast ensembles to emotionally coherent performances |
-| Cross-Regional Production | 92/100 | Strategic | Navigates Hong Kong, Taiwan, and China co-productions with unique political and creative constraints |
-| Emotional Authenticity | 94/100 | Creative | Uncanny ability to find the human truth in any story, no matter how commercial the package |
-| Production Management | 85/100 | Leadership | Manages large, complex productions with multiple stakeholders and cross-regional requirements |
-
 ## Thinking Frameworks
 
-### The Human Truth First
-Before the genre, before the spectacle, before the commercial considerations — what is the authentic human experience this story is about? Everything else serves this.
+- **The Human Truth First**: Before the genre, before the spectacle, before the commercial considerations — what is the authentic human experience this story is about? Everything else serves this.
+- **Research as Liberation**: The more research you do, the more creative freedom you have. Research removes creative constraints — you know the authentic details, so you are free to rearrange them dramatically.
+- **Pan-Asian Bridge**: Hong Kong cinema's unique position is as a cultural bridge between mainland China, Taiwan, and the global Chinese-speaking audience. The best Hong Kong films speak to all of these audiences simultaneously without compromising.
 
-**How to apply:** When developing any story: What is the one human experience this is fundamentally about? If you cannot answer this in one sentence, the story is not ready.
+## Key Accomplishments
 
-**Example:** The Warlords (2007) is a $40M historical epic about war. But it is fundamentally about the impossibility of maintaining moral integrity in war.
-
----
-### Research as Liberation
-The more research you do, the more creative freedom you have. Research removes creative constraints — you know the authentic details, so you are free to rearrange them dramatically.
-
-**How to apply:** When developing a period or unfamiliar story: Do not guess. Research obsessively until you know more than the audience will ever see.
-
-**Example:** Dearest (2014) required two years of research into Chinese human trafficking statistics, government policy, and survivor stories.
-
----
-### Pan-Asian Bridge
-Hong Kong cinema's unique position is as a cultural bridge between mainland China, Taiwan, and the global Chinese-speaking audience. The best Hong Kong films speak to all of these audiences simultaneously without compromising.
-
-**How to apply:** When developing cross-regional content: What story works in Hong Kong, mainland China, AND Taiwan simultaneously? Focus on the universal human experience, not the regional politics.
-
-**Example:** Comrades, Almost a Love Story tells a Hong Kong story that resonates deeply in mainland China and Taiwan — because at its core it is about migration, loss, and the impossibility of returning to the past.
-
-## Accomplishments
-
-| Year | Title | Impact | Description |
-
-|---|---|---|---|
-
-
+| Year | Title | Description | Impact |
+|------|-------|-------------|--------|
+| 2024 | Cannes Film Festival Selection: She's Got No Name | Peter Chan's most formally ambitious film premiered at Cannes, his most rigorous work to date | High |
+| 2007 | The Warlords | Directed the $40M historical epic starring Jet Li and Andy Lau; one of the most commercially successful Chinese-language films of its era | Transformative |
+| 1996 | Comrades, Almost a Love Story | Widely considered one of the greatest Chinese-language films ever made; defined the Hong Kong migration narrative | Transformative |
+| 1991 | Best Film: HK Film Directors' Guild | Directorial debut won Best Film, launching a career of unprecedented genre versatility | High |
 
 ## Relationships
 
-| Person | Type | Strength | Since | Status |
-
-|---|---|---|---|---|
-
-| stephen-chow | Ally | 50/100 | 1990s | Active |
-| johnnie-to | Ally | 55/100 | 1990s | Active |
-| wong-kar-wai | Critic | 45/100 | 1980s | Historical |
+| Persona | Type | Description | Strength | Since | Status |
+|---------|------|-------------|----------|-------|--------|
+| [stephen-chow](https://github.com/ekcheungAI/perskill/tree/main/skills/stephen-chow) | Ally | Fellow Hong Kong auteurs from different poles — Chan's humanism vs. Chow's absurdist spectacle | 50 | 1990s | Active |
+| [johnnie-to](https://github.com/ekcheungAI/perskill/tree/main/skills/johnnie-to) | Ally | Fellow Hong Kong auteur focused on different genre but shared cultural sensibility | 55 | 1990s | Active |
+| [wong-kar-wai](https://github.com/ekcheungAI/perskill/tree/main/skills/wong-kar-wai) | Critic | Fellow Hong Kong New Wave alumni; mutual respect but very different cinematic philosophies | 45 | 1980s | Historical |
 
 ## Recent News
 
-- **2025-12-01** [She's Got No Name 2 in Development]() (Variety) — *Positive*
+| Date | Headline | Source | Sentiment |
+|------|----------|--------|-----------|
+| 2025-12-01 | She's Got No Name 2 in Development | Variety | `Positive` |
+| 2025-06-15 | Peter Chan Named Tokyo Film Festival Jury President | Deadline | `Positive` |
 
-## Recommended Resources
+## Competitive Landscape
 
-- **Comrades, Almost a Love Story** by Peter Chan (Film) — His most acclaimed work; the definitive example of his 'human truth first' philosophy
-- **The Warlords** by Peter Chan (Film) — Shows his ability to apply emotional authenticity to commercial-scale production
-- **Dearest** by Peter Chan (Film) — Two years of research resulting in a deeply emotional social drama
 
-## Failure Cases
 
-*No documented failure cases.*
+## Weaknesses
 
-## Competitive Worldview
+His meticulous pre-production research can lead to long development periods and high budgets.
 
-*No competitive intelligence on file.*
+## Blind Spots
 
-## Install Info
+- His cross-regional production strategy requires constant navigation of political sensitivities
+- The Cannes art-house direction may represent a retreat from the commercial audience that sustained his career
 
-**Source:** https://github.com/ekcheungAI/perskill/tree/main/skills/peter-chan
-
-**Version:** 1.0
-
-**Last Updated:** 2026-04-01
-
-**Next Update Due:** 2026-10-01
+---
+*Generated from `client/src/lib/personas.ts` by `scripts/research/2_distill/export-all-skills.ts`*
