@@ -1,0 +1,92 @@
+[
+  {
+    "url": "https://www.scmp.com/photos/hong-kong/3302827/hong-kongs-fourth-uncle-lee-shau-kee-life-pictures",
+    "label": "Hong Kong's 'Fourth Uncle' Lee Shau-kee: a life in pictures",
+    "priority": "high",
+    "reason": "spoken / primary-spoken — trust: 2.5"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/vprr/0501/05010719.pdf",
+    "label": "[PDF] The Hong Kong and China Gas Company Limited - SEC.gov",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/vprr/0601/06018078.pdf",
+    "label": "[PDF] 12.",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/vprr/0507/05073211.pdf",
+    "label": "[PDF] securities and exchange commission - SEC.gov",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/vprr/0501/05013581.pdf",
+    "label": "Untitled - SEC.gov",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/vprr/0501/05011242.pdf",
+    "label": "Untitled - SEC.gov",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.sec.gov/Archives/edgar/vprr/0904/09046033.pdf",
+    "label": "[PDF] SUN HUNG KA PROPERTIES - SEC.gov",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.abebooks.com/9787511304179/Lee-Shau-Kee-Biography-LIANG-7511304176/plp",
+    "label": "Dr. Lee Shau Kee Biography ( all 2 ) - LIANG FENG YI - AbeBo",
+    "priority": "high",
+    "reason": "behavioral / secondary-profile — trust: 1.5"
+  },
+  {
+    "url": "https://www.hotchkiss.org/post-page/~board/school-news/post/in-loving-memory-of-lee-shau-kee-gp06091114",
+    "label": "In Loving Memory of Lee Shau Kee GP'06,'09,'11,'14 | Hotchki",
+    "priority": "high",
+    "reason": "authored / primary-authored — trust: 3"
+  },
+  {
+    "url": "https://www.thriftbooks.com/w/the-biography-of-lee-shau-kee/8209814",
+    "label": "The Biography of Lee Shau-Kee book by Feng-I Liang - ThriftB",
+    "priority": "high",
+    "reason": "behavioral / secondary-profile — trust: 1.5"
+  },
+  {
+    "url": "https://www.forbes.com/profile/lee-shau-kee",
+    "label": "Lee Shau Kee - Forbes",
+    "priority": "high",
+    "reason": "behavioral / secondary-profile — trust: 1.5"
+  },
+  {
+    "url": "https://e.vnexpress.net/news/life/celebrities/hong-kong-s-former-second-richest-billionaire-lee-shau-kee-s-son-martin-sues-actress-chrissie-chau-denies-affair-5043164.html",
+    "label": "Hong Kong's former second-richest billionaire Lee Shau Kee's",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.msn.com/en-xl/family-and-relationships/marriage/hong-kong-s-former-second-richest-billionaire-lee-shau-kee-s-son-martin-sues-actress-chrissie-chau-denies-affair/ar-AA1WSu9M",
+    "label": "Hong Kong's former second-richest billionaire Lee Shau Kee's",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.facebook.com/Newsbuzzvn/posts/martin-lee-son-of-the-late-hong-kong-billionaire-lee-shau-kee-has-filed-a-defama/1803415670873719",
+    "label": "Martin Lee, son of the late Hong Kong billionaire Lee Shau K",
+    "priority": "high",
+    "reason": "institutional / institutional-record — trust: 2.8"
+  },
+  {
+    "url": "https://www.forbes.com/sites/russellflannery/2012/03/07/think-mortar-hong-kong-billionaire-lee-shau-kee-on-where-to-invest-today",
+    "label": "Think Mortar: Hong Kong Billionaire Lee Shau Kee On Where To",
+    "priority": "high",
+    "reason": "spoken / primary-spoken — trust: 2.5"
+  }
+]
