@@ -20,6 +20,8 @@
  * Usage:
  *   npx tsx scripts/research/firecrawl-discovery.ts "Warren Buffett" --type=WESTERN_INVESTOR
  *   npx tsx scripts/research/firecrawl-discovery.ts "Jack Ma" --type=CHINESE_BUSINESS
+  npx tsx scripts/research/firecrawl-discovery.ts "Stephen Chow" --type=FILM_DIRECTOR
+  npx tsx scripts/research/firecrawl-discovery.ts "Jesse Livermore" --type=HISTORICAL_TRADER
  */
 
 try {
@@ -45,7 +47,9 @@ export type PersonaResearchType =
   | "TWITTER_CRYPTO"
   | "CHINESE_BUSINESS"
   | "HK_ENTREPRENEUR"
-  | "WESTERN_INVESTOR";
+  | "WESTERN_INVESTOR"
+  | "FILM_DIRECTOR"
+  | "HISTORICAL_TRADER";
 
 export type SourceLayer =
   | "social"
@@ -182,6 +186,33 @@ function buildSearchQueries(name: string, type: PersonaResearchType): SearchQuer
         q(`"${name}" criticism OR "rug pull" OR scandal OR SEC OR CFTC OR investigation`, "adversarial", "adversarial-critique", "high"),
         q(`"${name}" on-chain data OR wallet OR transaction OR "bought" OR "sold" OR token`, "behavioral", "institutional-record", "high"),
         q(`"${name}" site:coindesk.com OR site:decrypt.co OR site:theblock.co OR site:dlnews.com`, "behavioral", "secondary-profile", "medium"),
+      ];
+
+    case "FILM_DIRECTOR":
+      return [
+        q(`"${name}" film director interview OR "in conversation" OR podcast OR masterclass OR "Q&A"`, "spoken", "primary-spoken", "high"),
+        q(`"${name}" book OR memoir OR autobiography OR "making of" OR "collected interviews"`, "authored", "primary-authored", "high"),
+        q(`"${name}" film criticism OR review OR "behind the scenes" OR "production notes"`, "authored", "primary-authored", "medium"),
+        q(`"${name}" film festival OR Cannes OR Venice OR Berlin OR "director's commentary"`, "spoken", "primary-spoken", "high"),
+        q(`"${name}" controversy OR scandal OR lawsuit OR "box office failure" OR "producer conflict"`, "adversarial", "adversarial-critique", "high"),
+        q(`"${name}" directing style OR "visual language" OR "auteur theory" OR philosophy`, "authored", "secondary-profile", "high"),
+        q(`"${name}" biography OR "early career" OR "film education" OR "influences"`, "behavioral", "secondary-profile", "medium"),
+        q(`"${name}" cinematography OR editing OR "shot composition" OR "blocking" technique`, "behavioral", "secondary-profile", "medium"),
+        q(`"${name}" filmography OR awards OR "best director" OR Oscar OR Palme d'Or`, "institutional", "institutional-record", "high"),
+        q(`"${name}" scene breakdown OR "shooting script" OR "production design"`, "authored", "primary-authored", "medium"),
+        q(`"${name}" site:letterboxd.com OR site:rogerebert.com OR site:variety.com OR site:hollywoodreporter.com`, "behavioral", "secondary-profile", "medium"),
+      ];
+
+    case "HISTORICAL_TRADER":
+      return [
+        q(`"${name}" trader OR speculator biography OR memoir OR autobiography OR letters`, "authored", "primary-authored", "high"),
+        q(`"${name}" market strategy OR trading rules OR "how I made my fortune" OR "my system"`, "authored", "primary-authored", "high"),
+        q(`"${name}" interview OR "in the trading pits" OR "on tape reading" OR oral history`, "spoken", "primary-spoken", "high"),
+        q(`"${name}" market crash OR 1929 OR panic OR "cornering the market" OR manipulation`, "behavioral", "institutional-record", "high"),
+        q(`"${name}" criticism OR "lost everything" OR "failed" OR "bankruptcy" OR scandal`, "adversarial", "adversarial-critique", "high"),
+        q(`"${name}" SEC OR CFTC OR "regulated" OR "prosecuted" OR "indicted"`, "institutional", "institutional-record", "high"),
+        q(`"${name}" trading psychology OR "risk management" OR "position sizing" OR lessons`, "authored", "secondary-profile", "high"),
+        q(`"${name}" Reminiscences OR "Edwin Lefevre" OR "Wiley Investment" biography`, "authored", "secondary-profile", "medium"),
       ];
   }
 
@@ -637,13 +668,13 @@ async function main() {
     console.error("Usage: npx tsx scripts/research/firecrawl-discovery.ts <name> [--type=TYPE] [--dry-run] [--max-queries=N]");
     console.error("  npx tsx scripts/research/firecrawl-discovery.ts \"Warren Buffett\" --type=WESTERN_INVESTOR");
     console.error("  npx tsx scripts/research/firecrawl-discovery.ts \"Jack Ma\" --type=CHINESE_BUSINESS");
-    console.error("\nTypes: TWITTER_CRYPTO | CHINESE_BUSINESS | HK_ENTREPRENEUR | WESTERN_INVESTOR");
+    console.error("\nTypes: TWITTER_CRYPTO | CHINESE_BUSINESS | HK_ENTREPRENEUR | WESTERN_INVESTOR | FILM_DIRECTOR | HISTORICAL_TRADER");
     process.exit(1);
   }
 
   const type = typeArg as PersonaResearchType;
 
-  if (!["TWITTER_CRYPTO", "CHINESE_BUSINESS", "HK_ENTREPRENEUR", "WESTERN_INVESTOR"].includes(type)) {
+  if (!["TWITTER_CRYPTO", "CHINESE_BUSINESS", "HK_ENTREPRENEUR", "WESTERN_INVESTOR", "FILM_DIRECTOR", "HISTORICAL_TRADER"].includes(type)) {
     console.error(`Unknown type: ${type}`);
     process.exit(1);
   }

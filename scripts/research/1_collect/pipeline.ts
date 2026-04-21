@@ -692,6 +692,41 @@ async function runPipeline(
     console.log("\n🔍 Step 0: Skipped (--skip-discovery)");
   }
 
+  // ─── COVERAGE GATE — Block if no authored sources found ─────────────────────
+  // This gate runs after discovery but before expensive scraping to prevent
+  // spending credits on a persona with zero primary authored sources.
+  const authoredCount = discoveryResult?.byType?.["primary-authored"]?.length ?? 0;
+  const spokenCount = discoveryResult?.byType?.["primary-spoken"]?.length ?? 0;
+
+  if (!options.skipDiscovery && authoredCount === 0 && spokenCount === 0) {
+    console.error("\n" + "═".repeat(60));
+    console.error("  ⛔  COVERAGE GATE FAILED");
+    console.error("═".repeat(60));
+    console.error("  Zero authored + spoken sources found for this persona.");
+    console.error("  This means there are no books, letters, essays, interviews,");
+    console.error("  or speeches to analyze. Any persona built from this would be");
+    console.error("  hagiography, not research.");
+    console.error("");
+    console.error("  Actions:");
+    console.error("  1. Check if the name is spelled correctly (try --name='Full Name')");
+    console.error("  2. Add specific book/interview URLs to the scrape list manually");
+    console.error("  3. If this is a private figure, mark as SKIP in the research queue");
+    console.error("");
+    console.error(`  Discovery result: ${discoveryResult?.totalSources ?? 0} sources total`);
+    console.error(`  By layer: authored=${authoredCount}, spoken=${spokenCount}, institutional=${discoveryResult?.byType?.["institutional-record"]?.length ?? 0}, adversarial=${discoveryResult?.byType?.["adversarial-critique"]?.length ?? 0}`);
+    console.error("═".repeat(60));
+    process.exit(1);
+  }
+
+  if (authoredCount === 0 || spokenCount === 0) {
+    const missing = authoredCount === 0 ? "authored (books/letters)" : "spoken (interviews/podcasts)";
+    console.warn(`\n  ⚠️  WARNING: No ${missing} sources found.`);
+    console.warn(`     Pipeline will continue but quality will be degraded.`);
+    console.warn(`     Add --skip-discovery to bypass this gate if you have manually curated URLs.`);
+  } else {
+    console.log(`\n  ✅ Coverage Gate passed: ${authoredCount} authored + ${spokenCount} spoken sources`);
+  }
+
   // ─── Step 2: Web research (now uses discovery targets OR fallback URLs) ──────
   let webPages: any[] = [];
   let sourceClassification: SourceClassification | null = null;
@@ -786,6 +821,8 @@ async function runPipeline(
       CHINESE_BUSINESS: `${handle} management philosophy investment strategy biography`,
       HK_ENTREPRENEUR: `${handle} Hong Kong real estate business strategy management`,
       WESTERN_INVESTOR: `${handle} investment philosophy strategy biography`,
+      FILM_DIRECTOR: `${handle} directing philosophy visual style methodology career`,
+      HISTORICAL_TRADER: `${handle} trading strategy psychology market analysis biography`,
     };
     try {
       deepData = await deepResearch(firecrawlKey, topicsByType[options.type] || handle, {
@@ -872,13 +909,15 @@ async function main() {
     console.error("  --skip-discovery   Skip search-driven discovery (use hardcoded fallback URLs)");
     console.error("  --skip-longform    Skip long-form document ingestion");
     console.error("  --deep-research    Run Firecrawl deep-research");
-    console.error("  --type=TYPE        Persona type: TWITTER_CRYPTO | CHINESE_BUSINESS | HK_ENTREPRENEUR | WESTERN_INVESTOR");
+    console.error("  --type=TYPE        Persona type: TWITTER_CRYPTO | CHINESE_BUSINESS | HK_ENTREPRENEUR | WESTERN_INVESTOR | FILM_DIRECTOR | HISTORICAL_TRADER");
     console.error("  --name=NAME        Full display name for discovery queries (default: handle)");
     console.error("\nTypes:");
     console.error("  TWITTER_CRYPTO     Default. Crypto/trading persona with active Twitter.");
     console.error("  CHINESE_BUSINESS   No Twitter. Chinese-language sources. 中文人物.");
     console.error("  HK_ENTREPRENEUR   Hong Kong entrepreneur. Wikipedia/zh + industry media.");
     console.error("  WESTERN_INVESTOR   Western investor. EN Wikipedia + annual reports.");
+    console.error("  FILM_DIRECTOR      Film director. Interviews, film criticism, making-of sources.");
+    console.error("  HISTORICAL_TRADER  Historical trader/speculator. Memoirs, biographies, market records.");
     console.error("\nPipeline steps (default: all enabled):");
     console.error("  1. Discovery    — Search-driven source finding across 6 layers");
     console.error("  2. Twitter      — Tweet scraping + vocabulary analysis");

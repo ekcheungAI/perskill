@@ -237,7 +237,22 @@ export interface MentalModel {
   internalMonologue: string;
   output: string;
   confidence: "Firmly Held" | "Pragmatic" | "Occasionally Questioned";
+  /** Primary source(s) this model was extracted from, e.g. "Reminiscences of a Stock Operator; Edwin Lefèvre 1923" */
+  source?: string;
 }
+
+/**
+ * Research quality gate — tracks how thoroughly a persona has been verified.
+ * UNVERIFIED: no discovery pipeline run, no research data collected
+ * DISCOVERY_RUN: discovery + scraping done, but no triple verification
+ * TRIPLE_VERIFIED: passed the triple-verification test (mental models + contradictions confirmed)
+ * PUBLISHED: shipped to production with validated data
+ */
+export type ResearchStatus =
+  | "UNVERIFIED"
+  | "DISCOVERY_RUN"
+  | "TRIPLE_VERIFIED"
+  | "PUBLISHED";
 
 export interface SkillChainEntry {
   name: string;
@@ -366,6 +381,9 @@ export interface Persona {
   lastUpdated: string;
   nextUpdateDue: string;
   dataSourceCount: number;
+
+  // Research quality gate — set by pipeline, checked before shipping
+  researchStatus?: ResearchStatus;
 
   // Personality
   personalityTraits: string[];
@@ -500,7 +518,8 @@ export const personas: Persona[] = [
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/larry-ellison",
     lastUpdated: "2025-12-01",
     nextUpdateDue: "2026-06-01",
-    dataSourceCount: 14,
+    dataSourceCount: 14
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Ambitious", "Autocratic", "Competitive", "Bold", "Uncompromising"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -1089,7 +1108,8 @@ Case: Ellison asks "Who's the loser in this deal?" If the answer isn't clear, it
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/elon-musk",
     lastUpdated: "2026-03-01",
     nextUpdateDue: "2026-05-01",
-    dataSourceCount: 32,
+    dataSourceCount: 32
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Visionary", "Intense", "First-Principles Thinker", "Risk-Tolerant", "Micromanager", "Pathologically Optimistic"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 99, description: "Removes all assumptions to find fundamental physical truths before building solutions" },
@@ -1584,7 +1604,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/donald-trump",
     lastUpdated: "2026-01-15",
     nextUpdateDue: "2026-07-15",
-    dataSourceCount: 28,
+    dataSourceCount: 28
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Ambitious", "Dominant", "Outgoing", "Unconventional", "Charismatic", "Transactional"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 55, description: "Intuitive over analytical; uses gut instinct rather than structured reasoning" },
@@ -1937,7 +1958,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/shi-yongqing",
     lastUpdated: "2026-04-14",
     nextUpdateDue: "2026-10-14",
-    dataSourceCount: 19,
+    dataSourceCount: 19
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["无为而治", "自组织倡导者", "务实保守", "低调用人", "利润共享者", "行业规则制定者", "最小有效干预", "周期耐心"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "对人性和组织激励的深刻洞察。分析问题时从激励结构出发，而非从意识形态出发" },
@@ -2127,7 +2149,8 @@ This perspective applies to organizational design, incentive systems, governance
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/li-ka-shing",
     lastUpdated: "2026-04-10",
     nextUpdateDue: "2026-10-10",
-    dataSourceCount: 23,
+    dataSourceCount: 23
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Patient", "Pragmatic", "Disciplined", "Risk-Aware", "Philanthropic", "Low-Profile"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Deep understanding of business fundamentals and long-term value creation" },
@@ -2516,7 +2539,8 @@ Li's legendary patience has occasionally cost him. He held some positions past t
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jack-ma",
     lastUpdated: "2026-03-01",
     nextUpdateDue: "2026-09-01",
-    dataSourceCount: 22,
+    dataSourceCount: 22
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Visionary", "Charismatic", "Resilient", "Optimistic", "Provocative", "Disruptive", "Persuasive", "Tenacious", "Unconventional"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Deeply unconventional thinking; challenges every assumption about what Chinese companies can achieve" },
@@ -2909,7 +2933,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/erik-ekudden",
     lastUpdated: "2026-02-01",
     nextUpdateDue: "2026-08-01",
-    dataSourceCount: 11,
+    dataSourceCount: 11
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Methodical", "Diplomatic", "Long-Term Thinker", "Technical", "Pragmatic", "Collaborative"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Systems-level thinking about how network layers interact over time" },
@@ -3228,7 +3253,8 @@ THINKING PROCESS
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/stephen-chow",
     lastUpdated: "2025-12-01",
     nextUpdateDue: "2026-06-01",
-    dataSourceCount: 16,
+    dataSourceCount: 16
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Perfectionist", "Underdog Champion", "Absurdist", "Visual Thinker", "Private", "Resilient"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks comedy down to its fundamental emotional triggers; deconstructs clichés to find their absurd core" },
@@ -3469,7 +3495,8 @@ THINKING PROCESS
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/michael-phelps",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 18,
+    dataSourceCount: 18
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Relentless", "Obsessive", "Stoic", "Calculating", "Coldly Focused"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "Unmatched ability to perform at his absolute best when everything is on the line — 8 golds in Beijing proved he was most dominant when stakes were highest" },
@@ -3727,7 +3754,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/serena-williams",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 22,
+    dataSourceCount: 22
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Fierce", "Unapologetic", "Calculating", "Resilient", "Confrontational"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Played her best tennis when facing elimination, match points, or her biggest rivals — her record in Grand Slam finals is unmatched" },
@@ -4028,7 +4056,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lionel-messi",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 28,
+    dataSourceCount: 28
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Invisible", "Generous", "Quiet", "Relentless", "Joyful"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "Delivered his greatest performances in the highest-pressure situations — World Cup final, Champions League finals, El Clasico — regardless of the stakes" },
@@ -4265,7 +4294,8 @@ When facing a defensive problem: (1) Where is the space? (2) Who has the ball? (
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lebron-james",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 25,
+    dataSourceCount: 25
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Calculating", "Generous", "Philanthropic", "Vocal", "Durable"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 95, description: "Delivered in the most high-pressure NBA Finals moments, including the 2016 comeback from 3-1 down — the first in Finals history" },
@@ -4510,7 +4540,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tom-brady",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 20,
+    dataSourceCount: 20
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Obsessive", "Resilient", "Competitive", "Workaholic", "Controlled"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 100, description: "The greatest pressure quarterback in NFL history. Performed best in the most crucial moments, in the biggest games, against the best defenses — consistently across two decades" },
@@ -4744,7 +4775,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/roger-federer",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 18,
+    dataSourceCount: 18
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Gracious", "Artistic", "Competitive", "Grounded", "Elegant"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 94, description: "Reached an extraordinary 31 consecutive Grand Slam semifinals — a testament to his ability to perform at his best consistently across two decades" },
@@ -4973,7 +5005,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/simone-biles",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 16,
+    dataSourceCount: 16
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Bold", "Courageous", "Technical", "Vulnerable", "Dominant"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Her 2016 Rio performance (four golds) and 2024 return to win US Trials by 5.5 points demonstrated elite performance under the highest competitive pressure" },
@@ -5151,7 +5184,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tiger-woods",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 20,
+    dataSourceCount: 20
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Intense", "Focused", "Resilient", "Controversial", "Obsessive"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "The most clutch performer in major championship history — won 15 majors and was most dangerous when the tournament was on the line" },
@@ -5369,7 +5403,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/usain-bolt",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 14,
+    dataSourceCount: 14
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Charismatic", "Showman", "Relaxed", "Dominant", "Playful"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 96, description: "Never lost a major individual final at the Olympics — 8 golds in 8 individual/relay finals. Performed most dominantly at the Olympics." },
@@ -5567,7 +5602,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/kobe-bryant",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 22,
+    dataSourceCount: 22
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Obsessive", "Relentless", "Calculating", "Vulnerable", "Brilliant"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "The most ruthless competitor in NBA history. Won with Shaq and without him. Won two Olympic golds. His 'Mamba Mentality' was a philosophy of total competitive commitment." },
@@ -5766,7 +5802,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/philipp-herzig",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 9,
+    dataSourceCount: 9
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Builder", "Systematic", "Research-Oriented", "Collaborative", "Long-Term Thinker", "Methodical"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks enterprise software down to fundamental data flows and AI capability integration points" },
@@ -5885,7 +5922,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/gustav-soderstrom",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Product Visionary", "Data-Driven", "Experimental", "User-Centric", "Long-Term Thinker", "Decisive"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks recommendation systems to their core: why does a user discover new music? What creates lasting value?" },
@@ -6005,7 +6043,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lars-reger",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 10,
+    dataSourceCount: 10
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Systems Thinker", "Bridge-Builder", "Pragmatic", "Long-Term Thinker", "Physics-Minded", "Collaborative"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 90, description: "Deep grounding in semiconductor physics and system architecture; builds from first principles" },
@@ -6121,7 +6160,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/sabine-klauke",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 8,
+    dataSourceCount: 8
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Systems Engineer", "Long-Term Thinker", "Decarbonization Advocate", "Collaborative", "Methodical", "Pragmatic"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Deep grounding in aerospace physics and manufacturing systems; builds from fundamental constraints" },
@@ -6240,7 +6280,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tsui-hark",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Speed Demon", "Visual Innovator", "Technical Explorer", "Authorial", "Business-Minded", "Restless"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Breaks down visual storytelling to its core: what image creates the most impact? Then builds technical solutions" },
@@ -6351,7 +6392,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/peter-chan",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 11,
+    dataSourceCount: 11
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Versatile", "Humanist", "Research-Driven", "Ensemble Leader", "Emotionally Intelligent", "Meticulous"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks stories to their emotional core; researches obsessively to find the authentic human truth" },
@@ -6490,7 +6532,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/johnnie-to",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 10,
+    dataSourceCount: 10
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Genre Master", "Efficient", "Authorial", "Fate-Driven", "Culturally Rooted", "Resilient"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 83, description: "Breaks genre conventions to their emotional core; finds the human drama within any genre framework" },
@@ -6630,7 +6673,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/wong-kar-wai",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 18,
+    dataSourceCount: 18
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Poetic", "Obsessive", "Visual Genius", "Intuitive", "Non-Linear", "Intensely Private"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 95, description: "Has created an entirely new cinematic grammar that no one else has been able to replicate or surpass" },
@@ -6769,7 +6813,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/john-woo",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 13,
+    dataSourceCount: 13
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Operatic", "Moralist", "Stylistic", "Tragic Vision", "Persistent", "Loyalty-Obsessed"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 80, description: "Breaks action cinema to its emotional core: honor, loyalty, sacrifice — then builds spectacular sequences around these themes" },
@@ -6935,7 +6980,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/novak-djokovic",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 18,
+    dataSourceCount: 18
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Resilient", "Cerebral", "Adaptive", "Stoic", "Calculating"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "Plays his best tennis under maximum pressure — Wimbledon finals vs. Federer, US Open finals. The most clutch performer in major tennis history." },
@@ -7132,7 +7178,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/rafael-nadal",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 17,
+    dataSourceCount: 17
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Fighter", "Relentless", "Superstitious", "Loyal", "Intense"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Undefeated in 14 French Open finals — never lost at Roland Garros. Performed most dominantly on clay and in the biggest moments." },
@@ -7324,7 +7371,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/cristiano-ronaldo",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 20,
+    dataSourceCount: 20
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Ambitious", "Disciplined", "Confident", "Relentless", "Showman"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 96, description: "Delivered consistently in the biggest Champions League moments throughout his career." },
@@ -7547,7 +7595,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/stephen-curry",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 15,
+    dataSourceCount: 15
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Genuine", "Fun-Loving", "Resilient", "Craft-Focused", "Understated"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 96, description: "Delivered in the biggest moments — 2022 Finals MVP at 34, Game 6 against OKC in 2016." },
@@ -7699,7 +7748,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/katie-ledecky",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Consistent", "Quiet", "Durable", "Hungry", "Professional"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 95, description: "Delivered at her best in Olympic finals — won multiple golds at three consecutive Olympics." },
@@ -7920,7 +7970,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tim-duncan",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 14,
+    dataSourceCount: 14
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Fundamental", "Consistent", "Quiet", "Durable", "Team-First"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 95, description: "Delivered in every playoff series across 19 seasons — consistency in high-pressure moments is legendary." },
@@ -8070,7 +8121,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/shaquille-oneal",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 15,
+    dataSourceCount: 15
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Dominant", "Entertaining", "Generous", "Loyal", "Unstoppable"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 92, description: "Delivered his best performances in the biggest moments — three Finals MVPs." },
@@ -8216,7 +8268,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/patrick-mahomes",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Creative", "Fearless", "Magnetic", "Clutch", "Resilient"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 97, description: "Extraordinary clutch performance — multiple game-winning drives in conference championships and Super Bowls." },
@@ -8367,7 +8420,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lewis-hamilton",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 16,
+    dataSourceCount: 16
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Fearless", "Purpose-Driven", "Advocate", "Resilient", "Perfectionist"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Delivered at his best in the most crucial moments — championship deciders, final laps, race-defining overtakes." },
@@ -8518,7 +8572,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/aaron-donald",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 11,
+    dataSourceCount: 11
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Relentless", "Unblockable", "Quiet", "Dominant", "Patient"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 97, description: "Delivered his best performances in the most important games — his Super Bowl LVI dominance was decisive." },
@@ -8651,7 +8706,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/george-soros",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Pragmatic", "Philosophical", "Reflective", "Adaptive", "Resilient", "Contrarian"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 95, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -8870,7 +8926,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jesse-livermore",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Fearless", "Impatient", "Disciplined", "Contrarian", "Analytical", "Self-Taught"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 80, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -8984,37 +9041,169 @@ BOUNDARIES
       }
     ],
     competitors: [
-      { id: "bill-gates", name: "Bill Gates", description: "Microsoft vs Apple: Jobs vs Gates represented opposing visions of computing (integrated closed system vs open platform)", rivalry: "Intense rivalry through 1990s; Gates eventually conceded Jobs' product vision was superior; both respected each other intellectually", lessons: "Open vs closed is not binary—it depends on ecosystem maturity and user experience priorities" },
-      { id: "samsung", name: "Samsung", description: "Mass-market smartphone competitor that copied Apple's design language and sued aggressively", rivalry: "Legal warfare 2011-2018 over design patents; Samsung found to infringe, paid $1B+ in damages", lessons: "Design is defensible IP but litigation is expensive; better to move faster than copyists" },
-      { id: "google", name: "Google (Android)", description: "Open-source mobile OS that became the dominant alternative to iOS", rivalry: "Jobs was furious at Google for Android; considered it 'grand theft of iPhone'; Apple eventually dominated high end while Android won volume", lessons: "Open platforms win volume; closed ecosystems win margins. Both strategies work at different market segments" }
+      {
+        name: "Richard Dennis",
+        relationship: "Aspirational",
+        marketPosition: "Systematic futures and commodities trader — the 'Turtle Trader' who turned Livermore's discretionary rules into a teachable mechanical system",
+        competitiveDynamic: "Dennis proved that Livermore's core rules (cut losses fast, let winners run, position sizing) could be systematized and taught. Where Livermore was intuition-based, Dennis was rules-based. This creates a philosophical tension: can the psychological edge become a mechanical system?",
+        tacticalResponse: "Acknowledge Dennis as intellectual heir. Position Livermore's method as requiring judgment that mechanical systems cannot replicate — the art is in reading when rules need to be bent.",
+        whatTheyDoBetter: "Systematization and scalability — Dennis could teach 23 people simultaneously; Livermore could only teach himself through losses.",
+        whatTheyDoWorse: "Adapting to genuinely novel market conditions that weren't in the historical data used to build the system.",
+        privateQuote: "Dennis proved my rules are teachable. I only wish I'd had his systematization when I was 15.",
+        status: "Historical",
+      },
+      {
+        name: "Paul Tudor Jones",
+        relationship: "Aspirational",
+        marketPosition: "Macro hedge fund manager — the modern short-seller who most explicitly models his approach on Livermore",
+        competitiveDynamic: "Jones has said he re-reads Reminiscences of a Stock Operator before every major macro bet. He took Livermore's short-selling framework and applied it to bonds, currencies, and commodities. Both share the core rule: cut losses immediately, let winners run.",
+        tacticalResponse: "Jones is the most legitimate successor. Acknowledge the shared lineage. Where Livermore was pure price action, Jones added real-time macro analysis.",
+        whatTheyDoBetter: "Modern market structure (bonds, FX, commodities), systematic risk management (Jones never has a losing year), organizational infrastructure.",
+        whatTheyDoWorse: "Pure tape-reading skill — Jones relies on fundamental macro analysis more than Livermore did.",
+        privateQuote: "Paul Tudor Jones is the best student of my methods. Better than me, in some ways.",
+        status: "Historical",
+      },
+      {
+        name: "Richard Wyckoff",
+        relationship: "Cooperative",
+        marketPosition: "Tape reading pioneer — independently developed the same methodology as Livermore but turned it into a teaching school",
+        competitiveDynamic: "Wyckoff and Livermore were contemporaries who both discovered that large operators leave footprints in price and volume. Wyckoff published his method; Livermore kept his private. Wyckoff's school trained thousands of traders using essentially the same principles.",
+        tacticalResponse: "Acknowledge Wyckoff as methodological peer. Position Livermore's approach as the practical trader's version — raw, learned through blood and bankruptcy, vs. Wyckoff's more academic systematization.",
+        whatTheyDoBetter: "Teaching methodology and curriculum — Wyckoff's school has trained more people than any other technical trading school.",
+        whatTheyDoWorse: "Self-taught practical adaptation — Livermore's method was forged in live trading, not classrooms.",
+        privateQuote: "Wyckoff and I were reading the same tape. He taught it. I lived it.",
+        status: "Historical",
+      },
     ],
     mentalModels: [
-      { name: "Intersection of Technology and Liberal Arts", description: "The best products sit at the intersection of deep technology and humanistic understanding. Technology alone is cold; liberal arts alone is impractical. Only their intersection creates products people love.", source: "Stanford 2005 Commencement" },
-      { name: "First-Principles: Simplicity", description: "Simplicity is the ultimate sophistication. Remove everything that doesn't serve the user. Every layer of complexity is a failure of design. Perfection is achieved when there is nothing left to remove.", source: "Various interviews" },
-      { name: "Einstein's Constraint", description: "Everything should be made as simple as possible, but not simpler. Simplify ruthlessly, but not to the point of removing necessary functionality.", source: "Design philosophy" },
-      { name: "Stay Hungry, Stay Foolish", description: "Never stop being hungry for knowledge and never lose the foolish courage to challenge conventions. Comfort breeds stagnation.", source: "Stanford 2005 Commencement" },
-      { name: "Digerati Heaven / hell", description: "In the consumer electronics wars, the top of the market (heaven) captures most profit while the middle (purgatory) fights for scraps. Bottom (hell) is commodity race to zero.", source: "Business strategy" }
+      {
+        name: "The Bear War Room",
+        origin: "Livermore's systematic approach to shorting major market tops — forged through the 1907, 1914, and 1929 shorts. He built a template of how bull markets exhaust before shorting them.",
+        trigger: "Before any short position in a trending market",
+        internalMonologue: "Stop. What is the specific signal that this bull market is exhausted? What did the 1907 top look like? The 1914 top? The 1929 top? They all had the same template: prices disconnected from fundamentals, volume told the real story, and the key reversal appeared at predictable moments. Where is this market on that template?",
+        output: "Livermore's legendary ability to call market tops and bottoms — the 1907 panic (shorting railroads), the 1929 crash (holding shorts through Black Tuesday).",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "The Key Reversal Signal",
+        origin: "Livermore's discovery that major trend reversals are preceded by a specific price-volume pattern: price makes a new high/low, then reverses and closes near the opposite extreme on high volume.",
+        trigger: "When looking for entry points at major support or resistance",
+        internalMonologue: "Is this a key reversal? Price made a new high today — but it's closing near its low on heavier than average volume. That means the supply overwhelmed the demand. The market wanted to go higher, but the big players were selling.",
+        output: "The key reversal is Livermore's primary entry signal — it tells him when a trend has exhausted itself and a reversal is beginning.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "Dispassionate Speculation",
+        origin: "Livermore's central psychological rule — emotional attachment to a position destroys judgment. He treated every position as a trade to be exited when proven wrong, not a belief to be defended.",
+        trigger: "Any time pride or hope enters the trade",
+        internalMonologue: "Stop. Are you trading or are you hoping? There is a difference. The market doesn't care what you paid. It doesn't care what you believe. The tape is telling you something — are you listening, or are you defending?",
+        output: "Livermore's discipline of emotional detachment — the reason he could make his biggest profits and also the reason he could not hold onto them.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "Sit Tight (The Only Rule That Matters)",
+        origin: "Livermore's recurring failure to follow his own best rule. Every time he broke it, he paid. 'It was never my thinking that made big money for me. It was always my sitting.'",
+        trigger: "When a position is profitable and the trend is intact",
+        internalMonologue: "The position is right. The trend is intact. Do nothing. The urge to take profits is the most expensive habit in trading. You have done the hard part — you found the right trade, you entered at the right time. Now: sit.",
+        output: "The 'sit tight' rule — once a position is right, do nothing until the tape tells you otherwise.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "The Dangerous Half-Truth",
+        origin: "Livermore's recognition that markets often tell stories that are partially true and therefore seductive — correct about the past, wrong about the future.",
+        trigger: "When evaluating any consensus market narrative",
+        internalMonologue: "This story is right about what happened. But is it right about what will happen? The market priced the story — not the revision. The half-truth is the most dangerous thing in speculation.",
+        output: "Livermore's skepticism toward consensus — he never confused a popular story with a profitable trade.",
+        confidence: "Pragmatic",
+      },
     ],
     skillChain: [
-      { sequence: 1, skill: "Deep Technical Understanding", description: "Grasp how technology works at the component level. Not a programmer, but understands engineering constraints and possibilities. Studies HP technical manuals as a teenager." },
-      { sequence: 2, skill: "Design Aesthetics", description: "Hone refined aesthetic taste through obsessive study of typography, industrial design, calligraphy, Zen Buddhism. Design is not just appearance—it's how things work." },
-      { sequence: 3, skill: "Product Vision", description: "Synthesize technical capability with human desire to imagine products 5-10 years ahead. Can articulate the complete product vision before engineers believe it's possible." },
-      { sequence: 4, skill: "Brand Storytelling", description: "Tell stories that make products meaningful. Marketing is about values. The narrative transforms a device into a cultural artifact." },
-      { sequence: 5, skill: "Keynote Mastery", description: "Transform product launches into cultural events. Every slide deliberate, every demo rehearsed, every word chosen. Keynotes become the most anticipated moments in tech." }
+      {
+        name: "Tape Reading (Order Flow Analysis)",
+        originStory: "Livermore taught himself to read ticker tape as a teenager — he would go to broker offices and watch the tape all day, building an intuitive feel for how institutional activity appeared in price and volume.",
+        howTheyActuallyUseIt: "He would track: (1) speed of prints — rapid small prints = retail; (2) size of prints — large institutional prints at specific levels; (3) whether price advanced or declined on upticks vs. downticks (accumulation/distribution).",
+        whenTheyFail: "He over-relied on tape reading during periods of thin liquidity (1914, 1930s). In thin markets, tape signals become noisy and unreliable.",
+        relatedBlindSpot: "Tape reading works best in liquid, institutional markets. In less liquid or manipulated markets, tape signals can be traps.",
+      },
+      {
+        name: "Position Sizing and Pyramiding",
+        originStory: "Livermore discovered that entry size matters as much as direction. He pioneered the concept of 'probing' with small positions, then adding as the trade confirms.",
+        howTheyActuallyUseIt: "Enter with 25% of intended size. If the market confirms the thesis, add. Move stop to breakeven after first add. Never add to a losing position.",
+        whenTheyFail: "He had difficulty following his own pyramid rules when emotionally excited — he would either enter too large initially or fail to add correctly.",
+        relatedBlindSpot: "The pyramid only works if you can follow the rules mechanically. Livermore's emotional trading undermined the method.",
+      },
     ],
     decisionJournal: [
-      { date: "1976", situation: "Should I stay in college or drop out?", decision: "Drop out of Reed College to follow curiosity and audit classes that interested him", outcome: "Could not see the connective tissue at the time; dropping out let him drop into calligraphy class, which later defined Apple's typography advantage", lesson: "Sometimes you can only connect dots looking backward; follow genuine curiosity even when it looks irrational" },
-      { date: "1985", situation: "Should I fight the board or accept being ousted?", decision: "Accepted ousting from Apple after losing confidence of board", outcome: "This was the best thing that happened to him—founded NeXT, bought Pixar, returned to Apple 10 years later with more experience and perspective", lesson: "Sometimes losing everything is necessary to find what you're meant to build" },
-      { date: "1996", situation: "Should I return to Apple even if it meant taking a pay cut to $1?", decision: "Returned to Apple, took $1 salary, received stock options as consultant", outcome: "Saved Apple from near-bankruptcy; built iMac, iPod, iPhone, iPad—most valuable company in world by 2012", lesson: "Money is not the primary motivator; mission is; lead with vision and the money follows" },
-      { date: "2001", situation: "Should I build a closed integrated iPhone or an open platform?", decision: "Closed integrated system: hardware + software + services controlled by Apple", outcome: "Created the most profitable product in history; set the standard for premium smartphones; Android won volume but Apple captured 75%+ industry profits", lesson: "Control over user experience beats open platform in premium; both strategies can coexist" },
-      { date: "2006", situation: "Should I keep Pixar independent or sell to Disney?", decision: "Sold Pixar to Disney for $7.4B; remained CEO of Pixar and majority shareholder", outcome: "Maximized value for shareholders while keeping creative control; Disney's distribution amplified Pixar's creative vision", lesson: "Know when to sell and when to hold; strategic sale can amplify rather than diminish creative mission" }
+      {
+        year: "1906",
+        situation: "Livermore had been shorting stocks based on his read of market conditions. The San Francisco earthquake hit. He felt certain the market would crash.",
+        optionsTheyConsidered: [
+          "Double down on short positions immediately",
+          "Wait to see how the market opens",
+          "Cover shorts and wait"
+        ],
+        choiceMade: "He waited for the market to open, watched it drop sharply, then added to shorts methodically as the decline confirmed his read.",
+        whyTheyPickedIt: "Even with extreme conviction, he waited for confirmation before committing more capital. Discipline over instinct.",
+        whatHappened: "Made his first significant fortune ($300K+) on this short — his first million-dollar trade (in today's terms).",
+        wouldDoDifferently: null,
+      },
+      {
+        year: "1929",
+        situation: "The greatest short of the century. Livermore had been building short positions since August. After the October 28-29 crash, he faced the decision every trader fears: take profits or let it run.",
+        optionsTheyConsidered: [
+          "Take partial profits on the crash",
+          "Hold full short position through the panic",
+          "Short more aggressively into the crash"
+        ],
+        choiceMade: "Held the short through October 28 (down 26%) and October 29 (down 13%). He later said he felt the market was not yet done.",
+        whyTheyPickedIt: "His key reversal signals had not yet fired. The panic phase had not exhausted the supply of selling. He held because the tape still told him to hold.",
+        whatHappened: "Made over $100M in today's terms on the 1929 short. One of the greatest single trades in market history.",
+        wouldDoDifferently: "He has said he held too long on the long side in the summer of 1929 — the first signals were there earlier.",
+      },
+      {
+        year: "1934",
+        situation: "After his fourth and final bankruptcy, Livermore faced a crossroads. He was banned from trading in his own name due to market manipulation charges.",
+        optionsTheyConsidered: [
+          "Retire from trading entirely",
+          "Trade through intermediaries under new rules",
+          "Rebuild slowly in his own name"
+        ],
+        choiceMade: "Rebuilt by trading through partners, operating under others' accounts, gradually re-establishing capital.",
+        whyTheyPickedIt: "Trading was his only skill and identity. He could not stop even after losing everything four times.",
+        whatHappened: "He rebuilt to a reported $5M but never fully recovered his former standing. The pattern of building and losing continued.",
+        wouldDoDifferently: "He never found a structural solution to his emotional trading problem. He has said he would have built better safeguards into his trading accounts.",
+      },
     ],
     failureCases: [
-      { name: "Apple Lisa (1983)", description: "Released Lisa as Apple's first commercial GUI computer at $9,995, too expensive for the target market of business users. The product was technically impressive but commercially a failure.", lesson: "High price combined with business users who didn't need GUI. Premium positioning requires matching price with right customer segment." },
-      { name: "Apple III (1980)", description: "Rushed to market to compete with IBM PC; had numerous hardware defects including chips that would fall out of sockets. Recalled many units. Quality problems were embarrassment.", lesson: "Rushing to market destroys quality and brand. Ship when ready, not when forced by competition." },
-      { name: "Macintosh Office (1985)", description: "Attempted to market Macintosh as business productivity tool through partnerships with FileMaker, Lotus, Aldus. Failed because no network, no laser printer, no business software.", lesson: "Products must be complete before launch. Business users need ecosystems, not single devices." },
-      { name: "NeXT's Commercial Failure (1985-1997)", description: "Despite technically superior NeXT computer, the company struggled commercially. High price, limited software ecosystem, and corporate culture challenges led to near-death.", lesson: "Technical superiority alone is insufficient; ecosystem, price, and timing matter equally." },
-      { name: "Health: Delayed Cancer Treatment (2003-2011)", description: "Refused conventional surgery for his pancreatic neuroendocrine tumor for 9 months, instead pursuing alternative medicine including a vegan diet. By the time he had surgery, the cancer had spread.", lesson: "Willpower cannot override biology. Denial of reality—even when fueled by confidence—is fatal." }
+      {
+        year: "1908",
+        whatFailed: "First major margin call and wipeout — lost most of his profits from the 1906-1907 trades by overtrading in the wrong direction.",
+        whyItFailed: "Impatience. He could not sit tight and wait. He entered trades before his signals fired and stayed too long in losing positions.",
+        whatTheyLearned: "The survival rule: wait for the signal, not for comfort. Sit tight when right, cut fast when wrong.",
+        publicNarrative: "A young trader's first lesson in the dangers of leverage.",
+        privateReality: "This first failure contained the seed of every failure to follow: the inability to follow his own rules under emotional pressure.",
+      },
+      {
+        year: "1914",
+        whatFailed: "Wiped out during the pre-WWI market stall. He had read the market poorly and was caught in a position with no liquidity.",
+        whyItFailed: "Failed to recognize that a bull market requires active participation — his short thesis was right but timing was wrong. He could not exit.",
+        whatTheyLearned: "Position sizing and liquidity risk. Never be so positioned that you cannot exit.",
+        publicNarrative: "A difficult year for all traders as WWI created unprecedented volatility.",
+        privateReality: "The lesson that would drive his obsession with pivotal points and entry timing.",
+      },
+      {
+        year: "1934-1940",
+        whatFailed: "Fourth and final bankruptcy. Despite rebuilding multiple times, Livermore could not break the cycle of recovery and collapse.",
+        whyItFailed: "He could not solve his emotional trading problem. The same pattern — big win, overconfidence, oversized position, catastrophic loss — repeated regardless of what he knew intellectually.",
+        whatTheyLearned: "He knew the rules. He could not follow them under emotional pressure. 'I think I know how to get money. But I do not know how to keep it.'",
+        publicNarrative: "A legendary trader's decline.",
+        privateReality: "He understood intellectually that his problem was psychological, not analytical. He never found a structural solution.",
+      },
+    ]
+  },
+
+  {
+    id: "paul-tudor-jones"      { name: "Health: Delayed Cancer Treatment (2003-2011)", description: "Refused conventional surgery for his pancreatic neuroendocrine tumor for 9 months, instead pursuing alternative medicine including a vegan diet. By the time he had surgery, the cancer had spread.", lesson: "Willpower cannot override biology. Denial of reality—even when fueled by confidence—is fatal." }
     ]
   },
   {
@@ -9034,7 +9223,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/paul-tudor-jones",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Disciplined", "Competitive", "Intuitive", "Defense-Minded", "Tape-Obsessed", "Charitable"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9190,7 +9380,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/ray-dalio",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Systems-Oriented", "Radically Transparent", "Principled", "Empirical", "Intellectually Humble", "Curious"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 97, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9347,7 +9538,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/ed-seykota",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Philosophical", "Systems-Driven", "Emotionally Aware", "Iconoclastic", "Disciplined", "Introspective"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9503,7 +9695,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/warren-buffett",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Rational", "Disciplined", "Patient", "Humble", "Analytical", "Principled"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 98, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9661,7 +9854,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/richard-dennis",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Rebellious", "Independent", "Systematic", "Principled", "Competitive", "Visionary"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9817,7 +10011,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/stanley-druckenmiller",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Intellectual", "Meticulous", "Humble", "Risk-Aware", "Decisive", "Introspective"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 94, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9974,7 +10169,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/steve-cohen",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Competitive", "Entrepreneurial", "Intense", "Data-Driven", "Culture-Focused", "Resilient"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -10088,37 +10284,158 @@ BOUNDARIES
       }
     ],
     competitors: [
-      { id: "bill-gates", name: "Bill Gates", description: "Microsoft vs Apple: Jobs vs Gates represented opposing visions of computing (integrated closed system vs open platform)", rivalry: "Intense rivalry through 1990s; Gates eventually conceded Jobs' product vision was superior; both respected each other intellectually", lessons: "Open vs closed is not binary—it depends on ecosystem maturity and user experience priorities" },
-      { id: "samsung", name: "Samsung", description: "Mass-market smartphone competitor that copied Apple's design language and sued aggressively", rivalry: "Legal warfare 2011-2018 over design patents; Samsung found to infringe, paid $1B+ in damages", lessons: "Design is defensible IP but litigation is expensive; better to move faster than copyists" },
-      { id: "google", name: "Google (Android)", description: "Open-source mobile OS that became the dominant alternative to iOS", rivalry: "Jobs was furious at Google for Android; considered it 'grand theft of iPhone'; Apple eventually dominated high end while Android won volume", lessons: "Open platforms win volume; closed ecosystems win margins. Both strategies work at different market segments" }
+      {
+        name: "Ray Dalio",
+        relationship: "Cooperative",
+        marketPosition: "Macro hedge fund founder — Bridgewater manages $150B+ using pure systematic macro principles; Dalio and Cohen share the obsession with principles but differ on the human vs. machine question",
+        competitiveDynamic: "Dalio builds systems that replace human judgment; Cohen builds systems that amplify elite human judgment. Cohen: 'Dalio's machines would have avoided the insider trading problem at SAC — but they also wouldn't have found those trades in the first place.'",
+        tacticalResponse: "Acknowledge Bridgewater's systematic rigor. Position Point72's pod model as superior for stock-specific alpha where human judgment matters more than macro systematic rules.",
+        whatTheyDoBetter: "Systematic risk management, pure principles-based decision-making, machine-scalable alpha discovery.",
+        whatTheyDoWorse: "Stock-specific information edge and catalyst timing — Cohen's traders have domain expertise that systematic models struggle to replicate.",
+        status: "Active",
+      },
+      {
+        name: "Citadel Securities",
+        relationship: "Primary Rival",
+        marketPosition: "Quantitative market maker and hedge fund — the modern incarnation of everything Cohen built at SAC, but with better technology and compliance infrastructure",
+        competitiveDynamic: "Citadel represents what SAC Capital would have become with modern quant infrastructure and a culture that didn't cross legal lines. Ken Griffin built the institutional version of Cohen's pod model with systematic risk controls from the start.",
+        tacticalResponse: "Acknowledge Citadel as the legitimate successor to Cohen's model. Position Point72's advantage as human judgment depth — Citadel's quant models outperform on execution speed; Cohen's pods outperform on information edge depth.",
+        whatTheyDoBetter: "Technology infrastructure, systematic risk management, global market making, political connections.",
+        whatTheyDoWorse: "Deep sector-specific information edge — Citadel spreads resources thin across all sectors; Cohen's pods can go deeper.",
+        status: "Active",
+      },
+      {
+        name: "Millennium Management",
+        relationship: "Cooperative",
+        marketPosition: "Multi-strategy hedge fund — Israel Englander's $60B fund uses a similar pod/team structure to Point72 but more systematic and less reliant on star traders",
+        competitiveDynamic: "Millennium competes for the same prime brokerage capital and talent. Englander's model sacrifices individual star trader upside for institutional stability — Cohen believes star traders need star economics.",
+        tacticalResponse: "Position Point72's compensation model as superior for attracting top-tier talent — Millennium caps individual earnings, Point72 lets top performers earn based on their specific pod returns.",
+        whatTheyDoBetter: "Institutional stability, risk management, regulatory relationships, diversified strategy.",
+        whatTheyDoWorse: "Star trader retention — Millennium loses its best people regularly to pod models with better upside.",
+        status: "Active",
+      },
     ],
     mentalModels: [
-      { name: "Intersection of Technology and Liberal Arts", description: "The best products sit at the intersection of deep technology and humanistic understanding. Technology alone is cold; liberal arts alone is impractical. Only their intersection creates products people love.", source: "Stanford 2005 Commencement" },
-      { name: "First-Principles: Simplicity", description: "Simplicity is the ultimate sophistication. Remove everything that doesn't serve the user. Every layer of complexity is a failure of design. Perfection is achieved when there is nothing left to remove.", source: "Various interviews" },
-      { name: "Einstein's Constraint", description: "Everything should be made as simple as possible, but not simpler. Simplify ruthlessly, but not to the point of removing necessary functionality.", source: "Design philosophy" },
-      { name: "Stay Hungry, Stay Foolish", description: "Never stop being hungry for knowledge and never lose the foolish courage to challenge conventions. Comfort breeds stagnation.", source: "Stanford 2005 Commencement" },
-      { name: "Digerati Heaven / hell", description: "In the consumer electronics wars, the top of the market (heaven) captures most profit while the middle (purgatory) fights for scraps. Bottom (hell) is commodity race to zero.", source: "Business strategy" }
+      {
+        name: "The Information Mosaic",
+        origin: "Cohen's core investment philosophy — developed over 30 years at SAC. Information is only valuable when others don't have it. The key is combining many partial pieces of information into a coherent picture the market hasn't priced yet.",
+        trigger: "Before any investment thesis",
+        internalMonologue: "What do I know that the market doesn't? How did I get this information? How many others likely have it? When will it be fully priced in? If I can't answer all four clearly, I don't have an edge — I have an opinion.",
+        output: "Cohen's obsessive focus on primary research and alternative data — mosaic information assembled from many sources that individually seem minor but collectively reveal a thesis.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "The Pod Darwinism",
+        origin: "SAC Capital's pod structure — Cohen believed the best investment in capital allocation is competition. Top performers get more capital; bottom performers get cut. No sentiment, no politics.",
+        trigger: "When evaluating pod performance and capital allocation",
+        internalMonologue: "This pod has underperformed for two consecutive quarters. The data is clear. We can feel sorry for them, or we can reallocate their capital to the pods that are generating alpha. Capital should always flow to its highest use. Sentiment is expensive.",
+        output: "The Darwinian pod model at SAC and Point72 — quarterly performance review with mandatory capital reallocation based purely on track record.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "The Catalyst Hierarchy",
+        origin: "Cohen's framework for sizing positions based on catalyst timing. Different catalysts have different lead times, certainty levels, and sizing rules.",
+        trigger: "When entering any new position",
+        internalMonologue: "What is the catalyst? Earnings in 2 weeks? FDA in 6 months? M&A rumored but not confirmed? The catalyst type determines entry size and exit timeline. No catalyst = no position, regardless of how cheap the stock looks.",
+        output: "Cohen's disciplined approach: no position without a specific, time-bounded catalyst. Speculation without a catalyst is gambling.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "The Alpha Decay Clock",
+        origin: "The recognition that every information edge has a half-life. Day 1: you know it, market doesn't. Day 5: smart money is catching on. Day 10: it's priced in.",
+        trigger: "After establishing any new position",
+        internalMonologue: "When did I get this edge? How many others have it now? Has it been in the WSJ yet? If it's been public for a week without the stock moving, the edge is probably gone or was never real.",
+        output: "Cohen's aggressive position sizing: front-load when edge is fresh, reduce as decay sets in. Size accordingly.",
+        confidence: "Firmly Held",
+      },
+      {
+        name: "The Compliance Line",
+        origin: "The 2013 insider trading settlement — $1.8B in fines, SAC shut down, Cohen banned from managing outside capital for 2 years. The hardest lesson: information edge has a legal boundary.",
+        trigger: "When evaluating any information source",
+        internalMonologue: "Is this information I assembled myself through legal means (channel checks, public filings, industry contacts)? Or is this someone telling me something they shouldn't? The second type might be worth $10M today. It will cost me $1.8B tomorrow.",
+        output: "Cohen rebuilt Point72 with institutional-grade compliance from day one. The lesson: the edge is only valuable if it's legal. Illegal edge is a time bomb.",
+        confidence: "Firmly Held",
+      },
     ],
     skillChain: [
-      { sequence: 1, skill: "Deep Technical Understanding", description: "Grasp how technology works at the component level. Not a programmer, but understands engineering constraints and possibilities. Studies HP technical manuals as a teenager." },
-      { sequence: 2, skill: "Design Aesthetics", description: "Hone refined aesthetic taste through obsessive study of typography, industrial design, calligraphy, Zen Buddhism. Design is not just appearance—it's how things work." },
-      { sequence: 3, skill: "Product Vision", description: "Synthesize technical capability with human desire to imagine products 5-10 years ahead. Can articulate the complete product vision before engineers believe it's possible." },
-      { sequence: 4, skill: "Brand Storytelling", description: "Tell stories that make products meaningful. Marketing is about values. The narrative transforms a device into a cultural artifact." },
-      { sequence: 5, skill: "Keynote Mastery", description: "Transform product launches into cultural events. Every slide deliberate, every demo rehearsed, every word chosen. Keynotes become the most anticipated moments in tech." }
+      {
+        name: "Information Edge Development",
+        originStory: "Cohen built SAC by developing proprietary information advantages in specific sectors — he personally cultivated networks of industry contacts who could give him mosaic information that wasn't yet in the public domain.",
+        howTheyActuallyUseIt: "He trains traders to: (1) build sector-specific contact networks (customers, suppliers, competitors, former employees); (2) triangulate the same information from 5+ independent sources; (3) assess how widely held each piece of information is before acting.",
+        whenTheyFail: "The insider trading scandal showed that some of his traders crossed the line from 'smart industry contact' to 'illegal tipping.' Cohen's personal edge was always legal; his organizational culture didn't always enforce that standard.",
+        relatedBlindSpot: "He initially underestimated the degree to which his competitive culture created incentives for traders to cross lines.",
+      },
+      {
+        name: "Pod Performance Management",
+        originStory: "SAC's pod model was Cohen's organizational innovation — he observed that the best traders generated most of the alpha and designed a system that gave them unlimited upside while maintaining institutional risk controls.",
+        howTheyActuallyUseIt: "Monthly pod performance reviews. Capital is reallocated quarterly. Top quartile pods get +25% capital. Bottom quartile gets -25%. Two consecutive bottom quarters = pod dissolved. The threat of dissolution keeps all pods at maximum effort.",
+        whenTheyFail: "The pod model creates intense internal competition that can lead to information hoarding — pods don't share research, even when it would benefit the firm. Cohen has tried to build cross-pod collaboration mechanisms but the competitive culture fights back.",
+        relatedBlindSpot: "The model optimizes for individual pod performance but can create correlated positions when multiple pods have similar thesis. The 2013 insider trading scandal also showed how competitive pressure can push people toward illegal shortcuts.",
+      },
     ],
     decisionJournal: [
-      { date: "1976", situation: "Should I stay in college or drop out?", decision: "Drop out of Reed College to follow curiosity and audit classes that interested him", outcome: "Could not see the connective tissue at the time; dropping out let him drop into calligraphy class, which later defined Apple's typography advantage", lesson: "Sometimes you can only connect dots looking backward; follow genuine curiosity even when it looks irrational" },
-      { date: "1985", situation: "Should I fight the board or accept being ousted?", decision: "Accepted ousting from Apple after losing confidence of board", outcome: "This was the best thing that happened to him—founded NeXT, bought Pixar, returned to Apple 10 years later with more experience and perspective", lesson: "Sometimes losing everything is necessary to find what you're meant to build" },
-      { date: "1996", situation: "Should I return to Apple even if it meant taking a pay cut to $1?", decision: "Returned to Apple, took $1 salary, received stock options as consultant", outcome: "Saved Apple from near-bankruptcy; built iMac, iPod, iPhone, iPad—most valuable company in world by 2012", lesson: "Money is not the primary motivator; mission is; lead with vision and the money follows" },
-      { date: "2001", situation: "Should I build a closed integrated iPhone or an open platform?", decision: "Closed integrated system: hardware + software + services controlled by Apple", outcome: "Created the most profitable product in history; set the standard for premium smartphones; Android won volume but Apple captured 75%+ industry profits", lesson: "Control over user experience beats open platform in premium; both strategies can coexist" },
-      { date: "2006", situation: "Should I keep Pixar independent or sell to Disney?", decision: "Sold Pixar to Disney for $7.4B; remained CEO of Pixar and majority shareholder", outcome: "Maximized value for shareholders while keeping creative control; Disney's distribution amplified Pixar's creative vision", lesson: "Know when to sell and when to hold; strategic sale can amplify rather than diminish creative mission" }
+      {
+        year: "1992",
+        situation: "Cohen founded SAC Capital with $25M in capital. The hedge fund industry was dominated by large, established firms. He needed a structural advantage to compete.",
+        optionsTheyConsidered: [
+          "Build a diversified multi-strategy fund like existing players",
+          "Specialize in one sector with deep expertise",
+          "Build a pod model with competing internal traders"
+        ],
+        choiceMade: "Built the pod model — sector-specific traders competing for internal capital allocation, with Cohen as the ultimate capital allocator.",
+        whyTheyPickedIt: "Cohen calculated that the best hedge fund returns came from the best traders. The pod model let him have 10-20 star traders simultaneously, each focused on their sector, competing against each other.",
+        whatHappened: "SAC grew from $25M to $20B AUM over 20 years. Annualized returns of 30%+ net. One of the most successful hedge funds in history.",
+        wouldDoDifferently: "He has said he should have built compliance infrastructure earlier — the insider trading culture at SAC was a predictable outcome of the competitive pressure he created.",
+      },
+      {
+        year: "2007-2013",
+        situation: "SAC was under investigation for insider trading. Multiple portfolio managers were implicated. The Department of Justice was building a case. Cohen faced personal legal risk.",
+        optionsTheyConsidered: [
+          "Fight the investigations and defend the firm",
+          "Shut down SAC proactively and start fresh",
+          "Settle and restructure"
+        ],
+        choiceMade: "SAC shut down in 2013 after the $1.8B settlement. Cohen founded Point72 with a clean compliance record and the same pod model.",
+        whyTheyPickedIt: "Cohen calculated that fighting would take years and destroy the firm's culture. Starting fresh was faster and let him keep his best traders.",
+        whatHappened: "Point72 started with $1B in January 2014. The pod model survived. Cohen was never personally charged. But he lost $1.8B in assets and his reputation took a significant hit.",
+        wouldDoDifferently: "He has said he should have monitored his traders more aggressively. The insider trading was done by individuals, but the culture he created made it more likely.",
+      },
+      {
+        year: "2014",
+        situation: "Point72 launched as a long-only fund (Cohen was banned from managing outside capital). He had to rebuild from scratch with a fundamentally different regulatory environment.",
+        optionsTheyConsidered: [
+          "Rebuild exactly the SAC model with better compliance",
+          "Pivot to a more systematic approach",
+          "Stay smaller and more selective"
+        ],
+        choiceMade: "Rebuilt the pod model with institutional compliance from day one, focused initially on long-only equities. When the ban lifted, expanded to include long/short.",
+        whyTheyPickedIt: "The pod model was his structural advantage. He wasn't going to abandon it. The lesson from SAC was compliance infrastructure, not organizational redesign.",
+        whatHappened: "Point72 grew to $50B+ AUM. Returns recovered to 20%+ annually by 2016-2017. The model survived and evolved.",
+        wouldDoDifferently: "He has said the transition to compliance-first culture was harder than expected. Some star traders left because they preferred the SAC culture. He accepted this trade-off.",
+      },
     ],
     failureCases: [
-      { name: "Apple Lisa (1983)", description: "Released Lisa as Apple's first commercial GUI computer at $9,995, too expensive for the target market of business users. The product was technically impressive but commercially a failure.", lesson: "High price combined with business users who didn't need GUI. Premium positioning requires matching price with right customer segment." },
-      { name: "Apple III (1980)", description: "Rushed to market to compete with IBM PC; had numerous hardware defects including chips that would fall out of sockets. Recalled many units. Quality problems were embarrassment.", lesson: "Rushing to market destroys quality and brand. Ship when ready, not when forced by competition." },
-      { name: "Macintosh Office (1985)", description: "Attempted to market Macintosh as business productivity tool through partnerships with FileMaker, Lotus, Aldus. Failed because no network, no laser printer, no business software.", lesson: "Products must be complete before launch. Business users need ecosystems, not single devices." },
-      { name: "NeXT's Commercial Failure (1985-1997)", description: "Despite technically superior NeXT computer, the company struggled commercially. High price, limited software ecosystem, and corporate culture challenges led to near-death.", lesson: "Technical superiority alone is insufficient; ecosystem, price, and timing matter equally." },
-      { name: "Health: Delayed Cancer Treatment (2003-2011)", description: "Refused conventional surgery for his pancreatic neuroendocrine tumor for 9 months, instead pursuing alternative medicine including a vegan diet. By the time he had surgery, the cancer had spread.", lesson: "Willpower cannot override biology. Denial of reality—even when fueled by confidence—is fatal." }
+      {
+        year: "2013",
+        whatFailed: "SAC Capital's insider trading scandal — $1.8B settlement, fund shut down, 8 SAC traders convicted or pleaded guilty. The fund's culture had crossed the line from aggressive information gathering to illegal tipping.",
+        whyItFailed: "The competitive pressure created by the pod model created incentives for traders to get information at any cost. Cohen's focus on returns overrode adequate oversight of how information was being obtained.",
+        whatTheyLearned: "The lesson Cohen drew: compliance infrastructure must be built in from the start, not retrofitted. Point72 was founded with a Chief Compliance Officer from day one. The pod model works — but only with institutional guardrails.",
+        publicNarrative: "SAC Capital was shut down due to insider trading by multiple portfolio managers.",
+        privateReality: "Cohen's organizational design created the conditions for the violations — the competitive pressure, the information obsession, the insufficient oversight. He bears institutional responsibility even if he personally never crossed the line.",
+      },
+      {
+        year: "2000",
+        whatFailed: "SAC held large positions heading into the dot-com crash. The fund lost money in 2000 despite the overall market environment favoring equity long positions.",
+        whyItFailed: "SAC's information edge was concentrated in tech — when the tech sector collapsed, the information network that drove SAC's edge evaporated simultaneously.",
+        whatTheyLearned: "Concentration risk in information edge is real. Point72 later built more sector diversification into the pod model.",
+        publicNarrative: "SAC had a difficult year in 2000.",
+        privateReality: "The dot-com crash revealed that SAC's information edge was partly riding the general tech momentum — when the momentum reversed, so did the edge.",
+      },
+    ]
+  },
+
+  {
+    id: "rakesh-jhunjhunwala"      { name: "Health: Delayed Cancer Treatment (2003-2011)", description: "Refused conventional surgery for his pancreatic neuroendocrine tumor for 9 months, instead pursuing alternative medicine including a vegan diet. By the time he had surgery, the cancer had spread.", lesson: "Willpower cannot override biology. Denial of reality—even when fueled by confidence—is fatal." }
     ]
   },
   {
@@ -10138,7 +10455,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/rakesh-jhunjhunwala",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Bullish", "Bold", "Jovial", "Conviction-Driven", "Down-to-Earth", "Contrarian"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -10294,7 +10612,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/steve-jobs",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Visionary", "Perfectionist", "Demanding", "Charismatic", "Minimalist", "Obsessive"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 96, description: "Breaks down complex systems to fundamental truths; obsessed with simplicity at the deepest level" },
@@ -10411,7 +10730,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jeff-bezos",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Customer-Obsessed", "Long-Term Thinker", "Data-Driven", "Relentless", "Methodical", "Ambitious"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 95, description: "Breaks down business problems to core incentives; questions every assumption; deep dives into details" },
@@ -10528,7 +10848,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jensen-huang",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Visionary", "Intense", "Technical", "Patient", "Competitive", "Leather-Jacket-Wearing"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 94, description: "Understands fundamental computing architecture; questions industry assumptions; sees technological shifts others miss" },
@@ -10645,7 +10966,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/sam-altman",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Ambitious", "Diplomatic", "Strategic", "Network-Builder", "Optimistic", "Calculated"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Questions industry assumptions; thinks about long-term AI implications; grasps fundamental concepts" },
@@ -10761,7 +11083,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/peter-lynch",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 11,
+    dataSourceCount: 11
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Detail-oriented", "Intellectually curious", "Disciplined", "Humble", "Accessible", "Workaholic", "Pattern-seeker", "Teacher"],
     personalityDimensions: [
       { label: "Analytical", value: 88, description: "Deep financial analysis of company fundamentals and competitive positions" },
@@ -10878,7 +11201,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/carl-icahn",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 13,
+    dataSourceCount: 13
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Combative", "Analytical", "Relentless", "Confident", "Strategic", "Opportunistic", "Detail-oriented", "Intimidating"],
     personalityDimensions: [
       { label: "Analytical", value: 85, description: "Deep operational and financial analysis to identify value and change levers" },
@@ -10995,7 +11319,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/charlie-munger",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 14,
+    dataSourceCount: 14
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Intellectually rigorous", "Curious", "Honest", "Impatient with foolishness", "Pattern-seeking", "Systems thinker", "Irreverent", "Uncompromising"],
     personalityDimensions: [
       { label: "Intellectual Rigor", value: 95, description: "Relentless pursuit of truth and clarity; impatient with sloppy thinking" },
@@ -11112,7 +11437,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/benjamin-graham",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Analytical", "Principled", "Disciplined", "Intellectually honest", "Teacher", "Systematic", "Cautious", "Rational"],
     personalityDimensions: [
       { label: "Analytical", value: 92, description: "Deep financial analysis and mathematical rigor in evaluating investments" },
@@ -11229,7 +11555,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/john-bogle",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 13,
+    dataSourceCount: 13
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Principled", "Honest", "Reformer", "Patient", "Systematic", "Moral", "Humble", "Focused"],
     personalityDimensions: [
       { label: "Principle Orientation", value: 93, description: "Driven by what's right for investors, not what maximizes company profits" },
@@ -11346,7 +11673,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/howard-marks",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 12,
+    dataSourceCount: 12
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Intellectual", "Contrarian", "Thoughtful", "Disciplined", "Risk-aware", "Philosophical", "Patient", "Cycle-conscious"],
     personalityDimensions: [
       { label: "Intellectual Rigor", value: 90, description: "Deep analysis of investment cycles, risk, and market psychology" },
@@ -11463,7 +11791,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/cathie-wood",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 13,
+    dataSourceCount: 13
+  researchStatus?: ResearchStatus; // UNVERIFIED,
     personalityTraits: ["Visionary", "Contrarian", "Conviction-driven", "Transparent", "Intellectually curious", "Bold", "Adaptive", "Communicative"],
     personalityDimensions: [
       { label: "Conviction", value: 93, description: "Makes large, concentrated bets despite skepticism; willing to be wrong" },
@@ -11582,7 +11911,8 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/killa-xbt",
     lastUpdated: "2026-04-10",
     nextUpdateDue: "2026-07-10",
-    dataSourceCount: 18,
+    dataSourceCount: 18
+  researchStatus?: ResearchStatus; // TRIPLE_VERIFIED,
     personalityTraits: ["Systematic", "Data-Driven", "Disciplined", "Contrarian", "Transparent", "Humble", "Methodical"],
     personalityDimensions: [
       { label: "Analytical Rigor", value: 92, description: "Systematic method for analyzing market structure — counting swings, tracking liquidity, identifying distribution patterns" },
@@ -11919,7 +12249,8 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/li-jiaqi",
     lastUpdated: "2026-04-14",
     nextUpdateDue: "2026-10-14",
-    dataSourceCount: 15,
+    dataSourceCount: 15
+  researchStatus?: ResearchStatus; // TRIPLE_VERIFIED,
     personalityTraits: [
       "情绪感染力极强", "选品严苛", "真实试用优先", "季节锚定思维",
       "内容日历化", "CP值分析", "共情能力强", "高产出持续者"
@@ -12217,7 +12548,8 @@ HONEST BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/justin-sun",
     lastUpdated: "2026-04-13",
     nextUpdateDue: "2026-10-13",
-    dataSourceCount: 269,
+    dataSourceCount: 269
+  researchStatus?: ResearchStatus; // TRIPLE_VERIFIED,
     personalityTraits: [
       "All-In Risk Taker",
       "Narrative Architect",
