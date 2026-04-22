@@ -194,7 +194,7 @@ function generateWhyItWorks(persona: Persona, topGap: string, userProfile: UserP
     "First-Principles Thinking": `${persona.name}'s habit of breaking everything to first principles will challenge your assumptions and help you find non-obvious solutions.`,
     "Empathy": `${persona.name}'s relationship-building philosophy will help you build deeper loyalty and longer-term partnerships with your team and stakeholders.`,
   };
-  return templates[topGap] ?? `${persona.name}'s unique combination of ${persona.personalityTraits.slice(0, 2).join(" and ")} will complement your working style in ways that compound over time.`;
+  return templates[topGap] ?? `${persona.name}'s unique combination of ${persona.personalityTraits?.slice(0, 2).join(" and ") || "strategic and decisive"} will complement your working style in ways that compound over time.`;
 }
 
 function computeStackRecommendation(matches: PersonaMatch[], userProfile: UserProfile): StackRecommendation {
@@ -236,14 +236,15 @@ function buildNuwaSkillExport(stack: StackRecommendation, userProfile: UserProfi
   const secondPersona = stack.personas[1];
 
   // Merge values from both personas (dedupe, keep unique)
-  const allValues = stack.personas.flatMap((p) => p.values ?? []).slice(0, 8);
-  const allAntiPatterns = stack.personas.flatMap((p) => p.antiPatterns ?? []).slice(0, 6);
-  const allBoundaries = stack.personas.flatMap((p) => p.honestBoundaries ?? []).slice(0, 6);
-  const allHeuristics = stack.personas.flatMap((p) => p.decisionHeuristics ?? []).slice(0, 6);
+    const allValues = stack.personas.flatMap((p) => ("values" in p && Array.isArray(p.values) ? p.values : [])).slice(0, 8);
+    const allAntiPatterns = stack.personas.flatMap((p) => ("antiPatterns" in p && Array.isArray(p.antiPatterns) ? p.antiPatterns : [])).slice(0, 6);
+    const allBoundaries = stack.personas.flatMap((p) => ("honestBoundaries" in p && Array.isArray(p.honestBoundaries) ? p.honestBoundaries : [])).slice(0, 6);
+    const allHeuristics = stack.personas.flatMap((p) => ("decisionHeuristics" in p && Array.isArray(p.decisionHeuristics) ? p.decisionHeuristics : [])).slice(0, 6);
   const allFrameworks = stack.personas.flatMap((p) => p.thinkingFrameworks ?? []).slice(0, 4);
 
-  const combinedIdentity = topPersona.identityCard?.selfDescription
-    ?? `Composite of ${stackNames}. Thinking partner that fills your gaps.`;
+  const combinedIdentity = "identityCard" in topPersona && topPersona.identityCard?.selfDescription
+    ? topPersona.identityCard.selfDescription
+    : `Composite of ${stackNames}. Thinking partner that fills your gaps.`;
 
   const userStrengths = userProfile.dimensions.filter((d) => d.value >= 75).map((d) => d.label).join(", ") || "execution and analysis";
   const userGaps = userProfile.dimensions.filter((d) => d.value < 60).map((d) => d.label).join(", ") || "strategic vision and risk tolerance";
@@ -541,7 +542,7 @@ function StepQuiz({ onComplete }: { onComplete: (profile: UserProfile) => void }
   const [showMeta, setShowMeta] = useState(true);
 
   const question = QUIZ_QUESTIONS[currentQ];
-  const progress = ((currentQ) / QUIZ_QUESTIONS.length) * 100;
+  const progress = ((currentQ + 1) / QUIZ_QUESTIONS.length) * 100;
 
   const handleAnswer = (value: number) => {
     const newAnswers = { ...answers, [question.dimension]: value };

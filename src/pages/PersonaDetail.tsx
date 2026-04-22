@@ -14,7 +14,8 @@ import {
   Users, TrendingUp,   Globe, Calendar, Newspaper, Network,
   ChevronDown, ChevronRight, Star, AlertTriangle, Quote,
   MessageSquare, Layers, ExternalLink, Clock, Tag, Swords,
-  Target, Lightbulb, GitFork, Shield, Compass, ArrowRightLeft
+  Target, Lightbulb, GitFork, Shield, Compass, ArrowRightLeft,
+  LayoutDashboard
 } from "lucide-react";
 import { personas, getRelatedPersonas, PROMPT_TIER_CONFIG, type Persona } from "@/lib/personas";
 import { researchDrafts } from "@/lib/research-data";
@@ -202,6 +203,7 @@ export default function PersonaDetail() {
   const params = useParams<{ id: string }>();
   const persona = personas.find((p) => p.id === params.id);
   const [activeTab, setActiveTab] = useState<"thinking" | "working" | "prompts" | "overview" | "news" | "network" | "mental" | "competition">("thinking");
+  const [imgFailed, setImgFailed] = useState(false);
 
   if (!persona) {
     return (
@@ -244,6 +246,15 @@ export default function PersonaDetail() {
             </button>
           </Link>
           <div className="flex items-center gap-2">
+            <Link href="/board/new">
+              <button
+                className="flex items-center gap-1.5 text-[12px] font-semibold px-3.5 py-1.5 rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors"
+                style={{ fontFamily: "Inter, sans-serif" }}
+              >
+                <LayoutDashboard size={12} />
+                Add to Board
+              </button>
+            </Link>
             <CopyButton text={persona.aiPersonaPrompt} label="Copy System Prompt" />
           </div>
         </div>
@@ -258,27 +269,13 @@ export default function PersonaDetail() {
           <div className="flex items-start gap-4 sm:gap-6">
             {/* Portrait */}
             <div className="flex-shrink-0 relative">
-              {persona.image ? (
+              {persona.image && !imgFailed ? (
                 <img
                   src={persona.image}
                   alt={persona.name}
                   className="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl object-cover object-top shadow-md"
                   style={{ border: `3px solid ${persona.accentColor}30` }}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                    const parent = target.parentElement;
-                    if (parent) {
-                      const initials = persona.name.split(" ").slice(0, 2).map((w: string) => w[0]).join("").toUpperCase();
-                      const div = document.createElement("div");
-                      div.className = "w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex items-center justify-center shadow-md text-white font-bold text-2xl";
-                      div.style.background = `linear-gradient(135deg, ${persona.accentColor}, ${persona.accentColor}cc)`;
-                      div.style.border = `3px solid ${persona.accentColor}30`;
-                      div.style.fontFamily = "Fraunces, Georgia, serif";
-                      div.textContent = initials;
-                      parent.insertBefore(div, target);
-                    }
-                  }}
+                  onError={() => setImgFailed(true)}
                 />
               ) : (
                 <div
@@ -304,7 +301,7 @@ export default function PersonaDetail() {
                   </span>
                 ))}
                 <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 text-gray-600" style={{ fontFamily: "Inter, sans-serif" }}>
-                  {persona.mbtiType}
+                  {persona.mbtiType ?? "—"}
                 </span>
               </div>
               <h1 className="text-[22px] sm:text-[34px] font-bold text-gray-900 leading-tight mb-1" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
@@ -1305,7 +1302,10 @@ export default function PersonaDetail() {
                 <div className="text-center py-16">
                   <Compass size={32} className="text-gray-300 mx-auto mb-3" />
                   <p className="text-[14px] text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
-                    No research data yet. Run <code className="bg-gray-100 px-1 rounded text-[12px]" style={{ fontFamily: "JetBrains Mono, monospace" }}>npx tsx scripts/research/pipeline.ts {persona.id}</code> to collect data.
+                    No research data yet. Run <code className="bg-gray-100 px-1 rounded text-[12px]" style={{ fontFamily: "JetBrains Mono, monospace" }}>npx tsx scripts/research/1_collect/pipeline.ts {persona.id} --type=CHINESE_BUSINESS</code> to collect data.
+                  </p>
+                  <p className="text-[12px] text-gray-400 mt-2" style={{ fontFamily: "Inter, sans-serif" }}>
+                    Also try: <code className="bg-gray-100 px-1 rounded" style={{ fontFamily: "JetBrains Mono, monospace" }}>python3 scripts/research/tavily_search.py persona "{persona.name}"</code>
                   </p>
                   <a
                     href="https://x.com"
@@ -1318,149 +1318,245 @@ export default function PersonaDetail() {
                   </a>
                 </div>
               );
-              const a = persona.accentColor;
-              const ra = draft.rawAnalysis;
-              const weekdays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
-              const maxDayCount = Math.max(...weekdays.map(d => ra.dayOfWeekStats[d]?.count || 0));
-              const maxVocabCount = Math.max(...ra.topVocabulary.slice(0,15).map(v => v.count));
+
+              const isTwitterDraft = "rawAnalysis" in draft;
+
+              // ── Twitter/ResearchDraft view ─────────────────────────────────────
+              if (isTwitterDraft) {
+                const ra = (draft as any).rawAnalysis;
+                const weekdays = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+                const maxDayCount = Math.max(...weekdays.map(d => ra.dayOfWeekStats?.[d]?.count || 0), 1);
+                const maxVocabCount = Math.max(...(ra.topVocabulary || []).slice(0,15).map((v: any) => v.count || 0), 1);
+                return (
+                  <div>
+                    <SectionHeader
+                      title="Raw Research Data"
+                      subtitle={`Collected via TwitterAPI.io + Firecrawl · ${ra.tweetCount?.toLocaleString() ?? "?"} tweets analyzed · Last updated ${draft.lastUpdated}`}
+                    />
+
+                    {/* Pipeline CTA */}
+                    <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-6">
+                      <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-amber-200 flex items-center justify-center flex-shrink-0">
+                          <Compass size={14} className="text-amber-700" />
+                        </div>
+                        <div className="flex-1">
+                          <p className="text-[13px] font-semibold text-amber-900 mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Research Pipeline Ready</p>
+                          <p className="text-[12px] text-amber-800 mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
+                            This data was collected automatically. Run the full pipeline with deep analysis:
+                          </p>
+                          <code className="text-[11px] text-amber-900 bg-amber-100 px-2 py-1 rounded block" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+                            npx tsx scripts/research/1_collect/pipeline.ts {(draft as any).twitterHandle || persona.id} --deep-research
+                          </code>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stats grid */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                      {[
+                        { label: "Tweets Analyzed", value: (ra.tweetCount || 0).toLocaleString(), sub: `${ra.tweetFrequency?.avgPerDay ?? "?"}/day avg` },
+                        { label: "Followers", value: ra.followerCount ? `${(ra.followerCount/1000).toFixed(1)}K` : "—", sub: "on X" },
+                        { label: "Total Views", value: ra.engagementStats?.totalViews ? `${(ra.engagementStats.totalViews/1000000).toFixed(1)}M` : "—", sub: "across tweets" },
+                        { label: "Avg Likes", value: (ra.engagementStats?.avgLikes || 0).toLocaleString(), sub: "per tweet" },
+                      ].map(s => (
+                        <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center">
+                          <p className="text-[22px] font-bold" style={{ color: persona.accentColor, fontFamily: "Fraunces, Georgia, serif" }}>{s.value}</p>
+                          <p className="text-[11px] font-semibold text-gray-700 mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>{s.label}</p>
+                          <p className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>{s.sub}</p>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Day-of-week analysis */}
+                    <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+                      <h3 className="text-[14px] font-semibold text-gray-800 mb-1" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                        Day-of-Week Pattern Analysis
+                      </h3>
+                      <p className="text-[11.5px] text-gray-500 mb-4" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Tweet volume and engagement by day — structural temporal patterns that inform market timing
+                      </p>
+                      <div className="space-y-2">
+                        {weekdays.map(d => {
+                          const stats = ra.dayOfWeekStats?.[d] || { count: 0, avgLikes: 0 };
+                          const barWidth = maxDayCount > 0 ? Math.round((stats.count / maxDayCount) * 100) : 0;
+                          return (
+                            <div key={d} className="flex items-center gap-3">
+                              <span className="text-[11px] font-mono font-bold text-gray-500 w-8" style={{ fontFamily: "Inter, sans-serif" }}>{d}</span>
+                              <div className="flex-1 h-5 bg-gray-100 rounded overflow-hidden">
+                                <div className="h-full rounded transition-all" style={{ width: `${barWidth}%`, background: persona.accentColor }} />
+                              </div>
+                              <span className="text-[11px] text-gray-500 w-6 text-right" style={{ fontFamily: "Inter, sans-serif" }}>{stats.count}</span>
+                              <span className="text-[11px] text-gray-400 w-20 text-right" style={{ fontFamily: "Inter, sans-serif" }}>
+                                {stats.avgLikes.toLocaleString()} avg ♥
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <p className="text-[10.5px] text-gray-400 mt-3 italic" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Note: This is raw tweet volume data. Signal comes from analyzing market returns on each day-of-week, not tweet performance.
+                      </p>
+                    </div>
+
+                    {/* Signature vocabulary */}
+                    {ra.topVocabulary?.length > 0 && (
+                      <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+                        <h3 className="text-[14px] font-semibold text-gray-800 mb-1" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                          Signature Vocabulary
+                        </h3>
+                        <p className="text-[11.5px] text-gray-500 mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
+                          Most-frequently used words in tweets — reveals core analytical focus
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {ra.topVocabulary.slice(0, 15).map(({ phrase, count }: any) => {
+                            const intensity = Math.round((count / maxVocabCount) * 100);
+                            return (
+                              <div
+                                key={phrase}
+                                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11.5px] font-medium"
+                                style={{
+                                  background: `${persona.accentColor}${Math.round(intensity * 0.15).toString(16).padStart(2,"0")}`,
+                                  color: intensity > 70 ? "white" : persona.accentColor,
+                                  fontFamily: "Inter, sans-serif",
+                                }}
+                              >
+                                {phrase}
+                                <span className="text-[10px] opacity-70">{count}×</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Highest-engagement tweets */}
+                    {ra.topTweets?.length > 0 && (
+                      <div className="mb-6">
+                        <h3 className="text-[14px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                          Highest-Engagement Tweets
+                        </h3>
+                        <div className="space-y-3">
+                          {ra.topTweets.map((tweet: any, i: number) => (
+                            <div key={i} className="bg-white rounded-xl border border-gray-200 p-4">
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ background: `${persona.accentColor}15`, color: persona.accentColor, fontFamily: "Inter, sans-serif" }}>
+                                  #{i + 1}
+                                </span>
+                                <span className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>{tweet.date?.slice(0, 10)}</span>
+                                <span className="ml-auto text-[11px] text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
+                                  ♥ {(tweet.likes || 0).toLocaleString()}
+                                </span>
+                              </div>
+                              <p className="text-[13px] text-gray-700 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                                {tweet.text}
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Pipeline CTA footer */}
+                    <div className="text-center py-4 border-t border-gray-100">
+                      <a
+                        href="https://x.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-gray-800 transition-colors"
+                        style={{ fontFamily: "Inter, sans-serif" }}
+                      >
+                        View all tweets on X → <ExternalLink size={11} />
+                      </a>
+                    </div>
+                  </div>
+                );
+              }
+
+              // ── WebResearchData view ──────────────────────────────────────────
+              const webData = draft as any;
               return (
                 <div>
                   <SectionHeader
-                    title="Raw Research Data"
-                    subtitle={`Collected via TwitterAPI.io + Firecrawl · ${ra.tweetCount} tweets analyzed · Last updated ${draft.lastUpdated}`}
+                    title="Web Research Data"
+                    subtitle={`Collected via Firecrawl deep research · ${draft.dataSourceCount} sources · Last updated ${draft.lastUpdated}`}
                   />
 
-                  {/* Pipeline CTA */}
+                  {/* New tools CTA */}
                   <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 mb-6">
                     <div className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded-lg bg-amber-200 flex items-center justify-center flex-shrink-0">
                         <Compass size={14} className="text-amber-700" />
                       </div>
                       <div className="flex-1">
-                        <p className="text-[13px] font-semibold text-amber-900 mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Research Pipeline Ready</p>
+                        <p className="text-[13px] font-semibold text-amber-900 mb-0.5" style={{ fontFamily: "Inter, sans-serif" }}>Enhanced Research Available</p>
                         <p className="text-[12px] text-amber-800 mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
-                          This data was collected automatically. Run the full pipeline with web research and deep analysis:
+                          This data was collected via Firecrawl. Run enhanced research with Tavily + free sources:
                         </p>
+                        <code className="text-[11px] text-amber-900 bg-amber-100 px-2 py-1 rounded block mb-1" style={{ fontFamily: "JetBrains Mono, monospace" }}>
+                          python3 scripts/research/tavily_search.py persona "{persona.name}"
+                        </code>
                         <code className="text-[11px] text-amber-900 bg-amber-100 px-2 py-1 rounded block" style={{ fontFamily: "JetBrains Mono, monospace" }}>
-                          npx tsx scripts/research/pipeline.ts {draft.twitterHandle} --deep-research
+                          python3 scripts/research/free_sources.py persona "{persona.name}"
                         </code>
                       </div>
                     </div>
                   </div>
 
-                  {/* Stats grid */}
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-                    {[
-                      { label: "Tweets Analyzed", value: ra.tweetCount.toLocaleString(), sub: `${ra.tweetFrequency.avgPerDay}/day avg` },
-                      { label: "Followers", value: (ra.followerCount/1000).toFixed(1)+"K", sub: "on X" },
-                      { label: "Total Views", value: (ra.engagementStats.totalViews/1000000).toFixed(1)+"M", sub: "across tweets" },
-                      { label: "Avg Likes", value: ra.engagementStats.avgLikes.toLocaleString(), sub: "per tweet" },
-                    ].map(s => (
-                      <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center">
-                        <p className="text-[22px] font-bold" style={{ color: a, fontFamily: "Fraunces, Georgia, serif" }}>{s.value}</p>
-                        <p className="text-[11px] font-semibold text-gray-700 mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>{s.label}</p>
-                        <p className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>{s.sub}</p>
-                      </div>
-                    ))}
-                  </div>
+                  {/* Analysis summary */}
+                  {webData.analysisSummary && (
+                    <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
+                      <h3 className="text-[14px] font-semibold text-gray-800 mb-2" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                        Analysis Summary
+                      </h3>
+                      <p className="text-[13px] text-gray-600 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
+                        {webData.analysisSummary}
+                      </p>
+                    </div>
+                  )}
 
-                  {/* Day-of-week analysis */}
-                  <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-                    <h3 className="text-[14px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
-                      Day-of-Week Pattern Analysis
-                    </h3>
-                    <p className="text-[11.5px] text-gray-500 mb-4" style={{ fontFamily: "Inter, sans-serif" }}>
-                      Tweet volume and engagement by day — structural temporal patterns that inform market timing
-                    </p>
-                    <div className="space-y-2">
-                      {weekdays.map(d => {
-                        const stats = ra.dayOfWeekStats[d] || { count: 0, avgLikes: 0 };
-                        const barWidth = maxDayCount > 0 ? Math.round((stats.count / maxDayCount) * 100) : 0;
-                        return (
-                          <div key={d} className="flex items-center gap-3">
-                            <span className="text-[11px] font-mono font-bold text-gray-500 w-8" style={{ fontFamily: "Inter, sans-serif" }}>{d}</span>
-                            <div className="flex-1 h-5 bg-gray-100 rounded overflow-hidden">
-                              <div className="h-full rounded transition-all" style={{ width: `${barWidth}%`, background: a }} />
+                  {/* Sources */}
+                  {webData.sources?.length > 0 && (
+                    <div className="mb-6">
+                      <h3 className="text-[14px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
+                        Research Sources ({webData.sources.length})
+                      </h3>
+                      <div className="space-y-2">
+                        {webData.sources.map((src: any, i: number) => (
+                          <div key={i} className="bg-white rounded-xl border border-gray-200 p-4">
+                            <div className="flex items-center gap-3 mb-1">
+                              <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ background: `${persona.accentColor}15`, color: persona.accentColor, fontFamily: "Inter, sans-serif" }}>
+                                #{i + 1}
+                              </span>
+                              {src.chars != null && (
+                                <span className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>
+                                  {src.chars.toLocaleString()} chars
+                                </span>
+                              )}
                             </div>
-                            <span className="text-[11px] text-gray-500 w-6 text-right" style={{ fontFamily: "Inter, sans-serif" }}>{stats.count}</span>
-                            <span className="text-[11px] text-gray-400 w-20 text-right" style={{ fontFamily: "Inter, sans-serif" }}>
-                              {stats.avgLikes.toLocaleString()} avg ♥
-                            </span>
+                            <a
+                              href={src.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[13px] text-blue-600 hover:text-blue-800 underline-offset-2 hover:underline"
+                              style={{ fontFamily: "Inter, sans-serif" }}
+                            >
+                              {src.title || src.url}
+                            </a>
                           </div>
-                        );
-                      })}
+                        ))}
+                      </div>
                     </div>
-                    <p className="text-[10.5px] text-gray-400 mt-3 italic" style={{ fontFamily: "Inter, sans-serif" }}>
-                      Note: This is raw tweet volume data. KillaXBT's Thursday bearish signal comes from analyzing market returns on each day-of-week, not tweet performance.
-                    </p>
-                  </div>
+                  )}
 
-                  {/* Top vocabulary */}
-                  <div className="bg-white rounded-xl border border-gray-200 p-4 mb-6">
-                    <h3 className="text-[14px] font-semibold text-gray-800 mb-1" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
-                      Signature Vocabulary
-                    </h3>
-                    <p className="text-[11.5px] text-gray-500 mb-3" style={{ fontFamily: "Inter, sans-serif" }}>
-                      Most-frequently used words in tweets — reveals core analytical focus
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {ra.topVocabulary.slice(0, 15).map(({ phrase, count }) => {
-                        const intensity = Math.round((count / maxVocabCount) * 100);
-                        return (
-                          <div
-                            key={phrase}
-                            className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11.5px] font-medium"
-                            style={{
-                              background: `${a}${Math.round(intensity * 0.15).toString(16).padStart(2,"0")}`,
-                              color: intensity > 70 ? "white" : a,
-                              fontFamily: "Inter, sans-serif",
-                            }}
-                          >
-                            {phrase}
-                            <span className="text-[10px] opacity-70">{count}×</span>
-                          </div>
-                        );
-                      })}
+                  {/* Raw extract reference */}
+                  {webData.rawExtractFile && (
+                    <div className="text-center py-4 border-t border-gray-100">
+                      <p className="text-[12px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>
+                        Raw extract: <code style={{ fontFamily: "JetBrains Mono, monospace" }}>{webData.rawExtractFile}</code>
+                      </p>
                     </div>
-                  </div>
-
-                  {/* Top tweets */}
-                  <div className="mb-6">
-                    <h3 className="text-[14px] font-semibold text-gray-800 mb-3" style={{ fontFamily: "Fraunces, Georgia, serif" }}>
-                      Highest-Engagement Tweets
-                    </h3>
-                    <div className="space-y-3">
-                      {ra.topTweets.map((tweet, i) => (
-                        <div key={i} className="bg-white rounded-xl border border-gray-200 p-4">
-                          <div className="flex items-center gap-3 mb-2">
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded" style={{ background: `${a}15`, color: a, fontFamily: "Inter, sans-serif" }}>
-                              #{i + 1}
-                            </span>
-                            <span className="text-[10px] text-gray-400" style={{ fontFamily: "Inter, sans-serif" }}>{tweet.date}</span>
-                            <span className="ml-auto text-[11px] text-gray-500" style={{ fontFamily: "Inter, sans-serif" }}>
-                              ♥ {tweet.likes.toLocaleString()}
-                            </span>
-                          </div>
-                          <p className="text-[13px] text-gray-700 leading-relaxed" style={{ fontFamily: "Inter, sans-serif" }}>
-                            {tweet.text}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Pipeline CTA footer */}
-                  <div className="text-center py-4 border-t border-gray-100">
-                    <a
-                      href="https://x.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-[12px] text-gray-500 hover:text-gray-800 transition-colors"
-                      style={{ fontFamily: "Inter, sans-serif" }}
-                    >
-                      View all tweets on X → <ExternalLink size={11} />
-                    </a>
-                  </div>
+                  )}
                 </div>
               );
             })()}

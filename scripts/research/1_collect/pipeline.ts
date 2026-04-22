@@ -3,9 +3,11 @@
  * pipeline.ts
  *
  * Orchestrates the full persona research pipeline:
- * 1. Scrape tweets from Twitter/X (if handle has Twitter)
- * 2. Deep-research via Firecrawl
- * 3. Generate structured markdown research files aligned with distill_templates
+ * 0. Tavily research — LLM-optimized search, synthesized answers, top sources
+ * 1. Discovery — search-driven source finding (Firecrawl)
+ * 2. Twitter scraping (if handle has Twitter)
+ * 3. Deep-research via Firecrawl
+ * 4. Generate structured markdown research files aligned with distill_templates
  *
  * Usage:
  *   npx tsx scripts/research/1_collect/pipeline.ts KillaXBT
@@ -49,7 +51,8 @@ import {
   type DiscoveredSource,
   type SourceLayer,
 } from "../firecrawl-discovery.js";
-import { writeFileSync, mkdirSync } from "fs";
+import { spawn } from "child_process";
+import { writeFileSync, mkdirSync, existsSync } from "fs";
 import { resolve } from "path";
 
 // ─── Source type tracking ─────────────────────────────────────────────────────
@@ -127,6 +130,7 @@ interface PipelineOptions {
   skipThreads: boolean;
   skipWeb: boolean;
   skipDiscovery: boolean;
+  skipTavily: boolean;
   skipLongform: boolean;
   deepResearch: boolean;
   type: PersonaResearchType;
@@ -142,6 +146,7 @@ function parseArgs(): { handle: string; options: PipelineOptions } {
     skipThreads: false,
     skipWeb: false,
     skipDiscovery: false,
+    skipTavily: false,
     skipLongform: false,
     deepResearch: false,
     type: "TWITTER_CRYPTO",
@@ -153,6 +158,7 @@ function parseArgs(): { handle: string; options: PipelineOptions } {
     if (arg === "--skip-threads") options.skipThreads = true;
     if (arg === "--skip-web") options.skipWeb = true;
     if (arg === "--skip-discovery") options.skipDiscovery = true;
+    if (arg === "--skip-tavily") options.skipTavily = true;
     if (arg === "--skip-longform") options.skipLongform = true;
     if (arg === "--deep-research") options.deepResearch = true;
     if (arg.startsWith("--type=")) options.type = arg.split("=")[1] as PersonaResearchType;
@@ -604,6 +610,79 @@ function generateSourceCatalogMd(
   return lines.join("\n");
 }
 
+// ─── Tavily integration ────────────────────────────────────────────────────────
+
+interface TavilyResult {
+  success: boolean;
+  data?: any;
+  outputPath?: string;
+  error?: string;
+}
+
+/**
+ * Run Tavily persona research via the TypeScript script.
+ * Tavily aggregates up to 20 sources per query and returns AI-synthesized answers.
+ * It's the best pre-scrape discovery tool for finding the right URLs.
+ */
+async function runTavilyResearch(
+  name: string,
+  personaType: PersonaResearchType,
+  depth: "basic" | "advanced" = "basic"
+): Promise<TavilyResult> {
+  const scriptPath = resolve(__dirname, "../tavily_search.ts");
+  if (!existsSync(scriptPath)) {
+    return { success: false, error: "tavily_search.ts not found" };
+  }
+
+  const typeMap: Record<PersonaResearchType, string> = {
+    TWITTER_CRYPTO: "TWITTER_CRYPTO",
+    CHINESE_BUSINESS: "CHINESE_BUSINESS",
+    HK_ENTREPRENEUR: "HK_ENTREPRENEUR",
+    WESTERN_INVESTOR: "WESTERN_INVESTOR",
+    FILM_DIRECTOR: "FILM_DIRECTOR",
+    HISTORICAL_TRADER: "HISTORICAL_TRADER",
+  };
+
+  return new Promise((resolve) => {
+    const proc = spawn("npx", [
+      "tsx",
+      scriptPath,
+      "persona",
+      name,
+      "--type",
+      typeMap[personaType] || "CHINESE_BUSINESS",
+      "--depth",
+      depth,
+    ], {
+      cwd: resolve(__dirname, "../.."),
+      env: { ...process.env },
+    });
+
+    let stdout = "";
+    let stderr = "";
+
+    proc.stdout?.on("data", (data: Buffer) => { stdout += data.toString(); });
+    proc.stderr?.on("data", (data: Buffer) => { stderr += data.toString(); });
+
+    proc.on("close", (code) => {
+      if (code === 0 && stdout.includes("💾 Saved:")) {
+        const match = stdout.match(/💾 Saved:\s*(.+)/);
+        const outputPath = match ? match[1].trim() : undefined;
+        resolve({ success: true, data: { stdout }, outputPath });
+      } else {
+        resolve({
+          success: false,
+          error: stderr || stdout || `Tavily exited with code ${code}`,
+        });
+      }
+    });
+
+    proc.on("error", (err) => {
+      resolve({ success: false, error: err.message });
+    });
+  });
+}
+
 // ─── Research pipeline ───────────────────────────────────────────────────────
 
 async function runPipeline(
@@ -621,6 +700,25 @@ async function runPipeline(
   let tweetData: any = null;
   let threadsData: any = null;
   let analysis: TweetAnalysis | null = null;
+
+  // ─── Step -1: Tavily research (LLM-optimized search + synthesized answers) ────
+  let tavilyResult: TavilyResult | null = null;
+  if (!options.skipTavily) {
+    const personaName = options.personaName || handle;
+    console.log(`\n🔮 Step -1: Tavily research for "${personaName}"...`);
+    try {
+      tavilyResult = await runTavilyResearch(personaName, options.type);
+      if (tavilyResult.success) {
+        console.log(`   ✅ Tavily complete — saved to ${tavilyResult.outputPath}`);
+      } else {
+        console.warn(`   ⚠️  Tavily failed: ${tavilyResult.error} — continuing without`);
+      }
+    } catch (e: any) {
+      console.warn(`   ⚠️  Tavily error: ${e.message} — continuing without`);
+    }
+  } else {
+    console.log("\n🔮 Step -1: Skipped (--skip-tavily)");
+  }
 
   // Step 1: Twitter scraping (if applicable)
   if (!options.skipTweets) {
@@ -660,10 +758,12 @@ async function runPipeline(
   // ─── Step 0: Discovery (NEW — search-driven source finding) ─────────────────
   let discoveryResult: any | null = null;
   let priorityTargets: DiscoveredSource[] = [];
+  let discoveryAttempted = false;
 
   if (!options.skipDiscovery) {
     console.log("\n🔍 Step 0: Search-driven source discovery...");
     const personaName = options.personaName || handle;
+    discoveryAttempted = true;
     try {
       discoveryResult = await discoverSources(personaName, options.type, { maxQueries: 20 });
       priorityTargets = discoveryResult.priorityScrapeTargets || [];
@@ -698,7 +798,7 @@ async function runPipeline(
   const authoredCount = discoveryResult?.byType?.["primary-authored"]?.length ?? 0;
   const spokenCount = discoveryResult?.byType?.["primary-spoken"]?.length ?? 0;
 
-  if (!options.skipDiscovery && authoredCount === 0 && spokenCount === 0) {
+  if (discoveryAttempted && authoredCount === 0 && spokenCount === 0) {
     console.error("\n" + "═".repeat(60));
     console.error("  ⛔  COVERAGE GATE FAILED");
     console.error("═".repeat(60));
@@ -718,12 +818,12 @@ async function runPipeline(
     process.exit(1);
   }
 
-  if (authoredCount === 0 || spokenCount === 0) {
+  if (discoveryAttempted && (authoredCount === 0 || spokenCount === 0)) {
     const missing = authoredCount === 0 ? "authored (books/letters)" : "spoken (interviews/podcasts)";
     console.warn(`\n  ⚠️  WARNING: No ${missing} sources found.`);
     console.warn(`     Pipeline will continue but quality will be degraded.`);
     console.warn(`     Add --skip-discovery to bypass this gate if you have manually curated URLs.`);
-  } else {
+  if (discoveryAttempted && authoredCount > 0 && spokenCount > 0) {
     console.log(`\n  ✅ Coverage Gate passed: ${authoredCount} authored + ${spokenCount} spoken sources`);
   }
 
@@ -863,11 +963,12 @@ async function runPipeline(
     "",
     "## Credit budget",
     "",
+    "- Tavily: free tier (1,000 searches/month) — no cost for most personas",
     "- TwitterAPI.io: ~$2–8",
     "- Firecrawl /scrape: ~$2–4",
     "- Firecrawl /deep-research: ~$3–6",
     "- Firecrawl /search: ~$1–2",
-    "- **Total target: $8–20**",
+    "- **Total target: $8–20** (+ Tavily free)",
     "",
   ].join("\n");
   writeFileSync(resolve(outDir, "PLAN.md"), planMd);
@@ -878,6 +979,11 @@ async function runPipeline(
   console.log(`  RESEARCH OUTPUT: @${handle}`);
   console.log("═".repeat(60));
   console.log(`  Output dir: ../output/${handle}/`);
+  if (tavilyResult?.success) {
+    console.log(`  Tavily: ✅ ${tavilyResult.outputPath}`);
+  } else if (!options.skipTavily) {
+    console.log(`  Tavily: ⚠️  failed (see above)`);
+  }
   if (analysis) {
     console.log(`  Tweets: ${analysis.totalCount.toLocaleString()} (EN: ${analysis.enCount}, ZH: ${analysis.zhCount})`);
     console.log(`  Avg/day: ${analysis.avgTweetsPerDay}`);
@@ -907,6 +1013,7 @@ async function main() {
     console.error("  --skip-threads     Skip Threads scraping (for personas without Threads)");
     console.error("  --skip-web         Skip web research");
     console.error("  --skip-discovery   Skip search-driven discovery (use hardcoded fallback URLs)");
+    console.error("  --skip-tavily     Skip Tavily LLM-optimized search (synthesized answers + top sources)");
     console.error("  --skip-longform    Skip long-form document ingestion");
     console.error("  --deep-research    Run Firecrawl deep-research");
     console.error("  --type=TYPE        Persona type: TWITTER_CRYPTO | CHINESE_BUSINESS | HK_ENTREPRENEUR | WESTERN_INVESTOR | FILM_DIRECTOR | HISTORICAL_TRADER");
@@ -919,11 +1026,12 @@ async function main() {
     console.error("  FILM_DIRECTOR      Film director. Interviews, film criticism, making-of sources.");
     console.error("  HISTORICAL_TRADER  Historical trader/speculator. Memoirs, biographies, market records.");
     console.error("\nPipeline steps (default: all enabled):");
-    console.error("  1. Discovery    — Search-driven source finding across 6 layers");
-    console.error("  2. Twitter      — Tweet scraping + vocabulary analysis");
-    console.error("  3. Threads       — Threads post scraping (if token available)");
-    console.error("  4. Web scrape   — Priority URLs from discovery (with trust weights)");
-    console.error("  5. Deep research — Era-segmented deep research queries");
+    console.error("  -1. Tavily       — LLM-optimized search, synthesized answers, top sources");
+    console.error("   1. Discovery    — Search-driven source finding across 6 layers");
+    console.error("   2. Twitter      — Tweet scraping + vocabulary analysis");
+    console.error("   3. Threads      — Threads post scraping (if token available)");
+    console.error("   4. Web scrape   — Priority URLs from discovery (with trust weights)");
+    console.error("   5. Deep research — Era-segmented deep research queries");
     process.exit(1);
   }
 

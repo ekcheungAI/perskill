@@ -518,8 +518,7 @@ export const personas: Persona[] = [
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/larry-ellison",
     lastUpdated: "2025-12-01",
     nextUpdateDue: "2026-06-01",
-    dataSourceCount: 14
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 14,
     personalityTraits: ["Ambitious", "Autocratic", "Competitive", "Bold", "Uncompromising"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -1108,8 +1107,7 @@ Case: Ellison asks "Who's the loser in this deal?" If the answer isn't clear, it
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/elon-musk",
     lastUpdated: "2026-03-01",
     nextUpdateDue: "2026-05-01",
-    dataSourceCount: 32
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 32,
     personalityTraits: ["Visionary", "Intense", "First-Principles Thinker", "Risk-Tolerant", "Micromanager", "Pathologically Optimistic"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 99, description: "Removes all assumptions to find fundamental physical truths before building solutions" },
@@ -1604,8 +1602,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/donald-trump",
     lastUpdated: "2026-01-15",
     nextUpdateDue: "2026-07-15",
-    dataSourceCount: 28
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 28,
     personalityTraits: ["Ambitious", "Dominant", "Outgoing", "Unconventional", "Charismatic", "Transactional"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 55, description: "Intuitive over analytical; uses gut instinct rather than structured reasoning" },
@@ -1958,8 +1955,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/shi-yongqing",
     lastUpdated: "2026-04-14",
     nextUpdateDue: "2026-10-14",
-    dataSourceCount: 19
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 19,
     personalityTraits: ["无为而治", "自组织倡导者", "务实保守", "低调用人", "利润共享者", "行业规则制定者", "最小有效干预", "周期耐心"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "对人性和组织激励的深刻洞察。分析问题时从激励结构出发，而非从意识形态出发" },
@@ -2149,8 +2145,7 @@ This perspective applies to organizational design, incentive systems, governance
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/li-ka-shing",
     lastUpdated: "2026-04-10",
     nextUpdateDue: "2026-10-10",
-    dataSourceCount: 23
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 23,
     personalityTraits: ["Patient", "Pragmatic", "Disciplined", "Risk-Aware", "Philanthropic", "Low-Profile"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Deep understanding of business fundamentals and long-term value creation" },
@@ -2539,8 +2534,7 @@ Li's legendary patience has occasionally cost him. He held some positions past t
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jack-ma",
     lastUpdated: "2026-03-01",
     nextUpdateDue: "2026-09-01",
-    dataSourceCount: 22
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 22,
     personalityTraits: ["Visionary", "Charismatic", "Resilient", "Optimistic", "Provocative", "Disruptive", "Persuasive", "Tenacious", "Unconventional"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Deeply unconventional thinking; challenges every assumption about what Chinese companies can achieve" },
@@ -2933,8 +2927,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/erik-ekudden",
     lastUpdated: "2026-02-01",
     nextUpdateDue: "2026-08-01",
-    dataSourceCount: 11
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 11,
     personalityTraits: ["Methodical", "Diplomatic", "Long-Term Thinker", "Technical", "Pragmatic", "Collaborative"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Systems-level thinking about how network layers interact over time" },
@@ -3253,8 +3246,7 @@ THINKING PROCESS
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/stephen-chow",
     lastUpdated: "2025-12-01",
     nextUpdateDue: "2026-06-01",
-    dataSourceCount: 16
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 16,
     personalityTraits: ["Perfectionist", "Underdog Champion", "Absurdist", "Visual Thinker", "Private", "Resilient"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks comedy down to its fundamental emotional triggers; deconstructs clichés to find their absurd core" },
@@ -3495,8 +3487,7 @@ THINKING PROCESS
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/michael-phelps",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 18
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 18,
     personalityTraits: ["Relentless", "Obsessive", "Stoic", "Calculating", "Coldly Focused"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "Unmatched ability to perform at his absolute best when everything is on the line — 8 golds in Beijing proved he was most dominant when stakes were highest" },
@@ -3754,8 +3745,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/serena-williams",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 22
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 22,
     personalityTraits: ["Fierce", "Unapologetic", "Calculating", "Resilient", "Confrontational"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Played her best tennis when facing elimination, match points, or her biggest rivals — her record in Grand Slam finals is unmatched" },
@@ -4056,8 +4046,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lionel-messi",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 28
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 28,
     personalityTraits: ["Invisible", "Generous", "Quiet", "Relentless", "Joyful"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "Delivered his greatest performances in the highest-pressure situations — World Cup final, Champions League finals, El Clasico — regardless of the stakes" },
@@ -4294,8 +4283,7 @@ When facing a defensive problem: (1) Where is the space? (2) Who has the ball? (
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lebron-james",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 25
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 25,
     personalityTraits: ["Calculating", "Generous", "Philanthropic", "Vocal", "Durable"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 95, description: "Delivered in the most high-pressure NBA Finals moments, including the 2016 comeback from 3-1 down — the first in Finals history" },
@@ -4540,8 +4528,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tom-brady",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 20
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 20,
     personalityTraits: ["Obsessive", "Resilient", "Competitive", "Workaholic", "Controlled"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 100, description: "The greatest pressure quarterback in NFL history. Performed best in the most crucial moments, in the biggest games, against the best defenses — consistently across two decades" },
@@ -4775,8 +4762,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/roger-federer",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 18
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 18,
     personalityTraits: ["Gracious", "Artistic", "Competitive", "Grounded", "Elegant"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 94, description: "Reached an extraordinary 31 consecutive Grand Slam semifinals — a testament to his ability to perform at his best consistently across two decades" },
@@ -5005,8 +4991,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/simone-biles",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 16
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 16,
     personalityTraits: ["Bold", "Courageous", "Technical", "Vulnerable", "Dominant"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Her 2016 Rio performance (four golds) and 2024 return to win US Trials by 5.5 points demonstrated elite performance under the highest competitive pressure" },
@@ -5184,8 +5169,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tiger-woods",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 20
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 20,
     personalityTraits: ["Intense", "Focused", "Resilient", "Controversial", "Obsessive"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "The most clutch performer in major championship history — won 15 majors and was most dangerous when the tournament was on the line" },
@@ -5403,8 +5387,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/usain-bolt",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 14
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 14,
     personalityTraits: ["Charismatic", "Showman", "Relaxed", "Dominant", "Playful"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 96, description: "Never lost a major individual final at the Olympics — 8 golds in 8 individual/relay finals. Performed most dominantly at the Olympics." },
@@ -5602,8 +5585,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/kobe-bryant",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 22
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 22,
     personalityTraits: ["Obsessive", "Relentless", "Calculating", "Vulnerable", "Brilliant"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "The most ruthless competitor in NBA history. Won with Shaq and without him. Won two Olympic golds. His 'Mamba Mentality' was a philosophy of total competitive commitment." },
@@ -5802,8 +5784,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/philipp-herzig",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 9
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 9,
     personalityTraits: ["Builder", "Systematic", "Research-Oriented", "Collaborative", "Long-Term Thinker", "Methodical"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks enterprise software down to fundamental data flows and AI capability integration points" },
@@ -5922,8 +5903,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/gustav-soderstrom",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Product Visionary", "Data-Driven", "Experimental", "User-Centric", "Long-Term Thinker", "Decisive"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks recommendation systems to their core: why does a user discover new music? What creates lasting value?" },
@@ -6043,8 +6023,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lars-reger",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 10
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 10,
     personalityTraits: ["Systems Thinker", "Bridge-Builder", "Pragmatic", "Long-Term Thinker", "Physics-Minded", "Collaborative"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 90, description: "Deep grounding in semiconductor physics and system architecture; builds from first principles" },
@@ -6160,8 +6139,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/sabine-klauke",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 8
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 8,
     personalityTraits: ["Systems Engineer", "Long-Term Thinker", "Decarbonization Advocate", "Collaborative", "Methodical", "Pragmatic"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Deep grounding in aerospace physics and manufacturing systems; builds from fundamental constraints" },
@@ -6280,8 +6258,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tsui-hark",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Speed Demon", "Visual Innovator", "Technical Explorer", "Authorial", "Business-Minded", "Restless"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Breaks down visual storytelling to its core: what image creates the most impact? Then builds technical solutions" },
@@ -6392,8 +6369,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/peter-chan",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 11
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 11,
     personalityTraits: ["Versatile", "Humanist", "Research-Driven", "Ensemble Leader", "Emotionally Intelligent", "Meticulous"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks stories to their emotional core; researches obsessively to find the authentic human truth" },
@@ -6532,8 +6508,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/johnnie-to",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 10
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 10,
     personalityTraits: ["Genre Master", "Efficient", "Authorial", "Fate-Driven", "Culturally Rooted", "Resilient"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 83, description: "Breaks genre conventions to their emotional core; finds the human drama within any genre framework" },
@@ -6673,8 +6648,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/wong-kar-wai",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 18
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 18,
     personalityTraits: ["Poetic", "Obsessive", "Visual Genius", "Intuitive", "Non-Linear", "Intensely Private"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 95, description: "Has created an entirely new cinematic grammar that no one else has been able to replicate or surpass" },
@@ -6813,8 +6787,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/john-woo",
     lastUpdated: "2026-04-01",
     nextUpdateDue: "2026-10-01",
-    dataSourceCount: 13
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 13,
     personalityTraits: ["Operatic", "Moralist", "Stylistic", "Tragic Vision", "Persistent", "Loyalty-Obsessed"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 80, description: "Breaks action cinema to its emotional core: honor, loyalty, sacrifice — then builds spectacular sequences around these themes" },
@@ -6980,8 +6953,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/novak-djokovic",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 18
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 18,
     personalityTraits: ["Resilient", "Cerebral", "Adaptive", "Stoic", "Calculating"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 99, description: "Plays his best tennis under maximum pressure — Wimbledon finals vs. Federer, US Open finals. The most clutch performer in major tennis history." },
@@ -7178,8 +7150,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/rafael-nadal",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 17
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 17,
     personalityTraits: ["Fighter", "Relentless", "Superstitious", "Loyal", "Intense"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Undefeated in 14 French Open finals — never lost at Roland Garros. Performed most dominantly on clay and in the biggest moments." },
@@ -7371,8 +7342,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/cristiano-ronaldo",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 20
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 20,
     personalityTraits: ["Ambitious", "Disciplined", "Confident", "Relentless", "Showman"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 96, description: "Delivered consistently in the biggest Champions League moments throughout his career." },
@@ -7595,8 +7565,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/stephen-curry",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 15
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 15,
     personalityTraits: ["Genuine", "Fun-Loving", "Resilient", "Craft-Focused", "Understated"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 96, description: "Delivered in the biggest moments — 2022 Finals MVP at 34, Game 6 against OKC in 2016." },
@@ -7748,8 +7717,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/katie-ledecky",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Consistent", "Quiet", "Durable", "Hungry", "Professional"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 95, description: "Delivered at her best in Olympic finals — won multiple golds at three consecutive Olympics." },
@@ -7970,8 +7938,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/tim-duncan",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 14
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 14,
     personalityTraits: ["Fundamental", "Consistent", "Quiet", "Durable", "Team-First"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 95, description: "Delivered in every playoff series across 19 seasons — consistency in high-pressure moments is legendary." },
@@ -8121,8 +8088,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/shaquille-oneal",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 15
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 15,
     personalityTraits: ["Dominant", "Entertaining", "Generous", "Loyal", "Unstoppable"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 92, description: "Delivered his best performances in the biggest moments — three Finals MVPs." },
@@ -8268,8 +8234,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/patrick-mahomes",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Creative", "Fearless", "Magnetic", "Clutch", "Resilient"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 97, description: "Extraordinary clutch performance — multiple game-winning drives in conference championships and Super Bowls." },
@@ -8420,8 +8385,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/lewis-hamilton",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 16
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 16,
     personalityTraits: ["Fearless", "Purpose-Driven", "Advocate", "Resilient", "Perfectionist"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 98, description: "Delivered at his best in the most crucial moments — championship deciders, final laps, race-defining overtakes." },
@@ -8572,8 +8536,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/aaron-donald",
     lastUpdated: "2024-07-01",
     nextUpdateDue: "2026-01-01",
-    dataSourceCount: 11
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 11,
     personalityTraits: ["Relentless", "Unblockable", "Quiet", "Dominant", "Patient"],
     personalityDimensions: [
       { label: "Competitive Pressure", value: 97, description: "Delivered his best performances in the most important games — his Super Bowl LVI dominance was decisive." },
@@ -8706,8 +8669,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/george-soros",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Pragmatic", "Philosophical", "Reflective", "Adaptive", "Resilient", "Contrarian"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 95, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -8926,8 +8888,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jesse-livermore",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Fearless", "Impatient", "Disciplined", "Contrarian", "Analytical", "Self-Taught"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 80, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9203,10 +9164,6 @@ BOUNDARIES
   },
 
   {
-    id: "paul-tudor-jones"      { name: "Health: Delayed Cancer Treatment (2003-2011)", description: "Refused conventional surgery for his pancreatic neuroendocrine tumor for 9 months, instead pursuing alternative medicine including a vegan diet. By the time he had surgery, the cancer had spread.", lesson: "Willpower cannot override biology. Denial of reality—even when fueled by confidence—is fatal." }
-    ]
-  },
-  {
     id: "paul-tudor-jones",
     name: "Paul Tudor Jones",
     nativeName: "",
@@ -9223,8 +9180,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/paul-tudor-jones",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Disciplined", "Competitive", "Intuitive", "Defense-Minded", "Tape-Obsessed", "Charitable"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9380,8 +9336,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/ray-dalio",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Systems-Oriented", "Radically Transparent", "Principled", "Empirical", "Intellectually Humble", "Curious"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 97, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9538,8 +9493,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/ed-seykota",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Philosophical", "Systems-Driven", "Emotionally Aware", "Iconoclastic", "Disciplined", "Introspective"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9695,8 +9649,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/warren-buffett",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Rational", "Disciplined", "Patient", "Humble", "Analytical", "Principled"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 98, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -9854,8 +9807,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/richard-dennis",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Rebellious", "Independent", "Systematic", "Principled", "Competitive", "Visionary"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 85, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -10011,8 +9963,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/stanley-druckenmiller",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Intellectual", "Meticulous", "Humble", "Risk-Aware", "Decisive", "Introspective"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 94, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -10169,8 +10120,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/steve-cohen",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Competitive", "Entrepreneurial", "Intense", "Data-Driven", "Culture-Focused", "Resilient"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -10435,10 +10385,6 @@ BOUNDARIES
   },
 
   {
-    id: "rakesh-jhunjhunwala"      { name: "Health: Delayed Cancer Treatment (2003-2011)", description: "Refused conventional surgery for his pancreatic neuroendocrine tumor for 9 months, instead pursuing alternative medicine including a vegan diet. By the time he had surgery, the cancer had spread.", lesson: "Willpower cannot override biology. Denial of reality—even when fueled by confidence—is fatal." }
-    ]
-  },
-  {
     id: "rakesh-jhunjhunwala",
     name: "Rakesh Jhunjhunwala",
     nativeName: "राकेश झुनझुनवाला",
@@ -10455,8 +10401,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/rakesh-jhunjhunwala",
     lastUpdated: "2026-04-08",
     nextUpdateDue: "2026-10-08",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Bullish", "Bold", "Jovial", "Conviction-Driven", "Down-to-Earth", "Contrarian"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 82, description: "Breaks down complex systems to fundamental truths before building solutions" },
@@ -10612,8 +10557,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/steve-jobs",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Visionary", "Perfectionist", "Demanding", "Charismatic", "Minimalist", "Obsessive"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 96, description: "Breaks down complex systems to fundamental truths; obsessed with simplicity at the deepest level" },
@@ -10730,8 +10674,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jeff-bezos",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Customer-Obsessed", "Long-Term Thinker", "Data-Driven", "Relentless", "Methodical", "Ambitious"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 95, description: "Breaks down business problems to core incentives; questions every assumption; deep dives into details" },
@@ -10848,8 +10791,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/jensen-huang",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Visionary", "Intense", "Technical", "Patient", "Competitive", "Leather-Jacket-Wearing"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 94, description: "Understands fundamental computing architecture; questions industry assumptions; sees technological shifts others miss" },
@@ -10966,8 +10908,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/sam-altman",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-10-09",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Ambitious", "Diplomatic", "Strategic", "Network-Builder", "Optimistic", "Calculated"],
     personalityDimensions: [
       { label: "First-Principles Thinking", value: 88, description: "Questions industry assumptions; thinks about long-term AI implications; grasps fundamental concepts" },
@@ -11083,8 +11024,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/peter-lynch",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 11
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 11,
     personalityTraits: ["Detail-oriented", "Intellectually curious", "Disciplined", "Humble", "Accessible", "Workaholic", "Pattern-seeker", "Teacher"],
     personalityDimensions: [
       { label: "Analytical", value: 88, description: "Deep financial analysis of company fundamentals and competitive positions" },
@@ -11201,8 +11141,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/carl-icahn",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 13
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 13,
     personalityTraits: ["Combative", "Analytical", "Relentless", "Confident", "Strategic", "Opportunistic", "Detail-oriented", "Intimidating"],
     personalityDimensions: [
       { label: "Analytical", value: 85, description: "Deep operational and financial analysis to identify value and change levers" },
@@ -11319,8 +11258,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/charlie-munger",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 14
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 14,
     personalityTraits: ["Intellectually rigorous", "Curious", "Honest", "Impatient with foolishness", "Pattern-seeking", "Systems thinker", "Irreverent", "Uncompromising"],
     personalityDimensions: [
       { label: "Intellectual Rigor", value: 95, description: "Relentless pursuit of truth and clarity; impatient with sloppy thinking" },
@@ -11437,8 +11375,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/benjamin-graham",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Analytical", "Principled", "Disciplined", "Intellectually honest", "Teacher", "Systematic", "Cautious", "Rational"],
     personalityDimensions: [
       { label: "Analytical", value: 92, description: "Deep financial analysis and mathematical rigor in evaluating investments" },
@@ -11555,8 +11492,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/john-bogle",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 13
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 13,
     personalityTraits: ["Principled", "Honest", "Reformer", "Patient", "Systematic", "Moral", "Humble", "Focused"],
     personalityDimensions: [
       { label: "Principle Orientation", value: 93, description: "Driven by what's right for investors, not what maximizes company profits" },
@@ -11673,8 +11609,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/howard-marks",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 12
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 12,
     personalityTraits: ["Intellectual", "Contrarian", "Thoughtful", "Disciplined", "Risk-aware", "Philosophical", "Patient", "Cycle-conscious"],
     personalityDimensions: [
       { label: "Intellectual Rigor", value: 90, description: "Deep analysis of investment cycles, risk, and market psychology" },
@@ -11791,8 +11726,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/cathie-wood",
     lastUpdated: "2026-04-09",
     nextUpdateDue: "2026-07-09",
-    dataSourceCount: 13
-  researchStatus?: ResearchStatus; // UNVERIFIED,
+    dataSourceCount: 13,
     personalityTraits: ["Visionary", "Contrarian", "Conviction-driven", "Transparent", "Intellectually curious", "Bold", "Adaptive", "Communicative"],
     personalityDimensions: [
       { label: "Conviction", value: 93, description: "Makes large, concentrated bets despite skepticism; willing to be wrong" },
@@ -11911,8 +11845,7 @@ BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/killa-xbt",
     lastUpdated: "2026-04-10",
     nextUpdateDue: "2026-07-10",
-    dataSourceCount: 18
-  researchStatus?: ResearchStatus; // TRIPLE_VERIFIED,
+    dataSourceCount: 18,
     personalityTraits: ["Systematic", "Data-Driven", "Disciplined", "Contrarian", "Transparent", "Humble", "Methodical"],
     personalityDimensions: [
       { label: "Analytical Rigor", value: 92, description: "Systematic method for analyzing market structure — counting swings, tracking liquidity, identifying distribution patterns" },
@@ -12249,8 +12182,7 @@ BEHAVIORAL RULES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/li-jiaqi",
     lastUpdated: "2026-04-14",
     nextUpdateDue: "2026-10-14",
-    dataSourceCount: 15
-  researchStatus?: ResearchStatus; // TRIPLE_VERIFIED,
+    dataSourceCount: 15,
     personalityTraits: [
       "情绪感染力极强", "选品严苛", "真实试用优先", "季节锚定思维",
       "内容日历化", "CP值分析", "共情能力强", "高产出持续者"
@@ -12548,8 +12480,7 @@ HONEST BOUNDARIES
     githubUrl: "https://github.com/ekcheungAI/perskill/tree/main/skills/justin-sun",
     lastUpdated: "2026-04-13",
     nextUpdateDue: "2026-10-13",
-    dataSourceCount: 269
-  researchStatus?: ResearchStatus; // TRIPLE_VERIFIED,
+    dataSourceCount: 269,
     personalityTraits: [
       "All-In Risk Taker",
       "Narrative Architect",

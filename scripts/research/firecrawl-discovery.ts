@@ -319,8 +319,7 @@ function inferSourceType(url: string, title: string, snippet: string): { sourceT
     lower.includes("fraud") ||
     lower.includes("lawsuit") ||
     lower.includes("criticism") ||
-    lower.includes("failure") ||
-    lower.includes("mistake") &&
+    (lower.includes("failure") || lower.includes("mistake")) &&
     (lower.includes("critic") || lower.includes("wrong") || lower.includes("fail"))
   ) {
     return { sourceType: "adversarial-critique", layer: "adversarial" };

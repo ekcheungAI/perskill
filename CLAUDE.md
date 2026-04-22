@@ -76,23 +76,56 @@ Perskill/
 
 ```
 perskill/
-├── CLAUDE.md                          ← You are here
-├── PRODUCT_ARCHITECTURE.md            ← Product vision and Phase 1/2 roadmap
-├── client/
-│   ├── index.html                     ← Google Fonts: Fraunces, Inter, JetBrains Mono
-│   └── src/
-│       ├── App.tsx                    ← Routes + ScrollToTop + ThemeProvider
-│       ├── index.css                  ← Global design tokens, animations, card styles
-│       ├── lib/
-│       │   └── personas.ts            ← ALL persona data (22 personas, full profiles)
-│       ├── pages/
-│       │   ├── Home.tsx               ← Library index: card grid + sidebar + stack tray
-│       │   ├── PersonaDetail.tsx      ← Full persona profile page (6 tabs)
-│       │   ├── PersonaMatch.tsx       ← Quiz + match results page
-│       │   └── NotFound.tsx
-│       └── components/
-│           ├── PersonaCard.tsx        ← Card component (used in PersonaMatch results)
-    │           └── RelationshipGraph.tsx  ← Network graph (used in PersonaDetail Network tab)
+├── CLAUDE.md                              ← You are here
+├── PRODUCT_ARCHITECTURE.md                ← Product vision and Phase 1/2 roadmap
+├── package.json                           ← React 19 + Vite + npm dependencies
+├── vite.config.ts                         ← Vite config with @ path alias
+├── tsconfig.json / tsconfig.app.json
+├── index.html                             ← Google Fonts: Fraunces, Inter, JetBrains Mono
+└── src/
+    ├── main.tsx
+    ├── App.tsx                           ← Routes + providers
+    ├── index.css                          ← Global design tokens
+    ├── vite-env.d.ts
+    ├── lib/
+    │   ├── personas.ts                   ← 22+ personas with full profiles
+    │   ├── boards.ts                     ← Board session types, factory helpers
+    │   ├── utils.ts
+    │   └── api/
+    │       ├── kimi.ts                   ← Kimi (Moonshot AI) K2.6 API client
+    │       ├── minimax.ts                 ← MiniMax M2.7 API client
+    │       ├── optimize.ts               ← Text optimization (enhance/condense)
+    │       └── deliberate.ts              ← Unified deliberation router
+    ├── pages/
+    │   ├── Home.tsx                     ← Library index
+    │   ├── PersonaDetail.tsx             ← Full persona profile
+    │   ├── PersonaMatch.tsx              ← Quiz + results
+    │   ├── BoardList.tsx                 ← Board session list
+    │   ├── BoardCreate.tsx               ← Board creation wizard
+    │   ├── BoardSession.tsx              ← Full deliberation experience
+    │   ├── Settings.tsx                 ← Global settings page
+    │   └── NotFound.tsx
+    ├── components/
+    │   ├── board/
+    │   │   ├── BoardBriefForm.tsx       ← Brief form + file upload + optimize
+    │   │   ├── BoardAssembly.tsx
+    │   │   ├── BoardMemberCard.tsx
+    │   │   ├── BoardMemoExport.tsx
+    │   │   ├── DeliberationPanel.tsx
+    │   │   ├── ResearchPacketPanel.tsx
+    │   │   └── SeatRolePicker.tsx
+    │   ├── PersonaCard.tsx
+    │   ├── RelationshipGraph.tsx
+    │   ├── ErrorBoundary.tsx
+    │   └── ui/
+    │       ├── sonner.tsx
+    │       └── tooltip.tsx
+    ├── contexts/
+    │   ├── ThemeContext.tsx
+    │   ├── BoardContext.tsx              ← Board session state (localStorage)
+    │   └── ApiSettingsContext.tsx        ← LLM model + API key settings
+    └── lib/hooks/
+        └── useNavigate.ts               ← Custom wouter navigation hook
 ```
 
 ---
@@ -103,6 +136,10 @@ perskill/
 |---|---|---|
 | `/` | `Home.tsx` | Library index — card grid, sidebar filters, stack tray |
 | `/persona/:id` | `PersonaDetail.tsx` | Full persona profile page |
+| `/boards` | `BoardList.tsx` | Board session list |
+| `/board/new` | `BoardCreate.tsx` | Board creation wizard |
+| `/board/:id` | `BoardSession.tsx` | Full deliberation session |
+| `/settings` | `Settings.tsx` | Global settings — model selector, API keys, session history |
 | `/match` | `PersonaMatch.tsx` | Persona Match quiz + results |
 | `/404` | `NotFound.tsx` | 404 page |
 
@@ -327,6 +364,26 @@ The **Research tab** on `PersonaDetail` shows the raw collected data:
 Located in `.env`:
 - `VITE_TWITTER_API_KEY` — TwitterAPI.io (for `scripts/research/` scripts)
 - `VITE_FIRECRAWL_API_KEY` — Firecrawl (for scraping web content)
+- `VITE_KIMI_API_KEY` — Kimi / Moonshot AI (for board deliberations, K2.6 model)
+- `VITE_MINIMAX_API_KEY` — MiniMax (for board deliberations, M2.7 model, via api.minimax.io)
+
+### LLM Settings Architecture
+
+Board deliberations and text optimization use the **active model** from `ApiSettingsContext`.
+
+**Model selection** is configured in `Settings.tsx` (`/settings`) and persisted to localStorage:
+- `k2.6` — Kimi / Moonshot AI, 200K context
+- `m2.7` — MiniMax, 200K context, fast generation
+
+**API clients:**
+- `src/lib/api/kimi.ts` — Kimi K2.6 deliberation + text generation
+- `src/lib/api/minimax.ts` — MiniMax M2.7 deliberation + text generation
+- `src/lib/api/optimize.ts` — Text optimization (enhance/condense) via active provider
+- `src/lib/api/deliberate.ts` — Unified deliberation router (routes to active provider)
+
+**Context:** `ApiSettingsContext` provides `activeModel`, `getActiveApiKey()`, `isModelConfigured()`, `setSelectedModel()`, `setCustomKimiKey()`, `setCustomMinimaxKey()`.
+
+**Attach context:** Board sessions support `BriefAttachment` files (`.md`, `.txt`) uploaded via the Brief form. These are read client-side and injected into the deliberation prompt as structured text blocks.
 
 ---
 

@@ -10,10 +10,11 @@ import { Link } from "wouter";
 import {
   Search, X, Layers, Copy, Brain, Star,
   Globe, TrendingUp, Users, Zap, BookOpen,
-  CheckCircle2, ArrowRight
+  CheckCircle2, ArrowRight, LayoutDashboard
 } from "lucide-react";
 import { personas, type PersonaCategory, type Persona } from "@/lib/personas";
 import { toast } from "sonner";
+import { getInitials } from "@/lib/utils";
 
 // ─── Category config ──────────────────────────────────────────────────────────
 const CATEGORY_CONFIG: Record<string, { icon: string; color: string }> = {
@@ -62,13 +63,6 @@ const SORT_OPTIONS = [
   { value: "promptTier",  label: "Upgrade Status" },
   { value: "connections", label: "Most Connected" },
 ];
-
-// ─── Initials helper ─────────────────────────────────────────────────────────
-function getInitials(name: string): string {
-  const parts = name.trim().split(/\s+/);
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-}
 
 // ─── Avatar with DP + initials fallback ──────────────────────────────────────
 function PersonaAvatar({
@@ -405,6 +399,10 @@ When responding, blend the above personas proportionally:
                   <Copy size={11} />
                   Copy Prompt
                 </button>
+                <Link href={`/board/new`} onClick={onClear} className="flex-1 flex items-center justify-center gap-1.5 text-[12px] font-semibold px-3 py-2 rounded-lg bg-gray-900 text-white">
+                  <LayoutDashboard size={11} />
+                  Board
+                </Link>
               </div>
             </>
           )}
@@ -453,6 +451,16 @@ When responding, blend the above personas proportionally:
               <span className="text-[11px] text-gray-500 hidden lg:block" style={{ fontFamily: "Inter, sans-serif" }}>
                 {selectedPersonas.length === 1 ? "Single persona prompt ready" : `${selectedPersonas.length} personas — composite prompt ready`}
               </span>
+              <Link href="/board/new">
+                <button
+                  onClick={onClear}
+                  className="flex items-center gap-1.5 text-[12px] font-semibold px-3.5 py-1.5 rounded-xl bg-gray-900 text-white hover:bg-gray-800 transition-colors"
+                  style={{ fontFamily: "Inter, sans-serif" }}
+                >
+                  <LayoutDashboard size={11} />
+                  Board Session
+                </button>
+              </Link>
               <button
                 onClick={() => setExpanded((v) => !v)}
                 className="text-[11px] text-gray-600 hover:text-gray-900 px-2.5 py-1.5 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors"
@@ -583,6 +591,18 @@ export default function Home() {
             <span className="text-[12px] text-gray-400 hidden md:block" style={{ fontFamily: "Inter, sans-serif" }}>
               {personas.length} personas · Free & open
             </span>
+            <Link href="/boards">
+              <span className="flex items-center gap-1.5 text-[12px] font-medium text-gray-700 hover:text-gray-900 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer" style={{ fontFamily: "Inter, sans-serif" }}>
+                <LayoutDashboard size={13} />
+                <span className="hidden sm:block">Boards</span>
+              </span>
+            </Link>
+            <Link href="/settings">
+              <span className="flex items-center gap-1.5 text-[12px] font-medium text-gray-700 hover:text-gray-900 px-3 py-1.5 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer" style={{ fontFamily: "Inter, sans-serif" }}>
+                <svg size={13} width={13} height={13} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                Settings
+              </span>
+            </Link>
             {selectedStack.length > 0 && (
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-900 text-white text-[12px] font-medium" style={{ fontFamily: "Inter, sans-serif" }}>
                 <Star size={12} />
@@ -626,7 +646,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right: How to Use — compact horizontal steps */}
+            {/* Right: How to Use + Start a Board — compact horizontal steps */}
             <div className="w-full lg:w-auto flex-shrink-0">
               <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mb-2" style={{ fontFamily: "Inter, sans-serif" }}>
                 How to use
@@ -650,6 +670,21 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
+                {/* Start a Board CTA */}
+                <Link href="/board/new">
+                  <div className="flex items-center gap-2.5 px-3 py-2 bg-gray-900 rounded-lg border border-gray-900 hover:bg-gray-800 transition-colors cursor-pointer min-w-[240px]">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-md flex items-center justify-center bg-white/20">
+                      <LayoutDashboard size={11} className="text-white" />
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[8px] font-mono font-bold text-white/60">04</span>
+                        <span className="text-[11.5px] font-semibold text-white" style={{ fontFamily: "Fraunces, Georgia, serif" }}>Start a Board</span>
+                      </div>
+                      <p className="text-[10px] text-white/60 leading-tight" style={{ fontFamily: "Inter, sans-serif" }}>Convene experts for a decision</p>
+                    </div>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
